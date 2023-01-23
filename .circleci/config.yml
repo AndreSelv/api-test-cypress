@@ -135,7 +135,8 @@ jobs:
 ##          command: npm start
           background: true
       # run all tests and pass group name (should be "1x-electron" in this case)
-      - run: npm run e2e:record -- --group $CIRCLE_JOB
+#      - run: npm run e2e:record -- --group $CIRCLE_JOB
+      - run: npx cypress run
 
   2x-electron:
     <<: *defaults
@@ -149,7 +150,9 @@ jobs:
           background: true
       # runs Cypress test in load balancing (parallel) mode
       # and groups them in Cypress Dashboard under name "4x-electron"
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+#      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+      - run: npx cypress run
+
 
   4x-electron:
     <<: *defaults
@@ -163,7 +166,9 @@ jobs:
           background: true
       # runs Cypress test in load balancing (parallel) mode
       # and groups them in Cypress Dashboard under name "4x-electron"
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+#      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB
+      - run: npx cypress run
+
 
   # name this job differently to have it AFTER all electron jobs on dashboard
   chrome-2x:
@@ -176,7 +181,9 @@ jobs:
 #      - run:
 #          command: npm start
           background: true
-      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
+#      - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
+      - run: npx cypress run
+
 
 workflows:
   version: 2
