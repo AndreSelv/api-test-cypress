@@ -30,7 +30,7 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: cypress/browsers:chrome109
+    - image: cypress/browsers:chrome67
 
 version: 2
 jobs:
