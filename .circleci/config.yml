@@ -1,14 +1,12 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@2
 workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
       - cypress/install:
           yarn: true
-          command: yarn test:e2e:run
-          store_artifacts: true
           # run a custom app build step
           build: 'npm run build'
       - cypress/run:
