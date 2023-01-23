@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -25,7 +25,8 @@
     "hubspot": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/hubspot/hubspot.feature'",
     "cypress:runDefault": "cypress run --spec cypress/e2e/api-testing/**/**",
     "cypress:chrome": "cypress run --browser chrome --spec cypress/e2e/api-testing/**/**",
-    "cypress:edge": "cypress run --browser edge --spec cypress/e2e/api-testing/**/**"
+    "cypress:edge": "cypress run --browser edge --spec cypress/e2e/api-testing/**/**",
+    "cy:verify": "cypress verify"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,8 @@
     "amazon-cognito-identity-js": "^5.2.9",
     "archiver": "^4.0.1",
     "aws-xray-sdk-core": "^3.3.6",
+    "ci": "^2.2.0",
+    "circleci": "^0.3.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "node-fetch": "^2.6.7",
