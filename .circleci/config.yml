@@ -73,8 +73,8 @@ jobs:
       # restore application and Cypress binary before running the test command
       - attach_workspace:
           at: ~/
-      - run:
-#          command: npm start
+#      - run:
+##          command: npm start
           background: true
       # run all tests and pass group name (should be "1x-electron" in this case)
       - run: npm run e2e:record -- --group $CIRCLE_JOB
@@ -86,8 +86,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run:
-#          command: npm start
+#      - run:
+##          command: npm start
           background: true
       # runs Cypress test in load balancing (parallel) mode
       # and groups them in Cypress Dashboard under name "4x-electron"
@@ -100,8 +100,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run:
-#          command: npm start
+#      - run:
+##          command: npm start
           background: true
       # runs Cypress test in load balancing (parallel) mode
       # and groups them in Cypress Dashboard under name "4x-electron"
@@ -115,7 +115,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run:
+#      - run:
 #          command: npm start
           background: true
       - run: npm run e2e:record -- --parallel --group $CIRCLE_JOB --browser chrome
