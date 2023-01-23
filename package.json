@@ -78,7 +78,7 @@
     }
   ],
   "engines": {
-    "node": "12.22.0",
+    "node": "12.19.0",
     "npm": ">=6"
   },
   "license": "Copyright AAIS. All rights reserved",
@@ -99,7 +99,7 @@
     "cypress-log-to-output": "^1.1.2",
     "cypress-multi-reporters": "^1.6.1",
     "cypress-promise": "^1.1.0",
-    "eslint": "^8.21.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.32.1",
     "husky": "^4.2.5",
     "mochawesome": "^7.1.3",
