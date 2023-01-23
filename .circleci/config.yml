@@ -30,7 +30,7 @@
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: cypress/browsers:chrome67
+    - image: cypress/browsers:chrome109
 
 version: 2
 jobs:
@@ -48,7 +48,7 @@ jobs:
           command: npm ci
       # run verify and then save cache.
       # this ensures that the Cypress verified status is cached too
-#      - run: npm run cy:verify
+      - run: npm run cy:verify
       # save new cache folder if needed
       - save_cache:
           key: cache-{{ .Branch }}-{{ checksum "package.json" }}
