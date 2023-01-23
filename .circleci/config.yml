@@ -77,7 +77,7 @@ workflows:
       - cypress/install:
           yarn: true
           # run a custom app build step
-          build: 'npm run build'
+#          build: 'npm run build'
       - cypress/run:
           # make sure app has been installed and built
           # before running tests across multiple machines
