@@ -71,6 +71,7 @@ module.exports = defineConfig({
             accessToken: "",
             idToken: "",
             refreshToken: "",
+            CYPRESS_RECORD_KEY: "d76932dd-1ca1-4d55-99cf-f11331f2187a"
         },
         specPattern: "cypress/e2e/**/*.*",
         projectId: "fsxi11",
