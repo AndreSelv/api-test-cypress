@@ -96,7 +96,7 @@ workflows:
           name: Chrome
           requires:
             - cypress/install
-          executor: cypress/browsers-chrome69
+          executor: cypress/base-14
           store_artifacts: true
           post-steps:
             - store_artifacts:
