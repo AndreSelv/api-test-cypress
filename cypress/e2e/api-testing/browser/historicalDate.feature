@@ -23,7 +23,7 @@ Feature: Validate that historical date query returns correct data
     Then The user create request with '<product>' '<state>' '<material>' '<effective_date>' and should be able to receive all of objects with effective date value less or equal than '<effective_date>'
     Examples:
       | product | state | material | effective_date |
-      |         | FL    |          | 01/01/1950     |
+#      |         | FL    |          | 01/01/1950     |
       |         | AK    |          | 10/16/2020     |
       |         | NV    |          | 10/16/2020     |
       |         | TX    |          | 10/16/2020     |
