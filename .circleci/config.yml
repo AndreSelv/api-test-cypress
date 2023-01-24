@@ -82,7 +82,6 @@ workflows:
           browser: chrome
 #          working_directory: orgaization
 
-          #executor: cypress/base-14
 
           requires:
             - cypress/install
