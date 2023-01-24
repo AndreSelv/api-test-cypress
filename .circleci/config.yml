@@ -98,6 +98,7 @@ workflows:
           parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing/browser
+          debug: 'cypress:cli'
 
           post-install:
             - run: npx cypress info
@@ -122,6 +123,7 @@ workflows:
           parallelism: 2
           group: Firefox group
           spec: cypress/e2e/api-testing/browser
+          debug: 'cypress:cli'
 
           post-install:
             - run: npx cypress info
