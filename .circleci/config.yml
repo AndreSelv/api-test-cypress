@@ -86,8 +86,8 @@ workflows:
           #            - cypress/install
 
           record: true
-          parallel: true
-          parallelism: 2
+#          parallel: true
+#          parallelism: 2
           group: Hubspot group
           spec: cypress/e2e/api-testing/browser
 
