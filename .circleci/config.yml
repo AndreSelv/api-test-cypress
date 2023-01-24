@@ -74,15 +74,11 @@ workflows:
       #      - cypress/install:
       #          name: Install Dependencies
       #          yarn: true
-      #          working_directory: orgaization
 
-      # run a custom app build step
-      #          build: 'npm run build'
       - cypress/run:
           name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-          #          working_directory: orgaization
 
           #executor: cypress/base-14
 
@@ -90,19 +86,18 @@ workflows:
           #            - cypress/install
 
           record: true
+          parallel: true
+          parallelism: 2
           group: Hubspot group
-          spec: cypress/e2e/api-testing/hubspot
+          spec: cypress/e2e/api-testing/browser
 
 
 
           post-install:
             - run: npx cypress info
-
-
           store_artifacts: true
           post-steps:
             - run: npm run e2e-test-report
-
             - store_artifacts:
                 path: mochawesome-report
             - store_test_results:
