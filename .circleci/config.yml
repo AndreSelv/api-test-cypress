@@ -92,7 +92,8 @@ workflows:
             - store_artifacts:
                 path: mochawesome-report
             - store_artifacts:
-                path: cypress/results
+                path: cypress/results/CypressTestResults.html
+
 
 
 
