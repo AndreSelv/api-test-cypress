@@ -87,9 +87,9 @@ workflows:
           browser: chrome
 #          working_directory: orgaization
 
-
-          requires:
-            - cypress/install
+#
+#          requires:
+#            - cypress/install
 
           record: true
           parallel: true
