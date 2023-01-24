@@ -74,6 +74,7 @@ workflows:
           # run a custom app build step
 #          build: 'npm run build'
       - cypress/run:
+          command: npm run cy:test
 
 
           name: Hubspot
@@ -93,9 +94,6 @@ workflows:
             - store_test_results:
                 path: cypress/runner-results
 
-
-#          post-install:
-#            - run: npm run e2e-test-report
 
 
 #
