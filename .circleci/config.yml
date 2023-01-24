@@ -74,7 +74,7 @@ workflows:
           # run a custom app build step
 #          build: 'npm run build'
       - cypress/run:
-          name: Node
+          name: Hubspot
           executor: cypress/base-14
           store_artifacts: true
           post-steps:
@@ -86,11 +86,12 @@ workflows:
           parallel: true
           parallelism: 2
           group: Node group
+          spec: cypress/e2e/api-testing/hubspot
 
 
 
       - cypress/run:
-          name: Chrome
+          name: Browser
           requires:
             - cypress/install
           executor: cypress/base-14
@@ -103,7 +104,6 @@ workflows:
           parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing/browser
-          browser: firefox
 
 
 
