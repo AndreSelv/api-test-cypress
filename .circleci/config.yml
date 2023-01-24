@@ -91,7 +91,7 @@ workflows:
           requires:
             - cypress/install
 
-          name: Hubspot
+          name: Chrome
           executor: browsers-chrome100-ff99-edge
           browser: chrome
 
@@ -100,7 +100,7 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          group: Hubspot group
+          group: Chrome group
           spec: cypress/e2e/api-testing/browser
 
 
@@ -118,21 +118,18 @@ workflows:
 
 
 
-#
-#      - cypress/run:
-#          name: Browser
-#          requires:
-#            - cypress/install
-#          store_artifacts: true
-#          record: true
-#          parallel: true
-#          parallelism: 2
-#          group: Chrome group
-#          spec: cypress/e2e/api-testing/browser
-#          executor: with-chrome
-#          browser: chrome
-
-
+      - cypress/run:
+          requires:
+            - cypress/install
+          name: Firefox
+          executor: browsers-chrome100-ff99-edge
+          browser: firefox
+          store_artifacts: true
+          record: true
+          parallel: true
+          parallelism: 2
+          group: Firefox group
+          spec: cypress/e2e/api-testing/browser
 
 
 
