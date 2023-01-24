@@ -61,6 +61,10 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@2
+executors:
+  with-chrome:
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 workflows:
   build:
     jobs:
@@ -71,6 +75,11 @@ workflows:
 #          build: 'npm run build'
       - cypress/run:
           executor: cypress/base-14
+          store_artifacts: true
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
+
 
           # make sure app has been installed and built
           # before running tests across multiple machines
