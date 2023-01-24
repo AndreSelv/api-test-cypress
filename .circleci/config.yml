@@ -86,7 +86,8 @@ workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-      - cypress/install
+      - cypress/install:
+          name: Install Dependencies
       - cypress/run:
           requires:
             - cypress/install
