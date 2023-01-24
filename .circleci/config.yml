@@ -71,23 +71,23 @@ workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-      #      - cypress/install:
-      #          name: Install Dependencies
-      #          yarn: true
+      - cypress/install:
+          name: Install Dependencies
+          yarn: true
 
       - cypress/run:
+          requires:
+            - cypress/install
+
           name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
 
           #executor: cypress/base-14
 
-          #          requires:
-          #            - cypress/install
-
           record: true
-#          parallel: true
-#          parallelism: 2
+          parallel: true
+          parallelism: 2
           group: Hubspot group
           spec: cypress/e2e/api-testing/browser
 
