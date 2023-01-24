@@ -75,6 +75,7 @@ workflows:
           # run a custom app build step
       #          build: 'npm run build'
       - cypress/run:
+          browser: chrome
 
 
           name: Hubspot
