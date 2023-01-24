@@ -103,7 +103,7 @@ workflows:
           parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing/browser
-          browser: chrome
+          browser: firefox
 
 
 
