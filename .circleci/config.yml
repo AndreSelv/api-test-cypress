@@ -72,10 +72,10 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/install:
           yarn: true
-          # run a custom app build step
-#          build: 'npm run build'
-      - cypress/run:
 
+
+      - cypress/run:
+          browser: chrome
 
           name: Hubspot
           executor: cypress/base-14
