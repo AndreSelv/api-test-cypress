@@ -90,7 +90,7 @@ workflows:
 
           record: true
           group: Hubspot group
-#          spec: cypress/e2e/api-testing/hubspot
+          spec: cypress/e2e/api-testing/hubspot
 
 
 
