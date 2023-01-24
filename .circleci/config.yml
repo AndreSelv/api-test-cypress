@@ -43,7 +43,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests
-          command: npm run parallel
+          command: apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb, npm run parallel
 
 workflows:
   # Below is the definition of your workflow.
