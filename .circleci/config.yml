@@ -80,16 +80,13 @@ workflows:
           post-steps:
             - store_artifacts:
                 path: mochawesome-report
-          # make sure app has been installed and built
-          # before running tests across multiple machines
-          # this avoids installing same dependencies 10 times
           requires:
             - cypress/install
-          record: true # record results on Cypress Dashboard
-          parallel: true # split all specs across machines
-          parallelism: 2 # use 2 CircleCI machines to finish quickly
-          group: 2 machines
-#          start: 'npm start' # start server before running tests
+          record: true
+          parallel: true
+          parallelism: 2
+          group: Node group
+
 
 
       - cypress/run:
@@ -104,9 +101,11 @@ workflows:
           record: true
           parallel: true
           parallelism: 2
-          group: smoke tests
+          group: Chrome group
           spec: cypress/e2e/api-testing/browser
-#
+          browser: chrome
+
+
 
 
 
