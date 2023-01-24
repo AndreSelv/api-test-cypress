@@ -75,13 +75,12 @@ workflows:
           # run a custom app build step
       #          build: 'npm run build'
       - cypress/run:
+          name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-          config-file: staging.json
 
 
 
-          name: Hubspot
 #          executor: cypress/base-14
           requires:
             - cypress/install
