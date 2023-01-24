@@ -83,13 +83,11 @@ workflows:
             - store_artifacts:
                 path: mochawesome-report
             - store_test_results:
-                path: cypress/results
+                path: cypress/runner-results
           requires:
             - cypress/install
           record: true
-          parallel: true
-          parallelism: 2
-          group: Node group
+          group: Hubspot group
           spec: cypress/e2e/api-testing/hubspot
           post-install:
             - run: npm run e2e-test-report
