@@ -90,26 +90,19 @@ workflows:
       - cypress/run:
           requires:
             - cypress/install
-
           name: Chrome
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-
-          #executor: cypress/base-14
-
           record: true
           parallel: true
           parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing/browser
 
-
-
           post-install:
             - run: npx cypress info
           store_artifacts: true
           post-steps:
-            - run: npm run e2e-test-report
             - store_artifacts:
                 path: mochawesome-report
             - store_test_results:
@@ -124,12 +117,26 @@ workflows:
           name: Firefox
           executor: browsers-chrome100-ff99-edge
           browser: firefox
-          store_artifacts: true
           record: true
           parallel: true
           parallelism: 2
           group: Firefox group
           spec: cypress/e2e/api-testing/browser
+
+          post-install:
+            - run: npx cypress info
+          store_artifacts: true
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
+            - store_test_results:
+                path: cypress/results
+
+
+
+
+
+
 
 
 
