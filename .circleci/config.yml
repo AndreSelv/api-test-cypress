@@ -74,7 +74,6 @@ workflows:
           # run a custom app build step
 #          build: 'npm run build'
       - cypress/run:
-          command: npm run cy:test
 
 
           name: Hubspot
@@ -89,10 +88,12 @@ workflows:
 
 
           post-steps:
+            - run: npm run e2e-test-report
+
             - store_artifacts:
                 path: mochawesome-report
             - store_test_results:
-                path: cypress/runner-results
+                path: cypress/results
 
           post-install:
             - run: npx cypress info
