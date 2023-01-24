@@ -74,6 +74,7 @@ workflows:
           # run a custom app build step
 #          build: 'npm run build'
       - cypress/run:
+          name: Node
           executor: cypress/base-14
           store_artifacts: true
           post-steps:
@@ -89,16 +90,21 @@ workflows:
           parallelism: 2 # use 2 CircleCI machines to finish quickly
           group: 2 machines
 #          start: 'npm start' # start server before running tests
+
+
       - cypress/run:
           name: Chrome
           requires:
             - cypress/install
           executor: cypress/browsers-chrome69
+          store_artifacts: true
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
           record: true
           parallel: true
           parallelism: 2
           group: smoke tests
-          browser: chrome
           spec: cypress/e2e/api-testing/browser
 #
 
