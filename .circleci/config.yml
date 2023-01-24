@@ -76,7 +76,7 @@ workflows:
       #          build: 'npm run build'
       - cypress/run:
           executor: browsers-chrome100-ff99-edge
-          browser: chrome
+          browser: firefox
 
 
           name: Hubspot
