@@ -75,7 +75,8 @@ workflows:
 #          build: 'npm run build'
       - cypress/run:
           name: Hubspot
-          executor: cypress/base-14
+          executor: with-chrome
+          browser: chrome
           store_artifacts: true
           post-steps:
             - store_artifacts:
