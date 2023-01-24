@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "parallel": "CI=1 npx cypress run --record --headless --parallel --ci-build-id circle",
-    "cypress:run": "cypress run -- headless",
+    "cypress:run": "npx cypress run -b chrome --headless",
     "test-watch": "jest --coverage --silent --verbose --detectOpenHandles --watchAll",
     "prune": "npm prune --production",
     "manifest": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/manifest.feature'",
