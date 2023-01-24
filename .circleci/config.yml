@@ -74,7 +74,7 @@ workflows:
           # before running tests across multiple machines
           # this avoids installing same dependencies 10 times
           requires:
-#            - cypress/install
+            - cypress/install
 #          record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
           parallelism: 4 # use 4 CircleCI machines to finish quickly
