@@ -70,10 +70,10 @@ workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-#      - cypress/install:
-#          name: Install Dependencies
-#          yarn: true
-#          working_directory: e2e/api-testing/orgaization
+      - cypress/install:
+          name: Install Dependencies
+          yarn: true
+          working_directory: orgaization
 
           # run a custom app build step
       #          build: 'npm run build'
@@ -81,9 +81,9 @@ workflows:
           name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-          working_directory: orgaization
+#          working_directory: orgaization
 
-          #          executor: cypress/base-14
+          #executor: cypress/base-14
 
 #          requires:
 #            - cypress/install
