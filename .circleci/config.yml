@@ -94,6 +94,9 @@ workflows:
             - store_test_results:
                 path: cypress/runner-results
 
+          post-install:
+            - run: npx cypress info
+
 
 
 #
