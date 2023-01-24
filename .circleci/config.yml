@@ -60,7 +60,7 @@
 
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@2
+  cypress: cypress-io/cypress@2.2.0
 executors:
   with-chrome:
     docker:
@@ -74,12 +74,18 @@ workflows:
           # run a custom app build step
 #          build: 'npm run build'
       - cypress/run:
+
+
           name: Hubspot
+          post-install:
+            - run: npm run e2e-test-report
           executor: cypress/base-14
           store_artifacts: true
           post-steps:
             - store_artifacts:
                 path: mochawesome-report
+            - store_test_results:
+                path: cypress/results
           requires:
             - cypress/install
           record: true
@@ -96,9 +102,6 @@ workflows:
           requires:
             - cypress/install
           store_artifacts: true
-          post-steps:
-            - store_artifacts:
-                path: mochawesome-report
           record: true
           parallel: true
           parallelism: 2
@@ -106,21 +109,6 @@ workflows:
           spec: cypress/e2e/api-testing/browser
           executor: with-chrome
           browser: chrome
-
-
-      - cypress/run:
-          name: Firefox
-          requires:
-            - cypress/install
-          store_artifacts: true
-          post-steps:
-            - store_artifacts:
-                path: mochawesome-report
-          record: true
-          group: Firefox group
-          spec: cypress/e2e/api-testing/browser
-          executor: with-firefox
-          browser: firefox
 
 
 
