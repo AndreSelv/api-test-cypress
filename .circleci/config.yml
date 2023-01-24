@@ -93,7 +93,7 @@ workflows:
           name: Chrome
           requires:
             - cypress/install
-          executor: cypress/browsers-chrome109
+          executor: cypress/browsers-chrome67
           record: true
           parallel: true
           parallelism: 2
