@@ -70,9 +70,10 @@ workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-      - cypress/install:
-          yarn: true
-          working_directory: e2e/api-testing/orgaization
+#      - cypress/install:
+#          name: Install Dependencies
+#          yarn: true
+#          working_directory: e2e/api-testing/orgaization
 
           # run a custom app build step
       #          build: 'npm run build'
