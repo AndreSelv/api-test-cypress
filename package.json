@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.73",
+  "version": "0.0.74",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -37,7 +37,7 @@
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run --browser chrome",
-    "e2e:record": "cypress run --record --key d76932dd-1ca1-4d55-99cf-f11331f2187a",
+    "e2e:record": "cypress run --record",
     "e2e:record:parallel": "cypress run --record --parallel",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
