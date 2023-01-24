@@ -75,8 +75,7 @@ workflows:
 #          build: 'npm run build'
       - cypress/run:
           name: Hubspot
-          executor: with-chrome
-          browser: chrome
+          executor: cypress/base-14
           store_artifacts: true
           post-steps:
             - store_artifacts:
@@ -91,11 +90,11 @@ workflows:
 
 
 
+
       - cypress/run:
           name: Browser
           requires:
             - cypress/install
-          executor: cypress/base-14
           store_artifacts: true
           post-steps:
             - store_artifacts:
@@ -105,7 +104,23 @@ workflows:
           parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing/browser
+          executor: with-chrome
+          browser: chrome
 
+
+      - cypress/run:
+          name: Firefox
+          requires:
+            - cypress/install
+          store_artifacts: true
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
+          record: true
+          group: Firefox group
+          spec: cypress/e2e/api-testing/browser
+          executor: with-firefox
+          browser: firefox
 
 
 
