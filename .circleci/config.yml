@@ -72,6 +72,8 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/install:
           yarn: true
+          working_directory: e2e/api-testing/orgaization
+
           # run a custom app build step
       #          build: 'npm run build'
       - cypress/run:
@@ -85,7 +87,7 @@ workflows:
 
           record: true
           group: Hubspot group
-          spec: cypress/e2e/api-testing/hubspot
+#          spec: cypress/e2e/api-testing/hubspot
 
           store_artifacts: true
           post-steps:
