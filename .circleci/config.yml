@@ -81,7 +81,9 @@ workflows:
           name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-#          executor: cypress/base-14
+          working_directory: orgaization
+
+          #          executor: cypress/base-14
 
 #          requires:
 #            - cypress/install
@@ -89,6 +91,12 @@ workflows:
           record: true
           group: Hubspot group
 #          spec: cypress/e2e/api-testing/hubspot
+
+
+
+          post-install:
+            - run: npx cypress info
+
 
           store_artifacts: true
           post-steps:
@@ -98,12 +106,6 @@ workflows:
                 path: mochawesome-report
             - store_test_results:
                 path: cypress/results
-
-
-
-
-          post-install:
-            - run: npx cypress info
 
 
 
