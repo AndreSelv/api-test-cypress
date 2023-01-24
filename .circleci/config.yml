@@ -59,10 +59,13 @@
 
 
 version: 2.1
-orbs:
+description: |
+  Run your Cypress.io end-to-end & component tests without spending time configuring CircleCI.
+  This orb can also record results on the Cypress Dashboard and load balance tests in parallel mode.
+  If recording on the dashboard, set `CYPRESS_RECORD_KEY` as CI environment variable.orbs:
   cypress: cypress-io/cypress@2.2.0
 executors:
-  browsers-chrome100-ff99-edge:
+  with-chrome:
     description: Docker container with Node 16.14.2, Cypress dependencies, Chrome 100, Firefox 99, and the latest Edge
     docker:
       - image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
@@ -75,7 +78,6 @@ workflows:
 
 
       - cypress/run:
-          browser: chrome
 
           name: Hubspot
           executor: cypress/base-14
