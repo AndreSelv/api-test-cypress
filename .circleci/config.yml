@@ -90,7 +90,7 @@ workflows:
             - run: npm run e2e-test-report
 
             - store_artifacts:
-                path: mochawesome-report
+                path: cypress/results/CypressTestResults.html
             - store_test_results:
                 path: cypress/results/CypressTestResults.html
 
