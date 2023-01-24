@@ -75,7 +75,7 @@ workflows:
           # run a custom app build step
       #          build: 'npm run build'
       - cypress/run:
-          executor: with-chrome
+          executor: browsers-chrome100-ff99-edge
           browser: chrome
 
 
