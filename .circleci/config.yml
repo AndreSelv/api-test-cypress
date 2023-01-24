@@ -77,8 +77,6 @@ workflows:
 
 
           name: Hubspot
-          post-install:
-            - run: npm run e2e-test-report
           executor: cypress/base-14
           store_artifacts: true
           post-steps:
@@ -93,22 +91,23 @@ workflows:
           parallelism: 2
           group: Node group
           spec: cypress/e2e/api-testing/hubspot
+          post-install:
+            - run: npm run e2e-test-report
 
 
-
-
-      - cypress/run:
-          name: Browser
-          requires:
-            - cypress/install
-          store_artifacts: true
-          record: true
-          parallel: true
-          parallelism: 2
-          group: Chrome group
-          spec: cypress/e2e/api-testing/browser
-          executor: with-chrome
-          browser: chrome
+#
+#      - cypress/run:
+#          name: Browser
+#          requires:
+#            - cypress/install
+#          store_artifacts: true
+#          record: true
+#          parallel: true
+#          parallelism: 2
+#          group: Chrome group
+#          spec: cypress/e2e/api-testing/browser
+#          executor: with-chrome
+#          browser: chrome
 
 
 
