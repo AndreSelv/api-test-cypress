@@ -79,18 +79,23 @@ workflows:
           name: Hubspot
           executor: cypress/base-14
           store_artifacts: true
-          post-steps:
-            - store_artifacts:
-                path: mochawesome-report
-            - store_test_results:
-                path: cypress/runner-results
+
           requires:
             - cypress/install
           record: true
           group: Hubspot group
           spec: cypress/e2e/api-testing/hubspot
-          post-install:
-            - run: npm run e2e-test-report
+
+
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
+            - store_test_results:
+                path: cypress/runner-results
+
+
+#          post-install:
+#            - run: npm run e2e-test-report
 
 
 #
