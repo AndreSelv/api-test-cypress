@@ -78,12 +78,10 @@ workflows:
           name: Hubspot
           executor: browsers-chrome100-ff99-edge
           browser: chrome
-
-
-
 #          executor: cypress/base-14
-          requires:
-            - cypress/install
+
+#          requires:
+#            - cypress/install
 
           record: true
           group: Hubspot group
