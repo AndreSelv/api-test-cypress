@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.147",
+  "version": "0.0.148",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -44,6 +44,7 @@
     "test:ci:record": "run-p --race start:ci e2e:record",
     "test:ci:record:parallel": "run-p --race start:ci e2e:record:parallel",
     "cy:verify": "cypress verify",
+    "cy:info": "npx cypress info",
     "cy:version": "cypress version",
     "cy:run": "cypress run",
     "cy:run:record": "cypress run --record",
