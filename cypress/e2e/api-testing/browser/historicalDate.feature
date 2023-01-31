@@ -7,14 +7,14 @@ Feature: Validate that historical date query returns correct data
     When The user create request with '<product>' '<state>' '<material>' '<effective_date>' '<effective_oldest_date>' and should be able to receive all of objects with externalApprovedDate_dt value between that values
     Examples:
       | product | state | material | effective_date | effective_oldest_date |
-      |         | AL    |          | 10/16/2020     | 01/01/2020            |
-      |         | AR    |          | 10/16/2020     | 01/01/2020            |
-      |         | AK    |          | 10/16/2020     | 01/01/2020            |
-      |         | NV    |          | 10/16/2020     | 01/01/2020            |
-      |         | TX    |          | 10/16/2020     | 01/01/2020            |
-      |         | TN    |          | 10/16/2020     | 01/01/2020            |
-      |         | NV    |          | 10/16/2020     | 01/01/2020            |
-      |         | AL    |          | 01/13/2005     | 10/08/2004            |
+      | HO      | AL    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | AR    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | AK    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | NV    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | TX    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | TN    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | NV    |          | 10/16/2020     | 01/01/2020            |
+      | HO      | AL    |          | 01/13/2005     | 10/08/2004            |
 
   Scenario Outline: As a user I want to be able to select only effective date '<effective_date>' for '<state>' state
   when browsing product material so that
@@ -24,13 +24,13 @@ Feature: Validate that historical date query returns correct data
     Examples:
       | product | state | material | effective_date |
 #      |         | FL    |          | 01/01/1950     |
-      |         | AK    |          | 10/16/2020     |
-      |         | NV    |          | 10/16/2020     |
-      |         | TX    |          | 10/16/2020     |
-      |         | AL    |          | 10/16/2020     |
-      |         | TN    |          | 10/16/2020     |
-      |         | NV    |          | 10/16/2020     |
-      |         | AL    |          | 01/13/2005     |
+      | HO      | AK    |          | 10/16/2020     |
+      | HO      | NV    |          | 10/16/2020     |
+      | HO      | TX    |          | 10/16/2020     |
+      | HO      | AL    |          | 10/16/2020     |
+      | HO      | TN    |          | 10/16/2020     |
+      | HO      | NV    |          | 10/16/2020     |
+      | HO      | AL    |          | 01/13/2005     |
 
 #  Scenario Outline: As a user I want to be able to select only  historical date '<effective_oldest_date>' for '<state>' state
 #  when browsing product material so that
