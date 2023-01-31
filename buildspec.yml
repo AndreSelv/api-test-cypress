@@ -33,5 +33,4 @@ phases:
       - npm run cy:info
   build:
     commands:
-      - npx cypress run --record
-      - npm run cy:test
+      - npx cypress run --record --key d76932dd-1ca1-4d55-99cf-f11331f2187a
