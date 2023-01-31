@@ -20,7 +20,9 @@ phases:
     commands:
       - npm run cy:verify
       - npm run cy:info
-      -
   build:
     commands:
       - npm run cy:test:aws
+  post_build:
+    commands:
+      - npm run e2e-test-report
