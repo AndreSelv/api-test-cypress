@@ -107,7 +107,7 @@ workflows:
             - store_artifacts:
                 path: mochawesome-report
             - store_test_results:
-                path: cypress/results
+                path: results
 
 
 
