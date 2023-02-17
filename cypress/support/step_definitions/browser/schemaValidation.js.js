@@ -4,7 +4,7 @@ const Ajv = require("ajv");
 const ajv = new Ajv();
 const schema = require("../searchSchema.json");
 
-When(/^User create search api request with state "([^"]*)" line "([^"]*)" object schema should be correct$/, (state, product) => {
+When(/^User create search api request with state "([^"]*)" line "([^"]*)" and package "([^"]*)" object schema should be correct$/, (state, product, packages) => {
   cy.request({
     method: "POST",
     url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
@@ -16,7 +16,7 @@ When(/^User create search api request with state "([^"]*)" line "([^"]*)" object
         "term": "",
         "filters": {
           "productLine": [product],
-          "packageType_s": [],
+          "packageType_s": [packages],
           "states": [state],
           "imgClass_s": "",
           "documentType_s_query": []
