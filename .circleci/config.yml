@@ -94,8 +94,8 @@ workflows:
           executor: browsers-chrome100-ff99-edge
           browser: chrome
           record: true
-          parallel: true
-          parallelism: 2
+#          parallel: true
+#          parallelism: 2
           group: Chrome group
           spec: cypress/e2e/api-testing
           debug: 'cypress:cli'
@@ -119,8 +119,8 @@ workflows:
           executor: browsers-chrome100-ff99-edge
           browser: firefox
           record: true
-          parallel: true
-          parallelism: 2
+#          parallel: true
+#          parallelism: 2
           group: Firefox group
           spec: cypress/e2e/api-testing
           debug: 'cypress:cli'
