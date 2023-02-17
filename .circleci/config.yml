@@ -97,7 +97,7 @@ workflows:
           parallel: true
           parallelism: 2
           group: Chrome group
-          spec: cypress/e2e/api-testing/browser
+          spec: cypress/e2e/api-testing
           debug: 'cypress:cli'
 
           post-install:
@@ -122,7 +122,7 @@ workflows:
           parallel: true
           parallelism: 2
           group: Firefox group
-          spec: cypress/e2e/api-testing/browser
+          spec: cypress/e2e/api-testing
           debug: 'cypress:cli'
 
           post-install:
