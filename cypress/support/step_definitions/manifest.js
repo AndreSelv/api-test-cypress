@@ -3,10 +3,10 @@ const { When, Then } = require("cypress-cucumber-preprocessor/steps");
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
     method: "POST", url: `https://asset-${Cypress.env("env")}/assets/v1/manifests`, headers: {
-      Authorization: `Bearer ${Cypress.env("idToken")}`,
+      Authorization: `Bearer ${Cypress.env("idToken")}`
     }, body: {
-      "product": product, "states": [states], "packageTypes": packageType.split(","), "persist": true,
-    },
+      "product": product, "states": [states], "packageTypes": packageType.split(","), "persist": true
+    }
   }).as("manifest");
   cy.get("@manifest").then((manifest) => {
     expect(manifest.status).to.eq(201);
@@ -34,8 +34,8 @@ Then(/^The user call manifest endpoint with '(.*)' and '(.*)' and '(.*)' and '(.
       "persist": true,
       "imgClass_s": "",
       "documentType_s_query": "",
-      "searchTerm": "",
-    },
+      "searchTerm": ""
+    }
   }).as("manifest");
   cy.get("@manifest").then((response) => {
     expect(response.status).to.eq(201);
@@ -64,15 +64,70 @@ Then(/^The user call manifest endpoint with '(.*)' and '(.*)' and '(.*)' and '(.
       const actualDifference = expectedDocs.filter(x => !actualDocs.includes(x));
       // expect(actualDifference, `There are not contains into the actual result \n${actualDifference} \nLength = ${actualDifference.length}
       // \n\n\tThere are not contains into the expected result \n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
-      if(expectedDifference.length!==0 || actualDifference.length!==0){
+      if (expectedDifference.length !== 0 || actualDifference.length !== 0) {
         expect(actualDifference).eq(expectedDifference);
       }
+    });
+  });
+});
 
 
+Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get '(.*)'$/, (product, state, packageType, effective_date, expectedFile) => {
+  cy.request({
+    method: "POST",
+    url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
+    headers: {
+      Authorization: `Bearer ${Cypress.env("idToken")}`
+    },
+    body:
+      {
+        "term": "",
+        "filters": {
+          "productLine": [product],
+          "packageType_s": [packageType],
+          "states": [state],
+          "imgClass_s": [],
+          "documentType_s_query": [],
+          "effectiveDate": effective_date,
+          "effectiveOldestDate": ""
+        }
+      }
+  }).as("resp");
+  cy.get("@resp").then((response) => {
+    expect(response.status).to.eq(200);
+    expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${product} - product line \n${effective_date} - date`).to.be.greaterThan(0);
 
 
+    cy.readXLSX(expectedFile).then(data => {
+      const revision = [];
+      const docs = [];
+      const actualDocs = [];
+      const expectedDocs = [];
+      for (let i = 9; i < data.length; i++) {
+        docs.push(data[i][1]);
+        revision.push(data[i][2]);
+      }
 
+      for (let i = 0; i < response.body.hits.hits.length - 1; i++)
+        actualDocs.push(response.body.hits.hits[i]._source.form_number
+          .replaceAll(" ", "")
+          .replaceAll("-","")
+          .replaceAll(".",""));
 
+      for (let i = 0; i < docs.length; i++)
+        expectedDocs.push((docs[i] + revision[i])
+          .replaceAll(" ", "")
+          .replaceAll("-","")
+          .replaceAll(".",""));
+
+      const expectedDifference = actualDocs.filter(x => !expectedDocs.includes(x));
+      const actualDifference = expectedDocs.filter(x => !actualDocs.includes(x));
+
+      expect(actualDifference, `TOTAL (${response.body.hits.total.value})\nThere are not contains into the actual result \n${actualDifference} \nLength = ${actualDifference.length}
+      \n\n\t DOCS (${expectedDocs.length})\nThere are not contains into the expected result \n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
+      if (expectedDifference.length !== 0 || actualDifference.length !== 0) {
+        expect(actualDifference, `TOTAL (${response.body.hits.total.value})`).eq(expectedDifference);
+      }
     });
 
   });
