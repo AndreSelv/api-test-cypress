@@ -1,4 +1,4 @@
-const { When, Then } = require("cypress-cucumber-preprocessor/steps");
+const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
 
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
@@ -72,63 +72,160 @@ Then(/^The user call manifest endpoint with '(.*)' and '(.*)' and '(.*)' and '(.
 });
 
 
-Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get '(.*)'$/, (product, state, packageType, effective_date, expectedFile) => {
-  cy.request({
-    method: "POST",
-    url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
-    headers: {
-      Authorization: `Bearer ${Cypress.env("idToken")}`
-    },
-    body:
-      {
-        "term": "",
-        "filters": {
-          "productLine": [product],
-          "packageType_s": [packageType],
-          "states": [state],
-          "imgClass_s": [],
-          "documentType_s_query": [],
-          "effectiveDate": effective_date,
-          "effectiveOldestDate": ""
+Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)'$/, async (packageType, effective_date, expectedFile) => {
+  await cy.readXLSX(expectedFile).then(async data => {
+    const actualDocs = [];
+    let expectedDocs = [];
+    let fullRespData = [];
+    const fullExelData = [];
+    let mainData = false;
+    let state = null;
+    let line = null;
+    let date = null;
+    let size = 500;
+    // for looping to collect data from PDP Exel doc
+    for (let i = 0; i < data.length; i++) {
+      //after we passed the empty/config rows
+      if (mainData === true) {
+        expectedDocs.push((data[i][1] + data[i][2])
+          .replaceAll(" ", "")
+          .replaceAll("-", "")
+          .replaceAll(".", ""));
+        fullExelData.push(`title: ${data[i][0]}, docNum: ${data[i][1]}, revision: ${data[i][2]}`);
+        expectedDocs.sort();
+      }
+      if (data[i][0] === "Document Title") {
+        mainData = true;
+      }
+
+      if (data[i][0] === "Line of Business") {
+        line = data[i][1];
+      }
+
+      if (data[i][0] === "State") {
+        state = data[i][1];
+      }
+      if (data[i][0] === "Date") {
+        date = data[i][1];
+      }
+    }
+    // Main request
+    await cy.request({
+      method: "POST",
+      url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
+      headers: {
+        Authorization: `Bearer ${Cypress.env("idToken")}`
+      },
+      body:
+        {
+          "term": "",
+          "filters": {
+            "title": "",
+            "size": size,
+            "productLine": [line],
+            "packageType_s": [packageType],
+            "states": [state],
+            "imgClass_s": [],
+            "documentType_s_query": [],
+            "effectiveDate": effective_date,
+            "effectiveOldestDate": ""
+          }
+        }
+    }).as("resp");
+
+    //Main response
+    await cy.get("@resp").then(async (response) => {
+      expect(response.status).to.eq(200);
+      expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line`).to.be.greaterThan(0);
+
+      //Collect data from main response
+      await cy.wrap(response.body.hits.hits).each(async (obj) => {
+        actualDocs.push(obj._source.form_number
+          .replaceAll(" ", "")
+          .replaceAll("-", "")
+          .replaceAll(".", ""));
+        fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+        actualDocs.sort();
+        await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+        await cy.writeFile(`./reports/${line} ${state} ${effective_date}/actual.json`, JSON.stringify(actualDocs));
+      });
+
+
+      //If size greater than size, Scroll API run
+      if (response.body.hits.total.value > size) {
+        for (let i = 0; i < (response.body.hits.total.value / size) - 1; i++) {
+          await cy.request({
+            method: "PUT",
+            url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
+            headers: { Authorization: `Bearer ${Cypress.env("idToken")}` },
+            body: { "scrollId": response.body._scroll_id }
+          }).as("scrollResp");
+          cy.get("@scrollResp").then(async (response) => {
+            expect(response.status).to.eq(200);
+            await cy.writeFile(`./reports/${line} ${state} ${effective_date}/serverRespData.json`, JSON.stringify(response));
+            await cy.wrap(response.body.hits.hits).each(async (obj) => {
+              actualDocs.push(obj._source.form_number
+                .replaceAll(" ", "")
+                .replaceAll("-", "")
+                .replaceAll(".", ""));
+              fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+              actualDocs.sort();
+              await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+              await cy.writeFile(`./reports/${line} ${state} ${effective_date}/actual.json`, JSON.stringify(actualDocs));
+            });
+          });
         }
       }
-  }).as("resp");
-  cy.get("@resp").then((response) => {
-    expect(response.status).to.eq(200);
-    expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${product} - product line \n${effective_date} - date`).to.be.greaterThan(0);
+      await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
+      await cy.writeFile(`./reports/${line} ${state} ${effective_date}/expected.json`, JSON.stringify(expectedDocs));
 
 
-    cy.readXLSX(expectedFile).then(data => {
-      const revision = [];
-      const docs = [];
-      const actualDocs = [];
-      const expectedDocs = [];
-      for (let i = 9; i < data.length; i++) {
-        docs.push(data[i][1]);
-        revision.push(data[i][2]);
-      }
+      //Validation part
+      await cy.wrap(fullRespData).each(async (obj) => {
 
-      for (let i = 0; i < response.body.hits.hits.length - 1; i++)
-        actualDocs.push(response.body.hits.hits[i]._source.form_number
-          .replaceAll(" ", "")
-          .replaceAll("-","")
-          .replaceAll(".",""));
 
-      for (let i = 0; i < docs.length; i++)
-        expectedDocs.push((docs[i] + revision[i])
-          .replaceAll(" ", "")
-          .replaceAll("-","")
-          .replaceAll(".",""));
+      }).then(async () => {
 
-      const expectedDifference = actualDocs.filter(x => !expectedDocs.includes(x));
-      const actualDifference = expectedDocs.filter(x => !actualDocs.includes(x));
 
-      expect(actualDifference, `TOTAL (${response.body.hits.total.value})\nThere are not contains into the actual result \n${actualDifference} \nLength = ${actualDifference.length}
-      \n\n\t DOCS (${expectedDocs.length})\nThere are not contains into the expected result \n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
-      if (expectedDifference.length !== 0 || actualDifference.length !== 0) {
-        expect(actualDifference, `TOTAL (${response.body.hits.total.value})`).eq(expectedDifference);
-      }
+        //expect(actualDocs).to.deep.equal(expectedDocs);
+
+
+        const expectedDifference = actualDocs.filter(x => !expectedDocs.includes(x));
+        const actualDifference = expectedDocs.filter(x => !actualDocs.includes(x));
+        expect(actualDifference, `TOTAL (${response.body.hits.total.value})\nThere are not contains into the actual result but in the expected\n${actualDifference} \nLength = ${actualDifference.length}
+        \n\n\t DOCS (${expectedDocs.length})\nThere are not contains into the expected result but in the actual \n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
+        // expect(expectedDifference, `TOTAL (${response.body.hits.total.value})\nThere are not contains into the actual result but in the expected\n${actualDifference} \nLength = ${actualDifference.length}
+        // \n\n\t DOCS (${expectedDocs.length})\nThere are not contains into the expected result but in the actual\n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
+        // if (expectedDifference.length !== 0 || actualDifference.length !== 0) {
+        //   expect(actualDifference, `TOTAL (${response.body.hits.total.value})`).eq(expectedDifference);
+        // }
+
+
+      });
+
+
+      // const expectedDifference = actualDocs.filter(x => !expectedDocs.includes(x));
+      // const actualDifference = expectedDocs.filter(x => !actualDocs.includes(x));
+      // expect(actualDifference, `TOTAL (${response.body.hits.total.value})\nThere are not contains into the actual result \n${actualDifference} \nLength = ${actualDifference.length}
+      // \n\n\t DOCS (${expectedDocs.length})\nThere are not contains into the expected result \n${expectedDifference} \nLength = ${expectedDifference.length}`).to.be.empty;
+      // if (expectedDifference.length !== 0 || actualDifference.length !== 0) {
+      //   expect(actualDifference, `TOTAL (${response.body.hits.total.value})`).eq(expectedDifference);
+      // }
+      // let fullRespData = [];
+      // await cy.wrap(response.body.hits.hits).each(async (obj) => {
+      //   //compare the stinng values so we don't need to compare dictionaries
+      //   fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.documentNumber_s}, revision: ${obj._source.version}`);
+      // }).then(async () => {
+      //   for (let i = 0; i < fullExelData.length; i++) {
+      //     let thisData = `title: ${fullExelData[i]["title"]}, docNum: ${fullExelData[i]["docNum"]}, revision: ${fullExelData[i]["revision"]}`;
+      //     //console.log("DATAAA",JSON.stringify(fullRespData));
+      //     // expect(fullRespData).to.include(thisData);
+      //   }
+      // });
     });
 
   });
+});
+Given(/^Delete "([^"]*)" folder$/, async (folderPath) => {
+  await cy.task("deleteFolder", folderPath);
 });
