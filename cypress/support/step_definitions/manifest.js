@@ -137,6 +137,7 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
+      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
       expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
