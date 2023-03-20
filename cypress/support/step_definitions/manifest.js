@@ -1,4 +1,5 @@
 const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
+const ALLSTATES = require("../../fixtures/enums/STATES");
 
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
@@ -82,7 +83,7 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
     let state = null;
     let line = null;
     let date = null;
-    let size = 500;
+    let size = 300;
     // for looping to collect data from PDP Exel doc
     for (let i = 0; i < data.length; i++) {
       //after we passed the empty/config rows
@@ -103,7 +104,7 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
       }
 
       if (data[i][0] === "State") {
-        state = data[i][1];
+        state = (data[i][1] === "ALL") ? ALLSTATES : data[i][1];
       }
       if (data[i][0] === "Date") {
         date = data[i][1];
@@ -136,7 +137,7 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
-      expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line`).to.be.greaterThan(0);
+      expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
@@ -146,8 +147,8 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
           .replaceAll(".", ""));
         fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
         actualDocs.sort();
-        await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-        await cy.writeFile(`./reports/${line} ${state} ${effective_date}/actual.json`, JSON.stringify(actualDocs));
+        await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+        await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
       });
 
 
@@ -162,7 +163,7 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
           }).as("scrollResp");
           cy.get("@scrollResp").then(async (response) => {
             expect(response.status).to.eq(200);
-            await cy.writeFile(`./reports/${line} ${state} ${effective_date}/serverRespData.json`, JSON.stringify(response));
+            await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
               actualDocs.push(obj._source.form_number
                 .replaceAll(" ", "")
@@ -170,14 +171,14 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
                 .replaceAll(".", ""));
               fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
               actualDocs.sort();
-              await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-              await cy.writeFile(`./reports/${line} ${state} ${effective_date}/actual.json`, JSON.stringify(actualDocs));
+              await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+              await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
             });
           });
         }
       }
-      await cy.writeFile(`./reports/${line} ${state} ${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
-      await cy.writeFile(`./reports/${line} ${state} ${effective_date}/expected.json`, JSON.stringify(expectedDocs));
+      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
+      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/expected.json`, JSON.stringify(expectedDocs));
 
 
       //Validation part
