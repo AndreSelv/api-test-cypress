@@ -1,5 +1,6 @@
 const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
+const fs = require("fs");
 
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
@@ -229,5 +230,11 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
   });
 });
 Given(/^Delete "([^"]*)" folder$/, async (folderPath) => {
-  await cy.task("deleteFolder", folderPath);
+  if (fs.existsSync(folderPath)) {
+    await cy.task("deleteFolder", folderPath);
+    console.log("Directory exists!");
+  } else {
+    console.log("Directory not found.");
+  }
+
 });
