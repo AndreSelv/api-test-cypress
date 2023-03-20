@@ -66,21 +66,25 @@ module.exports = defineConfig({
         }
       });
 
-      on('task', {
+      on("task", {
         deleteFolder(folderName) {
-          console.log('deleting folder %s', folderName)
-
           return new Promise((resolve, reject) => {
-            fs.rmdir(folderName, { maxRetries: 10, recursive: true }, (err) => {
-              if (err) {
-                console.error(err)
-                return reject(err)
-              }
-              resolve(null)
-            })
-          })
-        },
-      })
+            if (fs.existsSync(folderName)) {
+              console.log("Deleting folder %s", folderName);
+              fs.rmdir(folderName, { maxRetries: 10, recursive: true }, (err) => {
+                if (err) {
+                  console.error(err);
+                  return reject(err);
+                }
+                resolve(null);
+              });
+            } else {
+              console.log("No found folder %s for deleting", folderName);
+              resolve(null);
+            }
+          });
+        }
+      });
     },
     env: {
       env: "direct-api-aaisdev.aaiscognito.com",
@@ -99,7 +103,7 @@ module.exports = defineConfig({
       CYPRESS_RECORD_KEY: "d76932dd-1ca1-4d55-99cf-f11331f2187a"
     },
     specPattern: "cypress/e2e/**/*.*",
-    projectId: "fsxi11",
+    projectId: "fsxi11"
     // excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/manifest.feature" : []
   }
 });

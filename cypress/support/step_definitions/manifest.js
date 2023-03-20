@@ -230,11 +230,5 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
   });
 });
 Given(/^Delete "([^"]*)" folder$/, async (folderPath) => {
-  if (fs.existsSync(folderPath)) {
-    await cy.task("deleteFolder", folderPath);
-    console.log("Directory exists!");
-  } else {
-    console.log("Directory not found.");
-  }
-
+  await cy.task("deleteFolder", folderPath);
 });
