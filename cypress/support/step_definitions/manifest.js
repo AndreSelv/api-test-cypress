@@ -1,6 +1,5 @@
 const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
-const fs = require("fs");
 
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
