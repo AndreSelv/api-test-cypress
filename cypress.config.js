@@ -103,7 +103,7 @@ module.exports = defineConfig({
       CYPRESS_RECORD_KEY: "d76932dd-1ca1-4d55-99cf-f11331f2187a"
     },
     specPattern: "cypress/e2e/**/*.*",
-    projectId: "fsxi11"
-    // excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/manifest.feature" : []
+    projectId: "fsxi11",
+    excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/manifest.feature" : []
   }
 });
