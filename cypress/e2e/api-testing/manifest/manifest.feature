@@ -3,17 +3,17 @@ Feature: Manifest endpoint validation
   Scenario: Delete report folder before all tests
     Given Delete "./reports" folder
 
-  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>' and Effective date - '<effective date>'
-    Then The user call search endpoint with '<packageType>' and '<effective date>' and should get '<expected Result>'
+  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
     Examples:
-      | product | states | packageType | effective date | expected Result                                                                            |
-      | COP     | LA     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/COP LA 08 19 22.xlsx                                 |
-      | COP     | AR     | PFM         | 12/15/2022     | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx                                 |
-      | IMG     | MT     | PFM         | 09/01/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 09 01 22.xlsx                                 |
-      | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx                                 |
-#      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx                                 |
-      | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx                     |
-      | HOC     | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx                     |
+      | product | states | packageType | effective date | expected Result                                                        |
+      | COP     | LA     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/COP LA 08 19 22.xlsx             |
+      | COP     | AR     | PFM         | 12/15/2022     | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx             |
+      | IMG     | MT     | PFM         | 09/01/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 09 01 22.xlsx             |
+      | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx             |
+      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
+      | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
+      | HOC     | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
 
 
 

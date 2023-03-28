@@ -73,7 +73,7 @@ Then(/^The user call manifest endpoint with '(.*)' and '(.*)' and '(.*)' and '(.
 });
 
 
-Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)'$/, async (packageType, effective_date, expectedFile) => {
+Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async (packageType, expectedFile) => {
   await cy.readXLSX(expectedFile).then(async data => {
     const actualDocs = [];
     let expectedDocs = [];
@@ -82,17 +82,20 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
     let mainData = false;
     let state = null;
     let line = null;
-    let date = null;
-    let size = 300;
+    let effective_date = null;
+    let size = 500;
     // for looping to collect data from PDP Exel doc
     for (let i = 0; i < data.length; i++) {
       //after we passed the empty/config rows
       if (mainData === true) {
-        expectedDocs.push((data[i][1] + data[i][2])
-          .replaceAll(" ", "")
-          .replaceAll("-", "")
-          .replaceAll(".", ""));
-        fullExelData.push(`title: ${data[i][0]}, docNum: ${data[i][1]}, revision: ${data[i][2]}`);
+        // expectedDocs.push((data[i][1] +" "+ data[i][2] + " " + data[i][0].toUpperCase())
+        expectedDocs.push((data[i][1] + " " + data[i][2])
+          // .replaceAll(" ", "")
+          // .replaceAll("-", "")
+          // .replaceAll(".", "")
+        );
+        fullExelData.push(`title: ${data[i][0].toUpperCase()}, docNum: ${data[i][1]}, revision: ${data[i][2]}`);
+        fullExelData.sort();
         expectedDocs.sort();
       }
       if (data[i][0] === "Document Title") {
@@ -107,7 +110,8 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
         state = (data[i][1] === "ALL") ? ALLSTATES : data[i][1];
       }
       if (data[i][0] === "Date") {
-        date = data[i][1];
+        const date = data[i][1];
+        effective_date = `${date.substring(5, 7)}/${date.substring(8, 10)}/${date.substring(0, 4)}`;
       }
     }
     // Main request
@@ -142,11 +146,13 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
+        // actualDocs.push(obj._source.form_number + " " + obj._source.title_s.toUpperCase()
         actualDocs.push(obj._source.form_number
-          .replaceAll(" ", "")
-          .replaceAll("-", "")
-          .replaceAll(".", ""));
-        fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+          // .replaceAll(" ", "")
+          // .replaceAll("-", "")
+          // .replaceAll(".", "")
+        );
+        fullRespData.push(`title: ${obj._source.title_s.toUpperCase()}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
         actualDocs.sort();
         await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
         await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
@@ -166,11 +172,13 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)
             expect(response.status).to.eq(200);
             await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
+              // actualDocs.push(obj._source.form_number + " " + obj.title_s._source.toUpperCase()
               actualDocs.push(obj._source.form_number
-                .replaceAll(" ", "")
-                .replaceAll("-", "")
-                .replaceAll(".", ""));
-              fullRespData.push(`title: ${obj._source.title_s}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+                // .replaceAll(" ", "")
+                // .replaceAll("-", "")
+                // .replaceAll(".", "")
+              );
+              fullRespData.push(`title: ${obj._source.title_s.toUpperCase()}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
               actualDocs.sort();
               await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
               await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
