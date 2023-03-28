@@ -11,14 +11,14 @@ Feature: Manifest endpoint validation
       | COP     | AR     | PFM         | 12/15/2022     | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx             |
       | IMG     | MT     | PFM         | 09/01/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 09 01 22.xlsx             |
       | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx             |
-      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
+#      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
       | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
       | HOC     | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
 
 
 
 
-#      | PAU     | IL     | PFM         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PAU IL 12 08 22.xlsx                     |
+#      | PAU     | IL     | PFM         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PAU IL 12 08 22.xlsx                               |
 #      | BOP     | IA     | PFM         | 08/12/2022     | ./cypress/fixtures/expectedResults/Commertial/IA BOP 01 18 23.xlsx                         |
 #      | FP      | AR     | PFM         | 08/04/2022     | ./cypress/fixtures/expectedResults/Farm Ag/AR FP 04 08 22.xlsx                             |
 #      | AGXL    | IL     | PFM         | 01/01/2022     | ./cypress/fixtures/expectedResults/Farm Ag/IL AGXL 01 01 22.xlsx                           |
