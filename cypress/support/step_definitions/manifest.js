@@ -172,7 +172,7 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
             expect(response.status).to.eq(200);
             await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
-              // actualDocs.push(obj._source.form_number + " " + obj.title_s._source.toUpperCase()
+              // actualDocs.push(obj._source.form_number + " " + obj._source.title_s.toUpperCase()
               actualDocs.push(obj._source.form_number
                 // .replaceAll(" ", "")
                 // .replaceAll("-", "")

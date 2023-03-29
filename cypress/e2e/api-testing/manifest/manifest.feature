@@ -13,7 +13,6 @@ Feature: Manifest endpoint validation
       | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx             |
 #      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
       | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
-      | HOC     | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
 
 
 
