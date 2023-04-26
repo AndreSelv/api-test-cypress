@@ -1,9 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "_scroll_id": {
-      "type": "string"
-    },
     "took": {
       "type": "integer"
     },
@@ -75,13 +72,82 @@
                 "_source": {
                   "type": "object",
                   "properties": {
-                    "packageType_s": {
-                      "type": "string"
-                    },
-                    "materialTypeCategory": {
+                    "editio÷n": {
                       "type": "string"
                     },
                     "lobs": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "imgClass_s": {
+                              "type": "string"
+                            },
+                            "class": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            },
+                            "states": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "imgClass_s",
+                            "class",
+                            "effectiveDate",
+                            "expirationDate",
+                            "states"
+                          ]
+                        }
+                      ]
+                    },
+                    "documentNumber": {
+                      "type": "string"
+                    },
+                    "publicationType": {
+                      "type": "string"
+                    },
+                    "edition": {
+                      "type": "string"
+                    },
+                    "documentName": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "states": {
                       "type": "array",
                       "items": [
                         {
@@ -95,81 +161,104 @@
                             },
                             "expirationDate": {
                               "type": "string"
-                            },
-                            "states": {
-                              "type": "array",
-                              "items": [
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                }
-                              ]
                             }
                           },
                           "required": [
                             "abbreviation",
                             "effectiveDate",
-                            "expirationDate",
-                            "states"
+                            "expirationDate"
                           ]
-                        },
+                        }
+                      ]
+                    },
+                    "sortableEdition": {
+                      "type": "string"
+                    },
+                    "publicationTypeCategory": {
+                      "type": "string"
+                    },
+                    "publicationName": {
+                      "type": "string"
+                    },
+                    "fileNames": {
+                      "type": "string"
+                    },
+                    "effectiveDate": {
+                      "type": "string"
+                    },
+                    "expirationDate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "editio÷n",
+                    "lobs",
+                    "documentNumber",
+                    "publicationType",
+                    "edition",
+                    "documentName",
+                    "version",
+                    "states",
+                    "sortableEdition",
+                    "publicationTypeCategory",
+                    "publicationName",
+                    "fileNames",
+                    "effectiveDate",
+                    "expirationDate"
+                  ]
+                },
+                "sort": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "_index",
+                "_type",
+                "_id",
+                "_score",
+                "_source",
+                "sort"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "_index": {
+                  "type": "string"
+                },
+                "_type": {
+                  "type": "string"
+                },
+                "_id": {
+                  "type": "string"
+                },
+                "_score": {
+                  "type": "null"
+                },
+                "_source": {
+                  "type": "object",
+                  "properties": {
+                    "editio÷n": {
+                      "type": "string"
+                    },
+                    "lobs": {
+                      "type": "array",
+                      "items": [
                         {
                           "type": "object",
                           "properties": {
                             "abbreviation": {
+                              "type": "string"
+                            },
+                            "imgClass_s": {
+                              "type": "string"
+                            },
+                            "class": {
                               "type": "string"
                             },
                             "effectiveDate": {
@@ -199,113 +288,14 @@
                                     "effectiveDate",
                                     "expirationDate"
                                   ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
                                 }
                               ]
                             }
                           },
                           "required": [
                             "abbreviation",
-                            "effectiveDate",
-                            "expirationDate",
-                            "states"
-                          ]
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "abbreviation": {
-                              "type": "string"
-                            },
-                            "effectiveDate": {
-                              "type": "string"
-                            },
-                            "expirationDate": {
-                              "type": "string"
-                            },
-                            "states": {
-                              "type": "array",
-                              "items": [
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "abbreviation": {
-                                      "type": "string"
-                                    },
-                                    "effectiveDate": {
-                                      "type": "string"
-                                    },
-                                    "expirationDate": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "abbreviation",
-                                    "effectiveDate",
-                                    "expirationDate"
-                                  ]
-                                }
-                              ]
-                            }
-                          },
-                          "required": [
-                            "abbreviation",
+                            "imgClass_s",
+                            "class",
                             "effectiveDate",
                             "expirationDate",
                             "states"
@@ -313,25 +303,988 @@
                         }
                       ]
                     },
-                    "rendition_mimetypes_ss": {
+                    "documentNumber": {
                       "type": "string"
                     },
-                    "name_of_form": {
-                      "type": "string"
-                    },
-                    "materialType": {
-                      "type": "string"
-                    },
-                    "rendition_locations_ss": {
+                    "publicationType": {
                       "type": "string"
                     },
                     "edition": {
                       "type": "string"
                     },
+                    "documentName": {
+                      "type": "string"
+                    },
                     "version": {
                       "type": "string"
                     },
-                    "packageCategory_s": {
+                    "states": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        }
+                      ]
+                    },
+                    "sortableEdition": {
+                      "type": "string"
+                    },
+                    "publicationTypeCategory": {
+                      "type": "string"
+                    },
+                    "publicationName": {
+                      "type": "string"
+                    },
+                    "fileNames": {
+                      "type": "string"
+                    },
+                    "effectiveDate": {
+                      "type": "string"
+                    },
+                    "expirationDate": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "editio÷n",
+                    "lobs",
+                    "documentNumber",
+                    "publicationType",
+                    "edition",
+                    "documentName",
+                    "version",
+                    "states",
+                    "sortableEdition",
+                    "publicationTypeCategory",
+                    "publicationName",
+                    "fileNames",
+                    "effectiveDate",
+                    "expirationDate"
+                  ]
+                },
+                "sort": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "_index",
+                "_type",
+                "_id",
+                "_score",
+                "_source",
+                "sort"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "_index": {
+                  "type": "string"
+                },
+                "_type": {
+                  "type": "string"
+                },
+                "_id": {
+                  "type": "string"
+                },
+                "_score": {
+                  "type": "null"
+                },
+                "_source": {
+                  "type": "object",
+                  "properties": {
+                    "editio÷n": {
+                      "type": "string"
+                    },
+                    "lobs": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "imgClass_s": {
+                              "type": "string"
+                            },
+                            "class": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            },
+                            "states": {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "abbreviation": {
+                                      "type": "string"
+                                    },
+                                    "effectiveDate": {
+                                      "type": "string"
+                                    },
+                                    "expirationDate": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "abbreviation",
+                                    "effectiveDate",
+                                    "expirationDate"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "imgClass_s",
+                            "class",
+                            "effectiveDate",
+                            "expirationDate",
+                            "states"
+                          ]
+                        }
+                      ]
+                    },
+                    "documentNumber": {
+                      "type": "string"
+                    },
+                    "publicationType": {
+                      "type": "string"
+                    },
+                    "edition": {
+                      "type": "string"
+                    },
+                    "documentName": {
+                      "type": "string"
+                    },
+                    "version": {
                       "type": "string"
                     },
                     "states": {
@@ -412,34 +1365,757 @@
                             "effectiveDate",
                             "expirationDate"
                           ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "abbreviation": {
+                              "type": "string"
+                            },
+                            "effectiveDate": {
+                              "type": "string"
+                            },
+                            "expirationDate": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "abbreviation",
+                            "effectiveDate",
+                            "expirationDate"
+                          ]
                         }
                       ]
                     },
-                    "formEdition_s": {
+                    "sortableEdition": {
                       "type": "string"
                     },
-                    "versionLabel_s": {
+                    "publicationTypeCategory": {
                       "type": "string"
                     },
-                    "formNumber": {
-                      "type": "string"
-                    },
-                    "s3Key_s": {
-                      "type": "string"
-                    },
-                    "sortableFormEdition": {
-                      "type": "string"
-                    },
-                    "objectName_s": {
-                      "type": "string"
-                    },
-                    "title_s": {
-                      "type": "string"
-                    },
-                    "objectType_s": {
-                      "type": "string"
-                    },
-                    "form_number": {
+                    "publicationName": {
                       "type": "string"
                     },
                     "fileNames": {
@@ -453,26 +2129,17 @@
                     }
                   },
                   "required": [
-                    "packageType_s",
-                    "materialTypeCategory",
+                    "editio÷n",
                     "lobs",
-                    "rendition_mimetypes_ss",
-                    "name_of_form",
-                    "materialType",
-                    "rendition_locations_ss",
+                    "documentNumber",
+                    "publicationType",
                     "edition",
+                    "documentName",
                     "version",
-                    "packageCategory_s",
                     "states",
-                    "formEdition_s",
-                    "versionLabel_s",
-                    "formNumber",
-                    "s3Key_s",
-                    "sortableFormEdition",
-                    "objectName_s",
-                    "title_s",
-                    "objectType_s",
-                    "form_number",
+                    "sortableEdition",
+                    "publicationTypeCategory",
+                    "publicationName",
                     "fileNames",
                     "effectiveDate",
                     "expirationDate"
@@ -507,7 +2174,6 @@
     }
   },
   "required": [
-    "_scroll_id",
     "took",
     "timed_out",
     "_shards",
