@@ -83,13 +83,15 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
     let state = null;
     let line = null;
     let effective_date = null;
-    let size = 500;
+    let size = 400;
     // for looping to collect data from PDP Exel doc
     for (let i = 0; i < data.length; i++) {
       //after we passed the empty/config rows
       if (mainData === true) {
-        // expectedDocs.push((data[i][1] +" "+ data[i][2] + " " + data[i][0].toUpperCase())
-        expectedDocs.push((data[i][1] + " " + data[i][2])
+        expectedDocs.push((data[i][1] + " " + data[i][2]
+            // + " " + data[i][0].toUpperCase()
+          )
+          // expectedDocs.push((data[i][1] + " " + data[i][2])
           // .replaceAll(" ", "")
           // .replaceAll("-", "")
           // .replaceAll(".", "")
@@ -122,20 +124,19 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
         Authorization: `Bearer ${Cypress.env("idToken")}`
       },
       body:
-        {
-          "term": "",
-          "filters": {
-            "title": "",
-            "size": size,
-            "productLine": [line],
-            "packageType_s": [packageType],
-            "states": [state],
-            "imgClass_s": [],
-            "documentType_s_query": [],
-            "effectiveDate": effective_date,
-            "effectiveOldestDate": ""
-          }
+      {
+        "term": "",
+        "filters": {
+          "size": size,
+          "productLine": [line],
+          "publicationType": [packageType],
+          "states": [state],
+          "imgClass_s": [],
+          "publicationTypeCategory_query": [],
+          "effectiveDate": effective_date,
+          "effectiveOldestDate": ""
         }
+      }
     }).as("resp");
 
     //Main response
@@ -146,13 +147,14 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
-        // actualDocs.push(obj._source.form_number + " " + obj._source.title_s.toUpperCase()
-        actualDocs.push(obj._source.form_number
+        actualDocs.push(obj._source.documentNumber
+          // + " " + obj._source.publicationName.toUpperCase()
+          // actualDocs.push(obj._source.form_number
           // .replaceAll(" ", "")
           // .replaceAll("-", "")
           // .replaceAll(".", "")
         );
-        fullRespData.push(`title: ${obj._source.title_s.toUpperCase()}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+        fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
         actualDocs.sort();
         await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
         await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
@@ -172,13 +174,14 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
             expect(response.status).to.eq(200);
             await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
-              // actualDocs.push(obj._source.form_number + " " + obj._source.title_s.toUpperCase()
-              actualDocs.push(obj._source.form_number
+              actualDocs.push(obj._source.documentNumber
+                // + " " + obj._source.publicationName.toUpperCase()
+                // actualDocs.push(obj._source.form_number
                 // .replaceAll(" ", "")
                 // .replaceAll("-", "")
                 // .replaceAll(".", "")
               );
-              fullRespData.push(`title: ${obj._source.title_s.toUpperCase()}, docNum: ${obj._source.formNumber}, revision: ${obj._source.formEdition_s}`);
+              fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
               actualDocs.sort();
               await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
               await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
@@ -192,8 +195,6 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
 
       //Validation part
       await cy.wrap(fullRespData).each(async (obj) => {
-
-
       }).then(async () => {
 
 
