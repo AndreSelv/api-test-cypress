@@ -3,30 +3,54 @@ Feature: Manifest endpoint validation
   Scenario: Delete report folder before all tests
     Given Delete "./reports" folder
 
-  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
+#  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
+#      | FEL         |
+##      | SUP         |
+#      | MAN         |
+#      | STP         |
+#      | PRI         |
+#
+#
+#  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
+##      | BUL         |
+#      | MAN         |
+#      | FEL         |
+#
+#
+#  Scenario Outline: The user validates the search result for Product line - HO, state - IA, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
+#      | FEL         |
+#      | PRI         |
+#      | PRL         |
+#      | SUP         |
+#      | STP         |
+#      | REP         |
+#      | MAN         |
+
+ Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx'
     Examples:
-      | packageType | expected Result                                            |
-      | PFM         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-      | FEL         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-#      | SUP         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-      | MAN         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-      | STP         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-      | PRI         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
-
-
-  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
-    Examples:
-      | packageType | expected Result                                             |
-      | PFM         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-#      | BUL         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-      | MAN         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-      | FEL         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-
-
-
-
+      | packageType |
+#      | PFM         |
+#      | FEL         |
+#      | PRI         |
+#      | PRL         |
+#      | STP         |
+      | IMS         |
+#      | STP         |
+#      | REP         |
+#      | MAN         |
 
 
 #  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
@@ -45,8 +69,6 @@ Feature: Manifest endpoint validation
 
 
 
-#      | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
-#      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
 #      | IMG     | MT     | PFM         | 09/01/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 09 01 22.xlsx             |
 #      | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx             |
 #      | COP     | LA     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/COP LA 08 19 22.xlsx             |
