@@ -86,28 +86,17 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
     let size = 400;
     // for looping to collect data from PDP Exel doc
     for (let i = 0; i < data.length; i++) {
+      mainData = data[i][0] === packageType;
       //after we passed the empty/config rows
       if (mainData === true) {
-        expectedDocs.push((data[i][1] + " " + data[i][2]
-            // + " " + data[i][0].toUpperCase()
-          )
-          // expectedDocs.push((data[i][1] + " " + data[i][2])
-          // .replaceAll(" ", "")
-          // .replaceAll("-", "")
-          // .replaceAll(".", "")
-        );
+        packageType === "PFM" ? expectedDocs.push((data[i][2].toUpperCase() + " " + data[i][3].toUpperCase())) : expectedDocs.push((data[i][1].toUpperCase()));
         fullExelData.push(`title: ${data[i][0].toUpperCase()}, docNum: ${data[i][1]}, revision: ${data[i][2]}`);
         fullExelData.sort();
         expectedDocs.sort();
       }
-      if (data[i][0] === "Document Title") {
-        mainData = true;
-      }
-
       if (data[i][0] === "Line of Business") {
         line = data[i][1];
       }
-
       if (data[i][0] === "State") {
         state = (data[i][1] === "ALL") ? ALLSTATES : data[i][1];
       }
@@ -124,40 +113,34 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
         Authorization: `Bearer ${Cypress.env("idToken")}`
       },
       body:
-      {
-        "term": "",
-        "filters": {
-          "size": size,
-          "productLine": [line],
-          "publicationType": [packageType],
-          "states": [state],
-          "imgClass_s": [],
-          "publicationTypeCategory_query": [],
-          "effectiveDate": effective_date,
-          "effectiveOldestDate": ""
+        {
+          "term": "",
+          "filters": {
+            "size": size,
+            "productLine": [line],
+            "publicationType": [packageType],
+            "states": [state],
+            "imgClass_s": [],
+            "publicationTypeCategory_query": [],
+            "effectiveDate": effective_date,
+            "effectiveOldestDate": ""
+          }
         }
-      }
     }).as("resp");
 
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
-      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/serverRespData.json`, JSON.stringify(response));
       expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
-        actualDocs.push(obj._source.documentNumber
-          // + " " + obj._source.publicationName.toUpperCase()
-          // actualDocs.push(obj._source.form_number
-          // .replaceAll(" ", "")
-          // .replaceAll("-", "")
-          // .replaceAll(".", "")
-        );
+        packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
         fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
         actualDocs.sort();
-        await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-        await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
+        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
       });
 
 
@@ -174,23 +157,17 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
             expect(response.status).to.eq(200);
             await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
-              actualDocs.push(obj._source.documentNumber
-                // + " " + obj._source.publicationName.toUpperCase()
-                // actualDocs.push(obj._source.form_number
-                // .replaceAll(" ", "")
-                // .replaceAll("-", "")
-                // .replaceAll(".", "")
-              );
+              packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
               fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
               actualDocs.sort();
-              await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-              await cy.writeFile(`./reports/${line} ${state} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
+              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
+              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
             });
           });
         }
       }
-      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
-      await cy.writeFile(`./reports/${line} ${state} /${effective_date}/expected.json`, JSON.stringify(expectedDocs));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/expected.json`, JSON.stringify(expectedDocs));
 
 
       //Validation part

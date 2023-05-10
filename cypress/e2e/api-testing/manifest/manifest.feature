@@ -3,19 +3,50 @@ Feature: Manifest endpoint validation
   Scenario: Delete report folder before all tests
     Given Delete "./reports" folder
 
-  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
+  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
     Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
     Examples:
-      | product | states | packageType | effective date | expected Result                                                        |
-      | COP     | AR     | PFM         | 12/15/2022     | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx             |
-      | PA      | IL     | PFM         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx            |
-      | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
-      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
+      | packageType | expected Result                                            |
+      | PFM         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+      | FEL         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+#      | SUP         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+      | MAN         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+      | STP         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+      | PRI         | ./cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx |
+
+
+  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
+    Examples:
+      | packageType | expected Result                                             |
+      | PFM         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+#      | BUL         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+      | MAN         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+      | FEL         | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
 
 
 
 
 
+
+#  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
+#    Examples:
+#      | product | states | packageType | effective date | expected Result                                             |
+#      | PA      | IL     | PFM         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+#      | PA      | IL     | BUL         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+#      | PA      | IL     | MAN         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+#      | PA      | IL     | FEL         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+
+
+
+
+
+
+
+
+#      | HO      | IA     | PFM         | 11/20/2022     | ./cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx |
+#      | IMG     | OR     | PFM         | 11/04/2022     | ./cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx             |
 #      | IMG     | MT     | PFM         | 09/01/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 09 01 22.xlsx             |
 #      | IMG     | MT     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/IMG MT 08 19 22.xlsx             |
 #      | COP     | LA     | PFM         | 08/19/2022     | ./cypress/fixtures/expectedResults/IM/COP LA 08 19 22.xlsx             |
