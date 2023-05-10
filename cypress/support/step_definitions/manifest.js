@@ -131,7 +131,7 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/serverRespData.json`, JSON.stringify(response));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
       expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
@@ -139,8 +139,8 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
         packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
         fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
         actualDocs.sort();
-        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
+        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
+        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
       });
 
 
@@ -155,19 +155,19 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
           }).as("scrollResp");
           cy.get("@scrollResp").then(async (response) => {
             expect(response.status).to.eq(200);
-            await cy.writeFile(`./reports/${line} ${state} /${effective_date}/serverRespData.json`, JSON.stringify(response));
+            await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
               packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
               fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
               actualDocs.sort();
-              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullRespData.json`, JSON.stringify(fullRespData));
-              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/actual.json`, JSON.stringify(actualDocs));
+              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
+              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
             });
           });
         }
       }
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/fullExelData.json`, JSON.stringify(fullExelData));
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date}/expected.json`, JSON.stringify(expectedDocs));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullExelData.json`, JSON.stringify(fullExelData));
+      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/expected.json`, JSON.stringify(expectedDocs));
 
 
       //Validation part
