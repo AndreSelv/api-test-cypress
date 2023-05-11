@@ -3,54 +3,61 @@ Feature: Manifest endpoint validation
   Scenario: Delete report folder before all tests
     Given Delete "./reports" folder
 
-#  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-#      | FEL         |
-##      | SUP         |
-#      | MAN         |
-#      | STP         |
-#      | PRI         |
-#
-#
-#  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-##      | BUL         |
-#      | MAN         |
-#      | FEL         |
-#
-#
-#  Scenario Outline: The user validates the search result for Product line - HO, state - IA, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-#      | FEL         |
-#      | PRI         |
-#      | PRL         |
+  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx'
+    Examples:
+      | packageType |
+      | PFM         |
+      | FEL         |
 #      | SUP         |
-#      | STP         |
-#      | REP         |
-#      | MAN         |
+      | MAN         |
+      | STP         |
+      | PRI         |
 
- Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Material type - '<packageType>'
+
+  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx'
+    Examples:
+      | packageType |
+      | PFM         |
+#      | BUL         |
+      | MAN         |
+      | FEL         |
+
+
+  Scenario Outline: The user validates the search result for Product line - HO, state - IA, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx'
+    Examples:
+      | packageType |
+      | PFM         |
+      | FEL         |
+      | PRI         |
+      | PRL         |
+      | SUP         |
+      | STP         |
+      | REP         |
+      | MAN         |
+
+  Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Material type - '<packageType>'
     Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx'
     Examples:
       | packageType |
 #      | PFM         |
+#      | IMS         |
+      | PRL         |
 #      | FEL         |
-#      | PRI         |
-#      | PRL         |
-#      | STP         |
-      | IMS         |
-#      | STP         |
-#      | REP         |
-#      | MAN         |
+
+  Scenario Outline: The user validates the search result for Product line - BOP, state - IA, Material type - '<packageType>'
+    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Commertial/IA BOP 01 18 23.xlsx'
+    Examples:
+      | packageType |
+      | PFM         |
+      | BUL         |
+      | FEL         |
+      | MAN         |
+      | PRI         |
+      | SUP         |
+
 
 
 #  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
