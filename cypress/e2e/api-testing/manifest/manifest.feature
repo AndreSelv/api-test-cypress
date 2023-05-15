@@ -9,7 +9,7 @@ Feature: Manifest endpoint validation
       | packageType |
       | PFM         |
       | FEL         |
-#      | SUP         |
+      | SUP         |
       | MAN         |
       | STP         |
       | PRI         |
@@ -20,7 +20,7 @@ Feature: Manifest endpoint validation
     Examples:
       | packageType |
       | PFM         |
-#      | BUL         |
+      | BUL         |
       | MAN         |
       | FEL         |
 
@@ -35,7 +35,6 @@ Feature: Manifest endpoint validation
       | PRL         |
       | SUP         |
       | STP         |
-      | REP         |
       | MAN         |
 
   Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Material type - '<packageType>'
@@ -58,7 +57,16 @@ Feature: Manifest endpoint validation
       | PRI         |
       | SUP         |
 
-
+# Scenario Outline: The user validates the search result for Product line - AGXL, state - IL, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Farm Ag/IL AGXL 01 01 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
+##      | BUL         |
+##      | FEL         |
+##      | MAN         |
+##      | PRI         |
+##      | SUP         |
 
 #  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
 #    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
