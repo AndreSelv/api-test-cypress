@@ -62,6 +62,26 @@ Feature: Manifest endpoint validation
 #    Examples:
 #      | packageType |
 #      | PFM         |
+#      | BUL         |
+#      | FEL         |
+#      | PRL         |
+#      | MAN         |
+#      | PRI         |
+
+#  Scenario Outline: The user validates the search result for Product line - PIM, state - OR, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/OR PIM 10 09 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
+#      | BUL         |
+#      | FEL         |
+#
+#
+# Scenario Outline: The user validates the search result for Product line - CIM, state - MT, Material type - '<packageType>'
+#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/CIM MT 03 15 22.xlsx'
+#    Examples:
+#      | packageType |
+#      | PFM         |
 ##      | BUL         |
 ##      | FEL         |
 ##      | MAN         |
