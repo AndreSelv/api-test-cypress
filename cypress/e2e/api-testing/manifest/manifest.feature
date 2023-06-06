@@ -3,99 +3,199 @@ Feature: Manifest endpoint validation
   Scenario: Delete report folder before all tests
     Given Delete "./reports" folder
 
-  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx'
+  Scenario Outline: The user validates the search result for Product line - COP, state - AR, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/IM/COP AR 12 15 22.xlsx'
     Examples:
-      | packageType |
-      | PFM         |
-      | FEL         |
-      | SUP         |
-      | MAN         |
-      | STP         |
-      | PRI         |
+      | pubCategory                  | pubType                        |
+      | Forms                        | Form                           |
+      | Manual Materials             | Multi & State-Specific Manuals |
+      | Manual Materials             | State Pages                    |
+      | Manual Materials             | Supplement                     |
+      | Manual Materials             | ALL                            |
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+      | Forms and Endorsements Lists | ALL                            |
+      | Advisory Information         | Sample Disclosure Notice       |
+      | Advisory Information         | Declarations                   |
+      | Advisory Information         | ALL                            |
+      | Statistical Plans            | Statistical Plan               |
+      | Education Materials          | FAQs                           |
+      | Education Materials          | ALL                            |
+#      | Bulletins                    | State-specific Bulletin        |
+#       does not reflected on the UI 21-0479
 
-
-  Scenario Outline: The user validates the search result for Product line - PA, state - IL, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx'
+  Scenario Outline: The user validates the search result for Product line - PA, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx'
     Examples:
-      | packageType |
-      | PFM         |
-      | BUL         |
-      | MAN         |
-      | FEL         |
+      | pubCategory                  | pubType                        |
+      | Forms                        | Form                           |
+      | Manual Materials             | ALL                            |
+      | Manual Materials             | State Pages                    |
+      | Manual Materials             | Multi & State-Specific Manuals |
+      | Manual Materials             | ALL                            |
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+      | Forms and Endorsements Lists | ALL                            |
 
-
-  Scenario Outline: The user validates the search result for Product line - HO, state - IA, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx'
+  Scenario Outline: The user validates the search result for Product line - HO, state - IA, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Personal lines/HOC IA 11 20 22.xlsx'
     Examples:
-      | packageType |
-      | PFM         |
-      | FEL         |
-      | PRI         |
-      | PRL         |
-      | SUP         |
-      | STP         |
-      | MAN         |
+      | pubCategory                  | pubType                         |
+      | Forms                        | Form                            |
+      | Forms and Endorsements Lists | ALL                             |
+      | Forms and Endorsements Lists | Forms and Endorsements List     |
+#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
+#      no data for subcategory
+      | Manual Materials             | State Pages                     |
+      | Manual Materials             | Multi & State-Specific Manuals  |
+      | Manual Materials             | Supplement                      |
+      | Manual Materials             | ALL                             |
+      | Advisory Information         | Homeowners Advisory Information |
+      | Compliance Guide             | Compliance Guide                |
+      | Education Materials          | Reference Article               |
+      | Statistical Plans            | Statistical Plan                |
 
-  Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx'
+  Scenario Outline: The user validates the search result for Product line - IMG, state - OR, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/IM/IMG OR 11 04 22.xlsx'
     Examples:
-      | packageType |
-#      | PFM         |
-#      | IMS         |
-      | PRL         |
-#      | FEL         |
+      | pubCategory                  | pubType                                    |
+#      | Forms                        | Form                                       |
+#      no data IM 7323 06 12
+      | IMG Publications             | Rating                                     |
+      | IMG Publications             | Underwriting                               |
+      | IMG Publications             | Forms Comparison                           |
+      | IMG Publications             | Rules                                      |
+      | IMG Publications             | Terrorism Rules - Multistate               |
+      | IMG Publications             | Terrorism Rating Information (SFP - Filed) |
+      | IMG Publications             | Forms Comparison                           |
+#      | IMG Publications             | IRPM                                       |
+#      | IMG Publications             | ALL                                        |
+#     actual -   ["COUNTRYWIDE"]  expected - ["IRPM - REV 1.0 (MULTISTATE)"]
+      | Compliance Guide             | Compliance Guide                           |
+#      | Forms and Endorsements Lists | Forms and Endorsements List                |
+#     no data  -  "CW IMG FORMS & ENDORSEMENTS LIST 01 21 22",  state = "MU"
 
-  Scenario Outline: The user validates the search result for Product line - BOP, state - IA, Material type - '<packageType>'
-    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Commertial/IA BOP 01 18 23.xlsx'
+  Scenario Outline: The user validates the search result for Product line - BOP, state - IA, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Commertial/IA BOP 01 18 23.xlsx'
     Examples:
-      | packageType |
-      | PFM         |
-      | BUL         |
-      | FEL         |
-      | MAN         |
-      | PRI         |
-      | SUP         |
+      | pubCategory                  | pubType                        |
+      | Forms                        | Form                           |
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
+#      no data for the subcategory
+      | Forms and Endorsements Lists | ALL                            |
+      | Bulletins                    | State-specific Bulletin        |
+      | Bulletins                    | ALL                            |
+      | Manual Materials             | State Pages                    |
+      | Manual Materials             | Multi & State-Specific Manuals |
+      | Manual Materials             | Supplement                     |
+      | Manual Materials             | ALL                            |
+      | Advisory Information         | Declarations                   |
+      | Advisory Information         | Misc                           |
+      | Advisory Information         | Sample Disclosure Notice       |
+      | Advisory Information         | Sample Endorsements            |
+      | Advisory Information         | ALL                            |
+      | Education Materials          | Program Materials              |
+      | Education Materials          | Reference Article              |
+      | Education Materials          | Reference Material             |
+      | Education Materials          | ALL                            |
 
-# Scenario Outline: The user validates the search result for Product line - AGXL, state - IL, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Farm Ag/IL AGXL 01 01 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-#      | BUL         |
-#      | FEL         |
-#      | PRL         |
-#      | MAN         |
-#      | PRI         |
+  Scenario Outline: The user validates the search result for Product line - AGXL, state - IL, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Farm Ag/IL AGXL 01 01 22.xlsx'
+    Examples:
+      | pubCategory                  | pubType                        |
+#      | Forms                        | Form                                    |
+#      no date - AU 2013 07 10,AU 3050 07 10,AU 3051 07 10,AU 3202 07 10,AU 6626 07 10,Au 8006 07 10
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
+#      no data for subcategory
+      | Forms and Endorsements Lists | ALL                            |
+      | Bulletins                    | State-specific Bulletin        |
+      | Bulletins                    | ALL                            |
+      | Manual Materials             | Multi & State-specific Manuals |
+      | Manual Materials             | ALL                            |
+      | Advisory Information         | Declarations                   |
+      | Advisory Information         | ALL                            |
 
-#  Scenario Outline: The user validates the search result for Product line - PIM, state - OR, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/Personal lines/OR PIM 10 09 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-#      | BUL         |
-#      | FEL         |
-#
-#
-# Scenario Outline: The user validates the search result for Product line - CIM, state - MT, Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get './cypress/fixtures/expectedResults/IM/CIM MT 03 15 22.xlsx'
-#    Examples:
-#      | packageType |
-#      | PFM         |
-##      | BUL         |
-##      | FEL         |
-##      | MAN         |
-##      | PRI         |
-##      | SUP         |
+  Scenario Outline: The user validates the search result for Product line - PIM, state - OR, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Personal lines/OR PIM 10 09 22.xlsx'
+    Examples:
+      | pubCategory                  | pubType                        |
+      | Forms                        | Form                           |
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
+#      no data for all subcategory
+      | Forms and Endorsements Lists | ALL                            |
+      | Bulletins                    | State-specific Bulletin        |
+#      | Bulletins                    | ALL                                     |
+      | Manual Materials             | Multi & State-specific Manuals |
+      | Manual Materials             | State Pages                    |
+      | Manual Materials             | ALL                            |
+      | IMG Publications             | Legal Briefs                   |
+      | IMG Publications             | ALL                            |
+      | Advisory Information         | Declarations                   |
+      | Advisory Information         | Sample Disclosure Notice       |
+      | Advisory Information         | ALL                            |
+      | Education Materials          | Reference Material             |
+      | Education Materials          | Side by Side Comparison        |
+      | Education Materials          | ALL                            |
+      | Compliance Guide             | Compliance Guide               |
+      | Compliance Guide             | ALL                            |
+      | Statistical Plans            | Statistical Plan               |
+      | Statistical Plans            | ALL                            |
+      | Reports                      | Report                         |
+      | Reports                      | ALL                            |
 
-#  Scenario Outline: The user validates the search result for Product line - '<product>', state - '<states>', Material type - '<packageType>'
-#    Then The user call search endpoint with '<packageType>' and should get '<expected Result>'
-#    Examples:
-#      | product | states | packageType | effective date | expected Result                                             |
-#      | PA      | IL     | PFM         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-#      | PA      | IL     | BUL         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-#      | PA      | IL     | MAN         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
-#      | PA      | IL     | FEL         | 12/08/2022     | ./cypress/fixtures/expectedResults/Auto/PA IL 12 08 22.xlsx |
+  Scenario Outline: The user validates the search result for Product line - CIM, state - MT, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/IM/CIM MT 03 15 22.xlsx'
+    Examples:
+      | pubCategory                  | pubType                        |
+#      | Forms                        | Form                           |
+#      no data - "IM 7902 04 04"
+      | Forms and Endorsements Lists | Forms and Endorsements List    |
+      | Forms and Endorsements Lists | ALL                            |
+      | Manual Materials             | Multi & State-specific Manuals |
+      | Manual Materials             | State Pages                    |
+      | Manual Materials             | Supplement                     |
+      | Manual Materials             | ALL                            |
+      | Advisory Information         | Declarations                   |
+      | Advisory Information         | Sample Disclosure Notice       |
+      | Advisory Information         | ALL                            |
+#      | Education Materials          | Side by Side Comparison        |
+#      | Education Materials          | ALL                            |
+#       expected -  "COUNTRYWIDE - IM 1500 03 99 TO 01 05 (UPDATED 12 12 05)", actual - "COUNTRYWIDE - IM 1500 03 99 TO 09 05 (UPDATED 12 12 05)",
+#       expected -  "IM 1500 05 00 TO 01 05 (OREGON UPDATED 12 12 05)", actual - "IM 1500 05 00 TO 09 05 (OREGON UPDATED 12 12 05)",
+      | Statistical Plans            | Statistical Plan               |
+      | Statistical Plans            | ALL                            |
+      | Reports                      | Cause of Loss Report           |
+
+  Scenario Outline: The user validates the search result for Product line - AGGL, state - OR, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and should get './cypress/fixtures/expectedResults/Farm Ag/OR AgGL 01 01 22.xlsx'
+    Examples:
+      | pubCategory                  | pubType                                 |
+      | Forms                        | Form                                    |
+#      | Bulletins                    | State-specific Bulletin                 |
+#      | Bulletins                    | ALL                                     |
+#      no data "22-0173"
+      | Forms and Endorsements Lists | Forms and Endorsements List             |
+#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
+#      | Forms and Endorsements Lists | ALL                                     |
+#      no data at all for subcategory
+      | Compliance Guide             | Compliance Guide                        |
+      | Compliance Guide             | ALL                                     |
+      | Advisory Information         | Declarations                            |
+      | Advisory Information         | ALL                                     |
+      | Education Materials          | Program Materials                       |
+      | Education Materials          | ALL                                     |
+      | Manual Materials             | Multi & State-specific Manuals          |
+      | Manual Materials             | State Pages                             |
+#      | Manual Materials             | Supplement                              |
+#      | Manual Materials             | ALL                                     |
+#      no data "CW AGGL DATA SET - CLASSIFICATION (EXCEL) REV 09 08",
+#               "OR AGGL DATA SET - BASIC LOSS COSTS (EXCEL) REV 09 08",
+#               "OR AGGL DATA SET - FACTORS (EXCEL) REV 09 08",
+#               "OR AGGL DATA SET - OPTIONAL LOSS COSTS (EXCEL) REV 09 08",
+#                "OR AGGL DATA SET - SUPPLEMENT RATING INFORMATION (EXCEL) REV 09 12",
+
+
 
 
 

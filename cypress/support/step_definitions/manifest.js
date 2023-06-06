@@ -1,5 +1,7 @@
 const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
+const MATERIALS = require("../../fixtures/enums/MATERIALS");
+
 
 When(/^The user call the manifest endpoint with '(.*)' and '(.*)' and '(.*)'$/, (product, states, packageType) => {
   cy.request({
@@ -73,7 +75,7 @@ Then(/^The user call manifest endpoint with '(.*)' and '(.*)' and '(.*)' and '(.
 });
 
 
-Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async (packageType, expectedFile) => {
+Then(/^The user call search endpoint with '(.*)' and '(.*)' and should get '(.*)'$/, async (pubCategory, pubType, expectedFile) => {
   await cy.readXLSX(expectedFile).then(async data => {
     const actualDocs = [];
     let expectedDocs = [];
@@ -83,14 +85,32 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
     let state = null;
     let line = null;
     let effective_date = null;
-    let size = 400;
+    let size = 100;
+    if (pubType === "ALL") {
+      pubType = MATERIALS[pubCategory];
+    } else {
+      pubType = [pubType];
+    }
     // for looping to collect data from PDP Exel doc
     for (let i = 0; i < data.length; i++) {
-      mainData = data[i][0] === packageType;
+      if (pubType.length > 1) {
+        mainData = data[i][0] === pubCategory;
+      } else {
+        mainData = (data[i][0] === pubCategory && data[i][1] === pubType[0]);
+      }
+
       //after we passed the empty/config rows
       if (mainData === true) {
-        packageType === "PFM" ? expectedDocs.push((data[i][2].toUpperCase() + " " + data[i][3].toUpperCase())) : expectedDocs.push((data[i][1].toUpperCase()));
-        fullExelData.push(`title: ${data[i][0].toUpperCase()}, docNum: ${data[i][1]}, revision: ${data[i][2]}`);
+        if (pubCategory === "Forms") {
+          expectedDocs.push((data[i][3] + " " + data[i][4]));
+        } else if (pubCategory === "Bulletins") {
+          expectedDocs.push(data[i][3]);
+        } else {
+          expectedDocs.push((data[i][2].toUpperCase()));
+        }
+
+        // pubCategory === "Forms" || pubCategory === "Bulletins" ? expectedDocs.push((data[i][3] + " " + data[i][4])) : expectedDocs.push((data[i][2].toUpperCase()));
+        fullExelData.push(`title: ${data[i][2].toUpperCase()}, docNum: ${data[i][3]}, revision: ${data[i][4]}`);
         fullExelData.sort();
         expectedDocs.sort();
       }
@@ -118,12 +138,12 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
           "filters": {
             "size": size,
             "productLine": [line],
-            "publicationType": [packageType],
             "states": [state],
+            "publicationTypeCategory_query": [pubCategory],
+            "publicationType": pubType,
             "imgClass_s": [],
-            "publicationTypeCategory_query": [],
-            "effectiveDate": effective_date,
-            "effectiveOldestDate": ""
+            "effectiveDate": effective_date
+            // "effectiveOldestDate": ""
           }
         }
     }).as("resp");
@@ -131,16 +151,16 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
-      expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${packageType} - packageType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
+      await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
+      expect(response.body.hits.total.value, `No Publications for \n${state} - state \n${pubCategory} - pubsCategory \n${pubType} - pubType \n${line} - product line \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
-        packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
+        pubCategory === "Forms" || pubCategory === "Bulletins" ? actualDocs.push(obj._source.documentNumber) : actualDocs.push(obj._source.publicationName.toUpperCase());
         fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
         actualDocs.sort();
-        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
-        await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
+        await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
+        await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
       });
 
 
@@ -155,19 +175,19 @@ Then(/^The user call search endpoint with '(.*)' and should get '(.*)'$/, async 
           }).as("scrollResp");
           cy.get("@scrollResp").then(async (response) => {
             expect(response.status).to.eq(200);
-            await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
+            await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
-              packageType === "PFM" ? actualDocs.push(obj._source.documentNumber.toUpperCase()) : actualDocs.push(obj._source.publicationName.toUpperCase());
+              pubCategory === "Forms" || pubCategory === "Bulletins" ? actualDocs.push(obj._source.documentNumber) : actualDocs.push(obj._source.publicationName.toUpperCase());
               fullRespData.push(`title: ${obj._source.publicationName.toUpperCase()}, docNum: ${obj._source.documentNumber}, revision: ${obj._source.edition}`);
               actualDocs.sort();
-              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
-              await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
+              await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/fullRespData.json`, JSON.stringify(fullRespData));
+              await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/actual.json`, JSON.stringify(actualDocs));
             });
           });
         }
       }
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/fullExelData.json`, JSON.stringify(fullExelData));
-      await cy.writeFile(`./reports/${line} ${state} /${packageType} /${effective_date.replaceAll("/", ".")}/expected.json`, JSON.stringify(expectedDocs));
+      await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/fullExelData.json`, JSON.stringify(fullExelData));
+      await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType.length > 1 ? "ALL" : pubType} /${effective_date.replaceAll("/", ".")}/expected.json`, JSON.stringify(expectedDocs));
 
 
       //Validation part
