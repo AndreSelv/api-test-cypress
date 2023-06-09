@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.205",
+  "version": "0.0.206",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -83,7 +83,7 @@
     }
   ],
   "engines": {
-    "node": ">=12",
+    "node": ">=20",
     "npm": ">=6"
   },
   "license": "Copyright AAIS. All rights reserved",
