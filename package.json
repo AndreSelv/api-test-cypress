@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.204",
+  "version": "0.0.205",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -114,9 +114,7 @@
     "mochawesome-report-generator": "^6.2.0",
     "node-xlsx": "^0.21.0",
     "prettier": "^2.7.1",
-    "read-excel-file": "^5.5.3",
-    "mssql": "^9.1.1",
-    "json2xls": "^0.1.2"
+    "read-excel-file": "^5.5.3"
   },
   "husky": {
     "hooks": {
