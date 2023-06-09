@@ -6,9 +6,7 @@
  * @public
  */
 const MATERIALS = {
-
-  "Advisory Information":
-    [
+  "Advisory Information": [
       "Declarations",
       "Homeowners Advisory Information",
       "Homeowners Sample Endorsements",
@@ -18,7 +16,6 @@ const MATERIALS = {
       "Schedule Coverage",
       "Underlying Insurance"
     ],
-
   "Bulletins": [
     "Countrywide Bulletin",
     "General Bulletin",
@@ -35,15 +32,13 @@ const MATERIALS = {
     "Side by Side Comparison",
     "FAQs"
   ],
-
   "Forms": [
     "Forms"
   ],
-  "Forms and Endorsements Lists":
-    [
-      "Forms and Endorsements List",
-      "Multi State Forms and Endorsements List"
-    ],
+  "Forms and Endorsements Lists": [
+    "Forms and Endorsements List",
+    "Multi State Forms and Endorsements List"
+  ],
   "IMG Publications": [
     "Compatible Schedules / Endorsements",
     "Completed Value Report",
@@ -88,6 +83,5 @@ const MATERIALS = {
   "Statistical Plans": [
     "Statistical Plan"
   ]
-
 };
 export default MATERIALS;

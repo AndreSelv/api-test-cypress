@@ -4,6 +4,8 @@ const fs = require("fs");
 const xlsx = require("node-xlsx");
 const readXlsxFile = require("read-excel-file/node");
 const options = { recordLogs: true };
+const sql = require("mssql");
+const json2xls = require("json2xls");
 
 
 module.exports = defineConfig({
@@ -83,6 +85,44 @@ module.exports = defineConfig({
               resolve(null);
             }
           });
+        }
+      });
+      const conf = {
+        user: "Tableausql_ro",
+        password: "5Uwuu40gzUB7",
+        server: "10.0.10.86",
+        port: 1433,
+        database: "AAISDirect",
+        options: {
+          encrypt: false
+        }
+      };
+      const options = {
+        keys: ["pubName", "state", "line", "PubCategory", "pubType"]
+      };
+      on("task", {
+        sqlServer(query) {
+          return new Promise(async (resolve, reject) => {
+              try {
+                sql.on("error", err => {
+                  console.log(err);
+                });
+                sql.connect(conf).then(pool => {
+                  return pool.request().query(query);
+                }).then(result => {
+                  let f = json2xls(result.recordsets[0]);
+                  fs.writeFileSync("./cypress/data/DATA.xlsx", f, "binary", (err) => {
+                    if (err) {
+                      console.log("writeFileSync :", err);
+                    }
+                  });
+                  resolve(f);
+                });
+              } catch (e) {
+                reject(e);
+              }
+            }
+          );
         }
       });
     },
