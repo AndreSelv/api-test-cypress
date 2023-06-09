@@ -33,3 +33,10 @@ Cypress.Commands.add('parseXlsx', (inputFile) => {
 Cypress.Commands.add('readXLSX', (inputFile) => {
   return cy.task('readXLSX', { filePath: inputFile });
 });
+
+Cypress.Commands.add("runQuery", (query) => {
+  if (!query) {
+    throw new Error("Query must be set");
+  }
+  return cy.task("sqlServer", query)
+});
