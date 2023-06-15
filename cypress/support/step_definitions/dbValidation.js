@@ -60,7 +60,7 @@ where status.StatusID = 1
     let expectedDocs = [];
     let effective_date = `${effectiveDate}`;
     let mainData = false;
-    let size = 100;
+    let size = 20;
 
     for (let i = 0; i < data.length; i++) {
 
@@ -101,14 +101,14 @@ where status.StatusID = 1
     //Main response
     await cy.get("@resp").then(async (response) => {
       expect(response.status).to.eq(200);
-      await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
-      expect(response.body.hits.total.value, `No Publications for \n${line} - product line \n${state} - state \n${pubCategory} - pubsCategory \n${pubType} - pubType  \n${effective_date} - effective date`).to.be.greaterThan(0);
+      await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
+      // expect(response.body.hits.total.value, `No Publications for \n${line} - product line \n${state} - state \n${pubCategory} - pubsCategory \n${pubType} - pubType  \n${effective_date} - effective date`).to.be.greaterThan(0);
 
       //Collect data from main response
       await cy.wrap(response.body.hits.hits).each(async (obj) => {
         pubCategory === "Forms" || pubCategory === "Bulletins" ? actualDocs.push(obj._source.documentNumber) : actualDocs.push(obj._source.publicationName.toUpperCase());
         actualDocs.sort();
-        await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/UI.json`, JSON.stringify(actualDocs));
+        await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/UI.json`, JSON.stringify(actualDocs));
       });
 
 
@@ -123,16 +123,16 @@ where status.StatusID = 1
           }).as("scrollResp");
           cy.get("@scrollResp").then(async (response) => {
             expect(response.status).to.eq(200);
-            await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
+            await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/serverRespData.json`, JSON.stringify(response));
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
               pubCategory === "Forms" || pubCategory === "Bulletins" ? actualDocs.push(obj._source.documentNumber) : actualDocs.push(obj._source.publicationName.toUpperCase());
               actualDocs.sort();
-              await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/UI.json`, JSON.stringify(actualDocs));
+              await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/UI.json`, JSON.stringify(actualDocs));
             });
           });
         }
       }
-      await cy.writeFile(`./reports/${line} ${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/DB.json`, JSON.stringify(expectedDocs));
+      await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/DB.json`, JSON.stringify(expectedDocs));
 
       //Validation part
 

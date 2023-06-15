@@ -90,15 +90,12 @@ module.exports = defineConfig({
       const conf = {
         user: "Tableausql_ro",
         password: "5Uwuu40gzUB7",
-        server: "10.0.10.86",
+        server: "10.0.10.90",
         port: 1433,
         database: "AAISDirect",
         options: {
           encrypt: false
         }
-      };
-      const options = {
-        keys: ["pubName", "state", "line", "PubCategory", "pubType"]
       };
       on("task", {
         sqlServer(query) {
