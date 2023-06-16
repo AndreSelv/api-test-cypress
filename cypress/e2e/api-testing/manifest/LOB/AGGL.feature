@@ -3,7 +3,7 @@ Feature: Agricultural General Liability - AGGL
   Scenario: Delete report folder before all tests
     Given Delete "./reports/AGGL" folder
 
-  Scenario Outline: The user validates the search result for Product line - 'AGGL', state - 'Oregon', Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
+  Scenario Outline: The user validates the search result for Product line - Agricultural General Liability , state - Oregon, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
     Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AGGL' and 'OR' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                         |
