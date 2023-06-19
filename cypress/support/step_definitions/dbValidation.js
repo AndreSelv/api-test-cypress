@@ -1,4 +1,4 @@
-const { When, Then, Given } = require("cypress-cucumber-preprocessor/steps");
+const { Then } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
 const MATERIALS = require("../../fixtures/enums/MATERIALS");
 

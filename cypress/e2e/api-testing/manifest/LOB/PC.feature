@@ -1,32 +1,32 @@
-Feature: Businessowners - BOP
+Feature: Personal Auto (Non Standard) - PAN
 
 #  Scenario: Delete report folder before all tests
-#    Given Delete "./reports/BOP" folder
+#    Given Delete "./reports/PC" folder
 
-  Scenario Outline: The user validates the search result for Product line - Businessowners, state - Iowa, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'BOP' and 'IA' and '01/01/2022' and should get result match with legacy DB search result
+  Scenario Outline: The user validates the search result for Product line - Personal Auto (Non Standard), state - Iowa, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'PC' and 'IA' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                         |
-      | Advisory Information         | Declarations                                    |
+#      | Advisory Information         | Declarations                                    |
 #      | Advisory Information         | Homeowners Advisory Information                 |
 #      | Advisory Information         | Homeowners Sample Endorsements                  |
-      | Advisory Information         | Misc                                            |
-      | Advisory Information         | Sample Disclosure Notice                        |
-      | Advisory Information         | Sample Endorsements                             |
+#      | Advisory Information         | Misc                                            |
+#      | Advisory Information         | Sample Disclosure Notice                        |
+#      | Advisory Information         | Sample Endorsements                             |
 #      | Advisory Information         | Schedule Coverage                               |
 #      | Advisory Information         | Underlying Insurance                            |
 #
       | Bulletins                    | Countrywide Bulletin                            |
-      | Bulletins                    | General Bulletin                                |
+#      | Bulletins                    | General Bulletin                                |
       | Bulletins                    | State-specific Bulletin                         |
       | Bulletins                    | Statistical Bulletin                            |
 #
-      | Compliance Guide             | Compliance Guide                                |
+#      | Compliance Guide             | Compliance Guide                                |
 #
-      | Education Materials          | Program Materials                               |
-      | Education Materials          | Reference Article                               |
-      | Education Materials          | Reference Material                              |
-      | Education Materials          | Side by Side Comparison                         |
+#      | Education Materials          | Program Materials                               |
+#      | Education Materials          | Reference Article                               |
+#      | Education Materials          | Reference Material                              |
+#      | Education Materials          | Side by Side Comparison                         |
 #      | Education Materials          | FAQs                                            |
 #
       | Forms                        | Form                                            |
@@ -63,13 +63,13 @@ Feature: Businessowners - BOP
 #      | IMG Publications             | Terrorism Rules - State-Specific                |
 #      | IMG Publications             | Underwriting                                    |
 #
-      | Manual Materials             | Data Set                                        |
+#      | Manual Materials             | Data Set                                        |
 #      | Manual Materials             | Download For Microsoft Office                   |
       | Manual Materials             | Multi & State-specific Manuals                  |
       | Manual Materials             | State Pages                                     |
-      | Manual Materials             | Supplement                                      |
+#      | Manual Materials             | Supplement                                      |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |
 #
-      | Statistical Plans            | Statistical Plan                                |
+#      | Statistical Plans            | Statistical Plan                                |

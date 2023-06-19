@@ -90,10 +90,18 @@ module.exports = defineConfig({
       const conf = {
         user: "Tableausql_ro",
         password: "5Uwuu40gzUB7",
-        server: "10.0.10.90",
+        server: "10.0.10.128",
+        // server: "10.0.10.90",
         port: 1433,
         database: "AAISDirect",
+        pool: {
+          max: 60,
+          min: 0,
+          // idleTimeoutMillis: 30000,
+          acquireTimeoutMillis: 30000
+        },
         options: {
+          trustedConnection: true,
           encrypt: false
         }
       };
