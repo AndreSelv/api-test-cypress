@@ -108,8 +108,8 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/run:
           install-command: npm install && echo hello
-#          cypress-command: npx cypress run --headless --spec 'cypress/e2e/api-testing/manifest/LOB/'
-          start-command: npm run LOB
+          cypress-command: npx cypress run
+          working-directory: cypress/e2e/api-testing/manifest/LOB/
 
           post-install: npx cypress info
           post-steps:
