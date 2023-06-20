@@ -92,28 +92,11 @@ workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-#      - cypress/install
       - cypress/run:
-#          requires:
-#            - cypress/install
           install-command: npm install && echo hello
           cypress-command: CI=1 npx cypress run
 
-          #          cypress-command: npx cypress run --spec 'cypress/e2e/api-testing/manifest/dbValidation.feature'
-
-
-          #          name: Chrome
-#          executor: browsers-chrome100-ff99-edge
-#          browser: chrome
-#          record: true
-##          parallel: true
-##          parallelism: 2
-#          group: Chrome group
-#          spec: cypress/e2e/api-testing
-#          debug: 'cypress:cli'
-
           post-install: npx cypress info
-#          store_artifacts: true
           post-steps:
             - store_artifacts:
                 path: mochawesome-report
