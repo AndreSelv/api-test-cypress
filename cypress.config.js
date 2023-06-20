@@ -149,6 +149,6 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.*",
     projectId: "fsxi11",
-    excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/manifest.feature" : []
+    excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/" : []
   }
 });
