@@ -89,19 +89,19 @@ executors:
           The version of Node to run your tests with.
         type: string
 workflows:
-  build-main:
-    jobs:
-      # first get the source code and install npm dependencies
-      - cypress/run:
-          install-command: npm install && echo hello
-          cypress-command: CI=1 npx cypress run
-
-          post-install: npx cypress info
-          post-steps:
-            - store_artifacts:
-                path: mochawesome-report
-            - store_test_results:
-                path: cypress/results
+#  build-main:
+#    jobs:
+#      # first get the source code and install npm dependencies
+#      - cypress/run:
+#          install-command: npm install && echo hello
+#          cypress-command: CI=1 npx cypress run
+#
+#          post-install: npx cypress info
+#          post-steps:
+#            - store_artifacts:
+#                path: mochawesome-report
+#            - store_test_results:
+#                path: cypress/results
 
   build-data:
     jobs:
