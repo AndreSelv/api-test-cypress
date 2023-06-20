@@ -97,7 +97,7 @@ module.exports = defineConfig({
         pool: {
           max: 60,
           min: 0,
-          // idleTimeoutMillis: 30000,
+          idleTimeoutMillis: 30000,
           acquireTimeoutMillis: 30000
         },
         options: {
