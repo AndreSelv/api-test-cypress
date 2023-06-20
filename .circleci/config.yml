@@ -97,7 +97,8 @@ workflows:
 #          requires:
 #            - cypress/install
           install-command: npm install && echo hello
-          cypress-command: CI=1 cypress run || npm run e2e-test-report
+          cypress-command: CI=1 npx cypress run
+
           #          cypress-command: npx cypress run --spec 'cypress/e2e/api-testing/manifest/dbValidation.feature'
 
 
