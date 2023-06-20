@@ -89,7 +89,7 @@ executors:
           The version of Node to run your tests with.
         type: string
 workflows:
-  build:
+  build-main:
     jobs:
       # first get the source code and install npm dependencies
       - cypress/run:
@@ -103,6 +103,19 @@ workflows:
             - store_test_results:
                 path: cypress/results
 
+  build-data:
+    jobs:
+      # first get the source code and install npm dependencies
+      - cypress/run:
+          install-command: npm install && echo hello
+          cypress-command: npx cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/
+
+          post-install: npx cypress info
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
+            - store_test_results:
+                path: cypress/results
 
 
 
