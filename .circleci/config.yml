@@ -76,33 +76,27 @@
 
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@2.2.0
+  cypress: cypress-io/cypress@3.1.2
 executors:
-  browsers-chrome100-ff99-edge:
+  default:
     description: Docker container with Node 16.14.2, Cypress dependencies, Chrome 100, Firefox 99, and the latest Edge
     docker:
-      - image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      - image: cimg/node:20.2.0-browsers
+    parameters:
+      node-version:
+        default: "20.2"
+        description: |
+          The version of Node to run your tests with.
+        type: string
 workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-      - cypress/install
       - cypress/run:
-          requires:
-            - cypress/install
-          name: Chrome
-          executor: browsers-chrome100-ff99-edge
-          browser: chrome
-          record: true
-#          parallel: true
-#          parallelism: 2
-          group: Chrome group
-          spec: cypress/e2e/api-testing
-          debug: 'cypress:cli'
+          install-command: npm install && echo hello
+          cypress-command: CI=1 npx cypress run
 
-          post-install:
-            - run: npx cypress info
-          store_artifacts: true
+          post-install: npx cypress info
           post-steps:
             - store_artifacts:
                 path: mochawesome-report
