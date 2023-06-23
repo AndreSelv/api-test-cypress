@@ -31,7 +31,7 @@ Feature: Agricultural General Liability - AGGL
 #
       | Forms                        | Form                                            |
 #
-      | Forms and Endorsements Lists | Forms and Endorsements List                     |
+     ##| Forms and Endorsements Lists | Forms and Endorsements List                     |
 #      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
 #
 #      | IMG Publications             | Compatible Schedules / Endorsements             |
@@ -63,11 +63,11 @@ Feature: Agricultural General Liability - AGGL
 #      | IMG Publications             | Terrorism Rules - State-Specific                |
 #      | IMG Publications             | Underwriting                                    |
 #
-      | Manual Materials             | Data Set                                        |
+      ##| Manual Materials             | Data Set                                        |
 #      | Manual Materials             | Download For Microsoft Office                   |
-      | Manual Materials             | Multi & State-specific Manuals                  |
-      | Manual Materials             | State Pages                                     |
-      | Manual Materials             | Supplement                                      |
+      ##| Manual Materials             | Multi & State-specific Manuals                  |
+      ##| Manual Materials             | State Pages                                     |
+      ##| Manual Materials             | Supplement                                      |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |

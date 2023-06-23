@@ -90,7 +90,7 @@ module.exports = defineConfig({
       const conf = {
         user: "Tableausql_ro",
         password: "5Uwuu40gzUB7",
-        server: "10.0.10.90",
+        server: "10.0.10.128",
         port: 1433,
         database: "AAISDirect",
         pool: {
