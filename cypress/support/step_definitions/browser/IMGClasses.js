@@ -15,8 +15,8 @@ When(/^The user create request with 'IMG' Product '(.*)' IMGClass and '(.*)' sta
           "size": 20,
           "productLine": ["IMG"],
           "states": [state],
-          // "publicationTypeCategory_query": [pubCategory],
-          // "publicationType": [pubType],
+          "publicationTypeCategory_query": [],
+          "publicationType": [],
           "imgClass_s": [IMGClass]
           // "effectiveDate": effective_date
           // "effectiveOldestDate": ""
@@ -27,22 +27,10 @@ When(/^The user create request with 'IMG' Product '(.*)' IMGClass and '(.*)' sta
   await cy.get("@resp").then(async (response) => {
     expect(response.status).to.eq(200);
     expect(response.body.hits.total.value, `No IMG Classes for IMG - Product line ${IMGClass} - IMG Class ${state} - state `).to.be.greaterThan(0);
-
-    expect(response.body).to.have.deep.property("imgClass_s", IMGClass);
-
-
     await cy.wrap(response.body.hits.hits).each(async (obj) => {
-    }).then(async () => {
-      await cy.wrap(obj).each(async (s)=>{
-
-      })
-
-
-
-
-      // expect(actualDocs).to.deep.equal(expectedDocs);
+      expect(obj._source.publicationName).contains(IMGClass);
+      for (const lob of obj._source.lobs)
+        expect(lob.imgClass_s).eq(IMGClass);
     });
   });
-
-
 });
