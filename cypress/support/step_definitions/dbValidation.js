@@ -5,48 +5,45 @@ const MATERIALS = require("../../fixtures/enums/MATERIALS");
 
 Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result$/, async (pubCategory, pubType, line, state, effectiveDate) => {
 
-  await cy.runQuery(`select pubcategory.Name                                                     as PubCategory,
-       pubtype.Name                                                         as pubType,
-       pub.Name                                                             as pubName,
-       f.[Number]                                                           as FORMWITHEDITION,
-       b.[Number]                                                           as bulletinfullnumber,
-       line.Abbreviation                                                    as line,
-       state.Abbreviation                                                   as state,
-       pubass.PublicationAssignmentID                                       as pubassID,
-       pub.PublicationID                                                    as pubID,
-       lvLine.Abbreviation                                                  as lvLine,
-       c.Abbreviation                                                       as Class,
-       c.Name                                                               as ClassName,
-       pubcategory.ShortName,
-       f.RevisionNumber1                                                    as REVISIONNUMBER1,
-       f.RevisionNumber2,
-       f.[Number]                                                           as Form_code,
-       f.FormSortID,
-       pub.Name                                                             as FORM_NAME,
-       COALESCE(pubass.EffectiveDate, pub.ActivationDateTime, '1900-01-01') as effDate,
-       COALESCE(pub.InActiveDate, pub.DeactivationDateTime, '9999-12-31')   as expDate,
-       rev.Name                                                             as revision,
-       series.Name                                                          as series
---        f2.Name                                                              as filename
-from PublicationAssignment pubass
-         left join Publication pub on pub.PublicationID = pubass.PublicationID
-         left join PublicationPublicationType pubpubtype on pubpubtype.PublicationID = pub.PublicationID
-         left join config.PublicationType pubtype on pubtype.PublicationTypeID = pubpubtype.PublicationTypeID
-         left join config.PublicationType pubcategory on pubcategory.PublicationTypeID = pubtype.ParentPublicationTypeID
-         left join config.LineVersion lineversion on lineversion.LineVersionID = pubass.LineVersionID
-         left join config.Line lvLine on lvLine.LineID = lineversion.LineID
-         left join config.Line line on line.LineID = pubass.LineID
-         left join Revision rev on rev.RevisionID = pubass.RevisionID
-         left join SeriesRevision serrev on serrev.RevisionID = rev.RevisionID
-         left join Series series on series.SeriesID = serrev.SeriesID
-         left join config.State state on state.StateID = pubass.StateID
-         left join config.Status status on status.StatusID = pub.StatusID
-         left join config.State revState on revState.StateID = rev.StateID
-         LEFT JOIN config.Class c on pubass.ClassID = c.ClassID
-         left join Form f on pub.PublicationID = f.PublicationID
-         left join Bulletin b on pub.PublicationID = b.PublicationID
---          left join PublicationFile pf on pub.PublicationID = pf.PublicationID
---          left join [File] f2 on pf.FileID = f2.FileID
+  await cy.runQuery(`SELECT distinct
+                pubcategory.Name                                                     AS PubCategory,
+                pubtype.Name                                                         AS pubType,
+                pub.Name                                                             AS pubName,
+                f.[Number]                                                           AS FORMWITHEDITION,
+                b.[Number]                                                           AS bulletinfullnumber,
+                line.Abbreviation                                                    AS line,
+                state.Abbreviation                                                   AS state,
+                pub.PublicationID                                                    AS pubID,
+                lvLine.Abbreviation                                                  AS lvLine,
+                c.Abbreviation                                                       AS Class,
+                c.Name                                                               AS ClassName,
+                pubcategory.ShortName,
+                f.RevisionNumber1                                                    AS REVISIONNUMBER1,
+                f.RevisionNumber2,
+                f.[Number]                                                           AS Form_code,
+                f.FormSortID,
+                pub.Name                                                             AS FORM_NAME,
+                COALESCE(pubass.EffectiveDate, pub.ActivationDateTime, '1900-01-01') AS effDate,
+                COALESCE(pub.InActiveDate, pub.DeactivationDateTime, '9999-12-31')   AS expDate
+FROM PublicationAssignment pubass
+         LEFT JOIN Publication pub ON pub.PublicationID = pubass.PublicationID
+         LEFT JOIN PublicationPublicationType pubpubtype ON pubpubtype.PublicationID = pub.PublicationID
+         LEFT JOIN config.PublicationType pubtype ON pubtype.PublicationTypeID = pubpubtype.PublicationTypeID
+         LEFT JOIN config.PublicationType pubcategory ON pubcategory.PublicationTypeID = pubtype.ParentPublicationTypeID
+         LEFT JOIN config.LineVersion lineversion ON lineversion.LineVersionID = pubass.LineVersionID
+         LEFT JOIN config.Line lvLine ON lvLine.LineID = lineversion.LineID
+         LEFT JOIN config.Line line ON line.LineID = pubass.LineID
+         LEFT JOIN Revision rev ON rev.RevisionID = pubass.RevisionID
+         LEFT JOIN SeriesRevision serrev ON serrev.RevisionID = rev.RevisionID
+         LEFT JOIN Series series ON series.SeriesID = serrev.SeriesID
+         LEFT JOIN config.State state ON state.StateID = pubass.StateID
+         LEFT JOIN config.Status status ON status.StatusID = pub.StatusID
+         LEFT JOIN config.State revState ON revState.StateID = rev.StateID
+         LEFT JOIN config.Class c ON pubass.ClassID = c.ClassID
+         LEFT JOIN Form f ON pub.PublicationID = f.PublicationID
+         LEFT JOIN Bulletin b ON pub.PublicationID = b.PublicationID
+         left join PublicationFile pf on pub.PublicationID = pf.PublicationID
+         left join [File] f2 on pf.FileID = f2.FileID
 where status.StatusID = 1
 --   AND pub.name <> 'Archived Status Report'
   AND pubcategory.Name like '${pubCategory}'
@@ -129,7 +126,6 @@ where status.StatusID = 1
             await cy.wrap(response.body.hits.hits).each(async (obj) => {
               pubCategory === "Forms" || pubCategory === "Bulletins" ? actualDocs.push(obj._source.documentNumber) : actualDocs.push(obj._source.publicationName.toUpperCase());
               actualDocs.sort();
-              if (actualDocs.length > 0)
                 await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/UI.json`, JSON.stringify(actualDocs));
             });
           });

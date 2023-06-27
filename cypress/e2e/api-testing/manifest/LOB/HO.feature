@@ -16,10 +16,10 @@ Feature: Homeowners - HO
 #      | Advisory Information         | Schedule Coverage                               |
 #      | Advisory Information         | Underlying Insurance                            |
 #
-      ##| Bulletins                    | Countrywide Bulletin                            |
-      ##| Bulletins                    | General Bulletin                                |
-      ##| Bulletins                    | State-specific Bulletin                         |
-      ##| Bulletins                    | Statistical Bulletin                            |
+      | Bulletins                    | Countrywide Bulletin                            |
+      | Bulletins                    | General Bulletin                                |
+      | Bulletins                    | State-specific Bulletin                         |
+      | Bulletins                    | Statistical Bulletin                            |
 #
       | Compliance Guide             | Compliance Guide                                |
 #
@@ -65,9 +65,9 @@ Feature: Homeowners - HO
 #
       | Manual Materials             | Data Set                                        |
 #      | Manual Materials             | Download For Microsoft Office                   |
-      ##| Manual Materials             | Multi & State-specific Manuals                  |
+      | Manual Materials             | Multi & State-specific Manuals                  |
       | Manual Materials             | State Pages                                     |
-      ##| Manual Materials             | Supplement                                      |
+      | Manual Materials             | Supplement                                      |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |

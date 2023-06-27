@@ -64,7 +64,7 @@ Feature: Commercial Auto - CA
 #      | IMG Publications             | Underwriting                                    |
 #
 #      | Manual Materials             | Data Set                                        |
-      | Manual Materials             | Download For Microsoft Office                   |
+#      | Manual Materials             | Download For Microsoft Office                   |
 #      | Manual Materials             | Multi & State-specific Manuals                  |
 #      | Manual Materials             | State Pages                                     |
 #      | Manual Materials             | Supplement                                      |
