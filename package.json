@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.219",
+  "version": "0.0.220",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -16,7 +16,7 @@
     "prune": "npm prune --production",
     "manifest": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/manifest.feature'",
     "LOB": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/'",
-    "FP": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/FP.feature'",
+    "FUP": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/AGOP.feature'",
     "dbValidation": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/manifest/dbValidation.feature'",
     "user": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/orgaization/userView/users/updateUser.feature'",
     "historical": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/browser/historicalDate.feature'",
