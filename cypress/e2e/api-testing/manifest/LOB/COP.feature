@@ -25,7 +25,7 @@ Feature: Commercial output program - COP
 #
       | Education Materials          | Program Materials                               |
       | Education Materials          | Reference Article                               |
-      | Education Materials          | Reference Material                              |
+#      | Education Materials          | Reference Material                              |
       | Education Materials          | Side by Side Comparison                         |
       | Education Materials          | FAQs                                            |
 #

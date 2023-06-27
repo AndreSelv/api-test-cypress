@@ -48,7 +48,7 @@ Feature: Inland Marine Guide (Non Filed) - IMG
 #      | IMG Publications             | Legal Briefs                                    |
       | IMG Publications             | Loss Control Survey                             |
       | IMG Publications             | Marketing Materials                             |
-#      | IMG Publications             | Narrated Presentations                          |
+      | IMG Publications             | Narrated Presentations                          |
       | IMG Publications             | Rating                                          |
       | IMG Publications             | Rating Worksheet                                |
       | IMG Publications             | Reference Materials                             |

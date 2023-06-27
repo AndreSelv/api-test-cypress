@@ -31,7 +31,7 @@ Feature: Agricultural General Liability - AGGL
 #
       | Forms                        | Form                                            |
 #
-     ##| Forms and Endorsements Lists | Forms and Endorsements List                     |
+      | Forms and Endorsements Lists | Forms and Endorsements List                     |
 #      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
 #
 #      | IMG Publications             | Compatible Schedules / Endorsements             |
