@@ -84,34 +84,17 @@ executors:
       - image: cimg/node:20.2.0-browsers
     parameters:
       node-version:
-        default: '20.2'
+        default: "20.2"
         description: |
           The version of Node to run your tests with.
         type: string
 workflows:
-  #  build-main:
-  #    jobs:
-  #      # first get the source code and install npm dependencies
-  #      - cypress/run:
-  #          install-command: npm install && echo hello
-  #          cypress-command: CI=1 npx cypress run
-  #
-  #          post-install: npx cypress info
-  #          post-steps:
-  #            - store_artifacts:
-  #                path: mochawesome-report
-  #            - store_test_results:
-  #                path: cypress/results
-
-  build-data:
+  build:
     jobs:
       # first get the source code and install npm dependencies
       - cypress/run:
           install-command: npm install && echo hello
-#          cypress-command: npx cypress run --browser chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/'
-          install-browsers: true
-
-
+          cypress-command: CI=1 npx cypress run
 
           post-install: npx cypress info
           post-steps:
@@ -119,6 +102,7 @@ workflows:
                 path: mochawesome-report
             - store_test_results:
                 path: cypress/results
+
 
 
 
