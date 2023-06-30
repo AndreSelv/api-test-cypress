@@ -108,7 +108,7 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/run:
           install-command: npm install && echo hello
-          cypress-command: npx cypress run --browser chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/'
+#          cypress-command: npx cypress run --browser chrome --headless --spec 'cypress/e2e/api-testing/manifest/LOB/'
           install-browsers: true
 
 
