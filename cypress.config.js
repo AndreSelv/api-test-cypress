@@ -91,7 +91,6 @@ module.exports = defineConfig({
         user: "Tableausql_ro",
         password: "5Uwuu40gzUB7",
         server: "10.0.10.128",
-        // server: "10.0.10.90",
         port: 1433,
         database: "AAISDirect",
         pool: {
@@ -149,6 +148,6 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**/*.*",
     projectId: "fsxi11",
-    excludeSpecPattern: process.env.CI ? "cypress/e2e/api-testing/manifest/" : []
+    excludeSpecPattern: process.env.CI ? "cypress/e2e/data-testing/" : []
   }
 });

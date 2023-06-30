@@ -1,10 +1,10 @@
-Feature: Dwelling Properties - DP
+Feature: Farm Properties - FP
 
 #  Scenario: Delete report folder before all tests
-#    Given Delete "./reports/DP" folder
+#    Given Delete "./reports/PIM" folder
 
-  Scenario Outline: The user validates the search result for Product line - Dwelling Properties, state - Tennessee, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'DP' and 'TN' and '01/01/2022' and should get result match with legacy DB search result
+  Scenario Outline: The user validates the search result for Product line - Farm Properties, state - Arkansas, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'FP' and 'AR' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                         |
       | Advisory Information         | Declarations                                    |
@@ -12,15 +12,15 @@ Feature: Dwelling Properties - DP
 #      | Advisory Information         | Homeowners Sample Endorsements                  |
 #      | Advisory Information         | Misc                                            |
       | Advisory Information         | Sample Disclosure Notice                        |
-      | Advisory Information         | Sample Endorsements                             |
-#      | Advisory Information         | Schedule Coverage                               |
+#      | Advisory Information         | Sample Endorsements                             |
+      | Advisory Information         | Schedule Coverage                               |
 #      | Advisory Information         | Underlying Insurance                            |
 #
       | Bulletins                    | Countrywide Bulletin                            |
       | Bulletins                    | General Bulletin                                |
       | Bulletins                    | State-specific Bulletin                         |
       | Bulletins                    | Statistical Bulletin                            |
-#
+
       | Compliance Guide             | Compliance Guide                                |
 #
       | Education Materials          | Program Materials                               |
@@ -64,10 +64,10 @@ Feature: Dwelling Properties - DP
 #      | IMG Publications             | Underwriting                                    |
 #
       | Manual Materials             | Data Set                                        |
-      | Manual Materials             | Download For Microsoft Office                   |
+#      | Manual Materials             | Download For Microsoft Office                   |
       | Manual Materials             | Multi & State-specific Manuals                  |
-      | Manual Materials             | State Pages                                     |
-      | Manual Materials             | Supplement                                      |
+#      | Manual Materials             | State Pages                                     |
+      | Manual Materials             | Supplement                                       |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |

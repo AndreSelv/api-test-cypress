@@ -1,10 +1,10 @@
-Feature: Commercial output program - COP
+Feature: Agricultural Output Program - AGOP
 
 #  Scenario: Delete report folder before all tests
-#    Given Delete "./reports/COP" folder
+#    Given Delete "./reports/PIM" folder
 
-  Scenario Outline: The user validates the search result for Product line - Commercial output program, state - Arkansas, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'COP' and 'AR' and '01/01/2022' and should get result match with legacy DB search result
+  Scenario Outline: The user validates the search result for Product line - Agricultural Output Program, state - South Dakota, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AGOP' and 'SD' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                         |
       | Advisory Information         | Declarations                                    |
@@ -20,14 +20,14 @@ Feature: Commercial output program - COP
       | Bulletins                    | General Bulletin                                |
       | Bulletins                    | State-specific Bulletin                         |
       | Bulletins                    | Statistical Bulletin                            |
-#
+
       | Compliance Guide             | Compliance Guide                                |
 #
       | Education Materials          | Program Materials                               |
       | Education Materials          | Reference Article                               |
-      | Education Materials          | Reference Material                              |
-      | Education Materials          | Side by Side Comparison                         |
-      | Education Materials          | FAQs                                            |
+#      | Education Materials          | Reference Material                              |
+#      | Education Materials          | Side by Side Comparison                         |
+#      | Education Materials          | FAQs                                            |
 #
       | Forms                        | Form                                            |
 #
