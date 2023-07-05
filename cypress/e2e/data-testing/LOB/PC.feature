@@ -1,4 +1,4 @@
-Feature: Personal Auto (Non Standard) - PAN
+Feature: Personal Auto (Non Standard) - PC
 
 #  Scenario: Delete report folder before all tests
 #    Given Delete "./reports/PC" folder

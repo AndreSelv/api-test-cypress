@@ -138,7 +138,7 @@ where status.StatusID = 1
 
       await cy.wrap(actualDocs).each(async (obj) => {
       }).then(async () => {
-        expect(actualDocs).to.deep.equal(expectedDocs);
+        expect(expectedDocs).to.deep.equal(actualDocs);
       });
     });
   });
