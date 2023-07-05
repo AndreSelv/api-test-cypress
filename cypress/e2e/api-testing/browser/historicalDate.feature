@@ -10,7 +10,7 @@ Feature: Validate that historical date query returns correct data
       | AgOP    | SD    | Forms and Endorsements Lists | Forms and Endorsements List    | 07/05/2015     | 07/05/2000  |
       | AgOP    | SD    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
       | AgOP    | SD    | Advisory Information         | Declarations                   | 07/05/2015     | 07/05/2007  |
-      | AgOP    | SD    | Manual Materials             | Supplement                     | 09/04/2008     | 07/05/2007  |
+      | AgOP    | SD    | Manual Materials             | Supplement                     | 09/05/2008     | 07/05/2007  |
       | AgOP    | SD    | Manual Materials             | Supplement                     | 09/04/2022     | 07/05/2007  |
       | AgXL    | IL    | Manual Materials             | Multi & State-specific Manuals | 09/04/2022     | 07/05/2007  |
       | AgXL    | IL    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
