@@ -143,7 +143,7 @@ where status.StatusID = 1
     });
   });
 });
-Then(/^User select '(.*)' and '(.*)' effective date '(.*)' for all material types$/, async (line, state, effectiveDate) => {
+Then(/^User select lobs - '(.*)', state - '(.*)' effective date - '(.*)' for all material types$/, async (line, state, effectiveDate) => {
   await cy.runQuery(`SELECT distinct
                 pubcategory.Name                                                     AS PubCategory,
                 pubtype.Name                                                         AS pubType,
@@ -195,7 +195,7 @@ where status.StatusID = 1
     let mainData = false;
     let size = 20;
 
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 1; i < data.length; i++) {
       expectedDocs.push((data[i][2].toUpperCase()));
       expectedDocs.sort();
     }
