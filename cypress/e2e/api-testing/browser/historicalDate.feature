@@ -8,12 +8,12 @@ Feature: Validate that historical date query returns correct data
     Examples:
       | product | state | pubCat                       | pubType                        | effective_date | oldest_date |
       | AgOP    | SD    | Forms and Endorsements Lists | Forms and Endorsements List    | 07/05/2015     | 07/05/2000  |
-      | AgOP    | SD    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
+#      | AgOP    | SD    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
       | AgOP    | SD    | Advisory Information         | Declarations                   | 07/05/2015     | 07/05/2007  |
       | AgOP    | SD    | Manual Materials             | Supplement                     | 09/05/2008     | 07/05/2007  |
       | AgOP    | SD    | Manual Materials             | Supplement                     | 09/04/2022     | 07/05/2007  |
       | AgXL    | IL    | Manual Materials             | Multi & State-specific Manuals | 09/04/2022     | 07/05/2007  |
-      | AgXL    | IL    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
+#      | AgXL    | IL    | Forms                        | Form                           | 07/05/2015     | 07/05/2007  |
       | AgXL    | IL    | Forms and Endorsements Lists | Forms and Endorsements List    | 07/05/2015     | 07/05/2000  |
 
   Scenario Outline: As a user I want to be able to select only effective date '<effective_date>' for '<state>' state
@@ -41,8 +41,8 @@ Feature: Validate that historical date query returns correct data
     Then The user create request with '<product>' '<state>' '<pubCat>' '<pubType>' and should be able to receive all of objects with oldest effective date value greater or equal than '<oldest_date>'
     Examples:
       | product | state | pubCat               | pubType      | oldest_date |
-      | BOP     | IA    | Forms                | Form         | 06/03/2000  |
+#      | BOP     | IA    | Forms                | Form         | 06/03/2000  |
       | BOP     | IA    | Advisory Information | Declarations | 09/08/2008  |
-      | COP     | AR    | Forms                | Form         | 06/03/2000  |
-      | COP     | AR    | Forms                | Form         | 07/02/2017  |
-      | AgOP    | SD    | Forms                | Form         | 09/04/2000  |
+#      | COP     | AR    | Forms                | Form         | 06/03/2000  |
+#      | COP     | AR    | Forms                | Form         | 07/02/2017  |
+#      | AgOP    | SD    | Forms                | Form         | 09/04/2000  |

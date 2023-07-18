@@ -30,18 +30,8 @@ When(/^The user create request with '(.*)' '(.*)' '(.*)' '(.*)' '(.*)' '(.*)' an
       let effDate = new Date(Date.now());
       let expDate = new Date(Date.now());
       cy.wrap(resp.body.hits.hits).each((obj) => {
-        for (let i = 0; i < obj._source.lobs.length; i++) {
-          let prod = obj._source.lobs[i].abbreviation;
-          if (prod.toUpperCase() === product.toUpperCase()) {
-            for (let j = 0; j < obj._source.lobs[i].states.length; j++) {
-              let states = obj._source.lobs[i].states[j].abbreviation;
-              if (states === state) {
-                effDate = new Date(new Date(obj._source.lobs[i].states[j].effectiveDate).setHours(0));
-                expDate = new Date(new Date(obj._source.lobs[i].states[j].expirationDate).setHours(0));
-              }
-            }
-          }
-        }
+        effDate = new Date(new Date(obj._source.effectiveDate).setHours(0));
+        expDate = new Date(new Date(obj._source.expirationDate).setHours(0));
         expect(effDate).lessThan(new Date(effective_date), `Object with id ${obj._id} has effective date ${effDate} greater then ${new Date(effective_date)} parameter for ${state} state and product lines ${product}`);
         expect(effDate).greaterThan(new Date(new Date(oldest_date).setDate(new Date(oldest_date).getDate() - 2)), `Object with id ${obj._id} has effective date ${effDate} less then ${new Date(new Date(oldest_date).setDate(new Date(oldest_date).getDate() - 2))} oldest date parameter for ${state} state and product lines ${product}`);
         expect(expDate).greaterThan(new Date(effective_date), `Object with id ${obj._id} has expiration date ${expDate} less then ${new Date(effective_date)} parameter for ${state} state and product lines ${product}`);
@@ -82,18 +72,8 @@ Then(/^The user create request with '(.*)' '(.*)' '(.*)' '(.*)' and should be ab
       let effDate = new Date(Date.now());
       let expDate = new Date(Date.now());
       cy.wrap(resp.body.hits.hits).each((obj) => {
-        for (let i = 0; i < obj._source.lobs.length; i++) {
-          let prod = obj._source.lobs[i].abbreviation;
-          if (prod.toUpperCase() === product.toUpperCase()) {
-            for (let j = 0; j < obj._source.lobs[i].states.length; j++) {
-              let states = obj._source.lobs[i].states[j].abbreviation;
-              if (states === state) {
-                effDate = new Date(new Date(obj._source.lobs[i].states[j].effectiveDate).setHours(0));
-                expDate = new Date(new Date(obj._source.lobs[i].states[j].expirationDate).setHours(0));
-              }
-            }
-          }
-        }
+        effDate = new Date(new Date(obj._source.effectiveDate).setHours(0));
+        expDate = new Date(new Date(obj._source.expirationDate).setHours(0));
         expect(effDate).lessThan(new Date(effective_date), `Object with id ${obj._id} has effective date ${effDate} greater then ${new Date(effective_date)} parameter for ${state} state and product lines ${product}`);
         expect(expDate).greaterThan(new Date(effective_date), `Object with id ${obj._id} has expiration date ${expDate} less then ${new Date(effective_date)} parameter for ${state} state and product lines ${product}`);
       });
@@ -129,17 +109,8 @@ Then(/^The user create request with '(.*)' '(.*)' '(.*)' '(.*)' and should be ab
     } else {
       let effDate = new Date(Date.now());
       cy.wrap(resp.body.hits.hits).each((obj) => {
-        for (let i = 0; i < obj._source.lobs.length; i++) {
-          let prod = obj._source.lobs[i].abbreviation;
-          if (prod.toUpperCase() === product.toUpperCase()) {
-            for (let j = 0; j < obj._source.lobs[i].states.length; j++) {
-              let states = obj._source.lobs[i].states[j].abbreviation;
-              if (states === state) {
-                effDate = new Date(new Date(obj._source.lobs[i].states[j].effectiveDate).setHours(0));
-              }
-            }
-          }
-        }
+        effDate = new Date(new Date(obj._source.effectiveDate).setHours(0));
+        // expDate = new Date(new Date(obj._source.expirationDate).setHours(0));
         expect(effDate).greaterThan(new Date(new Date(oldest_date).setDate(new Date(oldest_date).getDate() - 2)), `Object with id ${obj._id} has effective date ${effDate} less then ${new Date(new Date(oldest_date).setDate(new Date(oldest_date).getDate() - 2))} oldest date parameter for ${state} state and product lines ${product}`);
       });
     }
