@@ -34,34 +34,34 @@ Feature: Inland Marine Guide (Non Filed) - IMG
       | Forms and Endorsements Lists | Forms and Endorsements List                     |
 #      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
 #
-      | IMG Publications             | Compatible Schedules / Endorsements             |
-      | IMG Publications             | Completed Value Report                          |
-      | IMG Publications             | Coverage                                        |
-      | IMG Publications             | Disclosure Notices                              |
-      | IMG Publications             | Excel Schedules                                 |
-      | IMG Publications             | Filing Information                              |
-      | IMG Publications             | Forms Comparison                                |
-      | IMG Publications             | General Endorsements And Compatible Forms       |
-      | IMG Publications             | General Information                             |
-      | IMG Publications             | Information                                     |
-      | IMG Publications             | IRPM                                            |
-#      | IMG Publications             | Legal Briefs                                    |
-      | IMG Publications             | Loss Control Survey                             |
-      | IMG Publications             | Marketing Materials                             |
-      | IMG Publications             | Narrated Presentations                          |
-      | IMG Publications             | Rating                                          |
-      | IMG Publications             | Rating Worksheet                                |
-      | IMG Publications             | Reference Materials                             |
-      | IMG Publications             | Rules                                           |
-      | IMG Publications             | Side-by-Sides                                   |
-      | IMG Publications             | Sublimits                                       |
-#      | IMG Publications             | Terrorism Rating Information (NSFP - Filed)     |
-#      | IMG Publications             | Terrorism Rating Information (NSFP - Not-Filed) |
-      | IMG Publications             | Terrorism Rating Information (SFP - Filed)      |
-#      | IMG Publications             | Terrorism Rating Information (SFP - Not-Filed)  |
-      | IMG Publications             | Terrorism Rules - Multistate                    |
-#      | IMG Publications             | Terrorism Rules - State-Specific                |
-      | IMG Publications             | Underwriting                                    |
+#      | IMG Publications             | Compatible Schedules / Endorsements             |
+#      | IMG Publications             | Completed Value Report                          |
+#      | IMG Publications             | Coverage                                        |
+#      | IMG Publications             | Disclosure Notices                              |
+#      | IMG Publications             | Excel Schedules                                 |
+#      | IMG Publications             | Filing Information                              |
+#      | IMG Publications             | Forms Comparison                                |
+#      | IMG Publications             | General Endorsements And Compatible Forms       |
+#      | IMG Publications             | General Information                             |
+#      | IMG Publications             | Information                                     |
+#      | IMG Publications             | IRPM                                            |
+##      | IMG Publications             | Legal Briefs                                    |
+#      | IMG Publications             | Loss Control Survey                             |
+#      | IMG Publications             | Marketing Materials                             |
+#      | IMG Publications             | Narrated Presentations                          |
+#      | IMG Publications             | Rating                                          |
+#      | IMG Publications             | Rating Worksheet                                |
+#      | IMG Publications             | Reference Materials                             |
+#      | IMG Publications             | Rules                                           |
+#      | IMG Publications             | Side-by-Sides                                   |
+#      | IMG Publications             | Sublimits                                       |
+##      | IMG Publications             | Terrorism Rating Information (NSFP - Filed)     |
+##      | IMG Publications             | Terrorism Rating Information (NSFP - Not-Filed) |
+#      | IMG Publications             | Terrorism Rating Information (SFP - Filed)      |
+##      | IMG Publications             | Terrorism Rating Information (SFP - Not-Filed)  |
+#      | IMG Publications             | Terrorism Rules - Multistate                    |
+##      | IMG Publications             | Terrorism Rules - State-Specific                |
+#      | IMG Publications             | Underwriting                                    |
 #
 #      | Manual Materials             | Data Set                                        |
 #      | Manual Materials             | Download For Microsoft Office                   |
