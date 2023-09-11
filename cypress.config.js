@@ -22,7 +22,7 @@ module.exports = defineConfig({
   },
 
   e2e: {
-    baseUrl: "https://asset-direct-api-dev.aaisdirect.com",
+    // baseUrl: "https://asset-direct-api-dev.aaisdirect.com",
     defaultCommandTimeout: 6000,
     pageLoadTimeout: 6000,
     setupNodeEvents(on, config) {
