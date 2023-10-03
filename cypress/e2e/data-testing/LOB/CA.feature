@@ -6,7 +6,7 @@ Feature: Commercial Auto - CA
   Scenario Outline: User validate the search result for Product line - Commercial Auto, state - Pennsylvania, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
     Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'CA' and 'PA' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
-      | pubCategory                  | pubType                                         |
+      | pubCategory                  | pubType                                 |
 #      | Advisory Information         | Declarations                                    |
 #      | Advisory Information         | Homeowners Advisory Information                 |
 #      | Advisory Information         | Homeowners Sample Endorsements                  |
@@ -16,9 +16,9 @@ Feature: Commercial Auto - CA
 #      | Advisory Information         | Schedule Coverage                               |
 #      | Advisory Information         | Underlying Insurance                            |
 #
-      | Bulletins                    | Countrywide Bulletin                            |
+      | Bulletins                    | Countrywide Bulletin                    |
 #      | Bulletins                    | General Bulletin                                |
-      | Bulletins                    | State-specific Bulletin                         |
+      | Bulletins                    | State-specific Bulletin                 |
 #      | Bulletins                    | Statistical Bulletin                            |
 #
 #      | Compliance Guide             | Compliance Guide                                |
@@ -29,10 +29,10 @@ Feature: Commercial Auto - CA
 #      | Education Materials          | Side by Side Comparison                         |
 #      | Education Materials          | FAQs                                            |
 #
-      | Forms                        | Form                                            |
+      | Forms                        | Form                                    |
 #
-      | Forms and Endorsements Lists | Forms and Endorsements List                     |
-#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
+      | Forms and Endorsements Lists | Forms and Endorsements List             |
+      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
 #
 #      | IMG Publications             | Compatible Schedules / Endorsements             |
 #      | IMG Publications             | Completed Value Report                          |
@@ -64,7 +64,7 @@ Feature: Commercial Auto - CA
 #      | IMG Publications             | Underwriting                                    |
 #
 #      | Manual Materials             | Data Set                                        |
-#      | Manual Materials             | Download For Microsoft Office                   |
+#      | By-Peril Manual Materials    | Download For Microsoft Office           |
 #      | Manual Materials             | Multi & State-specific Manuals                  |
 #      | Manual Materials             | State Pages                                     |
 #      | Manual Materials             | Supplement                                      |

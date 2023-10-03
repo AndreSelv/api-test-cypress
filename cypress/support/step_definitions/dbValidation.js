@@ -214,8 +214,8 @@ where status.StatusID = 1
             "size": size,
             "productLine": [line],
             "states": [state],
-            "publicationTypeCategory_query": [],
-            "publicationType": [],
+            "publicationTypeCategory_query": ["All Content"],
+            "publicationType": ["All Content"],
             "imgClass_s": []
             // "effectiveDate": effective_date
             // "effectiveOldestDate": ""

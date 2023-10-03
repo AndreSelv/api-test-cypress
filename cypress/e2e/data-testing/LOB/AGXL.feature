@@ -6,22 +6,22 @@ Feature: Agricultural Commercial Ecxess and Umbrella Liability - AGXL
   Scenario Outline: The user validates the search result for Product line - Agricultural Commercial Ecxess and Umbrella Liability, state - Illinois, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
     Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AGXL' and 'IL' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
-      | pubCategory                  | pubType                                         |
-      | Advisory Information         | Declarations                                    |
+      | pubCategory                  | pubType                                 |
+      | Advisory Information         | Declarations                            |
 #      | Advisory Information         | Homeowners Advisory Information                 |
 #      | Advisory Information         | Homeowners Sample Endorsements                  |
 #      | Advisory Information         | Misc                                            |
-      | Advisory Information         | Sample Disclosure Notice                        |
+      | Advisory Information         | Sample Disclosure Notice                |
 #      | Advisory Information         | Sample Endorsements                             |
 #      | Advisory Information         | Schedule Coverage                               |
 #      | Advisory Information         | Underlying Insurance                            |
 #
-      | Bulletins                    | Countrywide Bulletin                            |
-      | Bulletins                    | General Bulletin                                |
-      | Bulletins                    | State-specific Bulletin                         |
-      | Bulletins                    | Statistical Bulletin                            |
+      | Bulletins                    | Countrywide Bulletin                    |
+      | Bulletins                    | General Bulletin                        |
+      | Bulletins                    | State-specific Bulletin                 |
+      | Bulletins                    | Statistical Bulletin                    |
 #
-      | Compliance Guide             | Compliance Guide                                |
+      | Compliance Guide             | Compliance Guide                        |
 #
 #      | Education Materials          | Program Materials                               |
 #      | Education Materials          | Reference Article                               |
@@ -29,10 +29,10 @@ Feature: Agricultural Commercial Ecxess and Umbrella Liability - AGXL
 #      | Education Materials          | Side by Side Comparison                         |
 #      | Education Materials          | FAQs                                            |
 #
-      | Forms                        | Form                                            |
+      | Forms                        | Form                                    |
 #
-      | Forms and Endorsements Lists | Forms and Endorsements List                     |
-#      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
+      | Forms and Endorsements Lists | Forms and Endorsements List             |
+      | Forms and Endorsements Lists | Multi State Forms and Endorsements List |
 #
 #      | IMG Publications             | Compatible Schedules / Endorsements             |
 #      | IMG Publications             | Completed Value Report                          |
@@ -64,12 +64,12 @@ Feature: Agricultural Commercial Ecxess and Umbrella Liability - AGXL
 #      | IMG Publications             | Underwriting                                    |
 #
 #      | Manual Materials             | Data Set                                        |
-#      | Manual Materials             | Download For Microsoft Office                   |
-      | Manual Materials             | Multi & State-specific Manuals                  |
+#      | By-Peril Manual Materials    | Download For Microsoft Office           |
+      | Manual Materials             | Multi & State-specific Manuals          |
 #      | Manual Materials             | State Pages                                     |
 #      | Manual Materials             | Supplement                                      |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |
 #
-      | Statistical Plans            | Statistical Plan                                |
+      | Statistical Plans            | Statistical Plan                        |
