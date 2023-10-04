@@ -32,7 +32,7 @@ Feature: Dwelling Properties - DP
       | Forms                        | Form                                            |
 #
       | Forms and Endorsements Lists | Forms and Endorsements List                     |
-      | Forms and Endorsements Lists | Multi State Forms and Endorsements List         |
+      | Forms and Endorsements Lists | Multistate Forms and Endorsements List         |
 #
 #      | IMG Publications             | Compatible Schedules / Endorsements             |
 #      | IMG Publications             | Completed Value Report                          |
