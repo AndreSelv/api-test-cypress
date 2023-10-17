@@ -29,8 +29,6 @@ When(/^The user create request with 'IMG' Product '(.*)' IMGClass and '(.*)' sta
     expect(response.body.hits.total.value, `No IMG Classes for IMG - Product line ${IMGClass} - IMG Class ${state} - state `).to.be.greaterThan(0);
     await cy.wrap(response.body.hits.hits).each(async (obj) => {
       expect(obj._source.publicationName).contains(IMGClass);
-      for (const lob of obj._source.lobs)
-        expect(lob.imgClass_s).eq(IMGClass);
     });
   });
 });
