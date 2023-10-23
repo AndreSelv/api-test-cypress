@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.252",
+  "version": "0.0.253",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -102,7 +102,7 @@
   },
   "devDependencies": {
     "aws-sdk-mock": "^4.5.0",
-    "cypress": "^12.14.0",
+    "cypress": "^13.3.2",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-log-to-output": "^1.1.2",
     "cypress-multi-reporters": "^1.6.2",
