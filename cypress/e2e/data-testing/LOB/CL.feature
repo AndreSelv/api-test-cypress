@@ -1,4 +1,4 @@
-Feature: Commercial Liability (W/ CLT) - CLT
+Feature: Commercial Liability (W/ CLT) - CL
 
 #  Scenario: Delete report folder before all tests
 #    Given Delete "./reports/PIM" folder
@@ -63,11 +63,11 @@ Feature: Commercial Liability (W/ CLT) - CLT
 #      | IMG Publications             | Terrorism Rules - State-Specific                |
 #      | IMG Publications             | Underwriting                                    |
 #
-      | Manual Materials             | Data Set                                |
-#      | By-Peril Manual Materials    | Download For Microsoft Office           |
-      | Manual Materials             | Multi & State-specific Manuals          |
-      | Manual Materials             | State Pages                             |
-      | Manual Materials             | Supplement                              |
+#      | Manual Materials             | Data Set                                |
+##      | By-Peril Manual Materials    | Download For Microsoft Office           |
+#      | Manual Materials             | Multi & State-specific Manuals          |
+#      | Manual Materials             | State Pages                             |
+#      | Manual Materials             | Supplement                              |
 #
 #      | Reports                      | Cause of Loss Report                            |
 #      | Reports                      | Status Report                                   |

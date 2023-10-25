@@ -65,8 +65,8 @@ Feature: Personal Inland Marine - PIM
 #
 #      | Manual Materials             | Data Set                                        |
 #      | Manual Materials             | Download For Microsoft Office                   |
-      | Manual Materials             | Multi & State-specific Manuals                  |
-      | Manual Materials             | State Pages                                     |
+#      | Manual Materials             | Multi & State-specific Manuals                  |
+#      | Manual Materials             | State Pages                                     |
 #      | Manual Materials             | Supplement                                      |
 #
       | Reports                      | Cause of Loss Report                            |

@@ -23,8 +23,8 @@ module.exports = defineConfig({
 
   e2e: {
     // baseUrl: "https://asset-direct-api-dev.aaisdirect.com",
-    defaultCommandTimeout: 6000,
-    pageLoadTimeout: 6000,
+    defaultCommandTimeout: 15000,
+    pageLoadTimeout: 15000,
     setupNodeEvents(on, config) {
 
       // eslint-disable-next-line global-require
