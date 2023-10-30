@@ -3,56 +3,56 @@ const ALLSTATES = require("../../fixtures/enums/STATES");
 const MATERIALS = require("../../fixtures/enums/MATERIALS");
 
 
-Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result$/, async (pubCategory, pubType, line, state, effectiveDate) => {
+Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result'(.*)'$/, async (pubCategory, pubType, line, state, effectiveDate, result) => {
 
-  await cy.runQuery(`SELECT distinct
-                pubcategory.Name                                                     AS PubCategory,
-                pubtype.Name                                                         AS pubType,
-                pub.Name                                                             AS pubName,
-                f.[Number]                                                           AS FORMWITHEDITION,
-                b.[Number]                                                           AS bulletinfullnumber,
-                line.Abbreviation                                                    AS line,
-                state.Abbreviation                                                   AS state,
-                pub.PublicationID                                                    AS pubID,
-                lvLine.Abbreviation                                                  AS lvLine,
-                c.Abbreviation                                                       AS Class,
-                c.Name                                                               AS ClassName,
-                pubcategory.ShortName,
-                f.RevisionNumber1                                                    AS REVISIONNUMBER1,
-                f.RevisionNumber2,
-                f.[Number]                                                           AS Form_code,
-                f.FormSortID,
-                pub.Name                                                             AS FORM_NAME,
-                COALESCE(pubass.EffectiveDate, pub.ActivationDateTime, '1900-01-01') AS effDate,
-                COALESCE(pub.InActiveDate, pub.DeactivationDateTime, '9999-12-31')   AS expDate
-FROM PublicationAssignment pubass
-         LEFT JOIN Publication pub ON pub.PublicationID = pubass.PublicationID
-         LEFT JOIN PublicationPublicationType pubpubtype ON pubpubtype.PublicationID = pub.PublicationID
-         LEFT JOIN config.PublicationType pubtype ON pubtype.PublicationTypeID = pubpubtype.PublicationTypeID
-         LEFT JOIN config.PublicationType pubcategory ON pubcategory.PublicationTypeID = pubtype.ParentPublicationTypeID
-         LEFT JOIN config.LineVersion lineversion ON lineversion.LineVersionID = pubass.LineVersionID
-         LEFT JOIN config.Line lvLine ON lvLine.LineID = lineversion.LineID
-         LEFT JOIN config.Line line ON line.LineID = pubass.LineID
-         LEFT JOIN Revision rev ON rev.RevisionID = pubass.RevisionID
-         LEFT JOIN SeriesRevision serrev ON serrev.RevisionID = rev.RevisionID
-         LEFT JOIN Series series ON series.SeriesID = serrev.SeriesID
-         LEFT JOIN config.State state ON state.StateID = pubass.StateID
-         LEFT JOIN config.Status status ON status.StatusID = pub.StatusID
-         LEFT JOIN config.State revState ON revState.StateID = rev.StateID
-         LEFT JOIN config.Class c ON pubass.ClassID = c.ClassID
-         LEFT JOIN Form f ON pub.PublicationID = f.PublicationID
-         LEFT JOIN Bulletin b ON pub.PublicationID = b.PublicationID
-         inner join PublicationFile pf on pub.PublicationID = pf.PublicationID
-         inner join [File] f2 on pf.FileID = f2.FileID and upper(f2.Extension) not in('.EXE','.ZIP','.MP3')
-where status.StatusID = 1
---   AND pub.name <> 'Archived Status Report'
-  AND pubcategory.Name like '${pubCategory}'
-  AND pubtype.Name like '${pubType}'
-  AND line.Abbreviation like '${line}'
-  AND state.Abbreviation like '${state}'`);
+//   await cy.runQuery(`SELECT distinct
+//                 pubcategory.Name                                                     AS PubCategory,
+//                 pubtype.Name                                                         AS pubType,
+//                 pub.Name                                                             AS pubName,
+//                 f.[Number]                                                           AS FORMWITHEDITION,
+//                 b.[Number]                                                           AS bulletinfullnumber,
+//                 line.Abbreviation                                                    AS line,
+//                 state.Abbreviation                                                   AS state,
+//                 pub.PublicationID                                                    AS pubID,
+//                 lvLine.Abbreviation                                                  AS lvLine,
+//                 c.Abbreviation                                                       AS Class,
+//                 c.Name                                                               AS ClassName,
+//                 pubcategory.ShortName,
+//                 f.RevisionNumber1                                                    AS REVISIONNUMBER1,
+//                 f.RevisionNumber2,
+//                 f.[Number]                                                           AS Form_code,
+//                 f.FormSortID,
+//                 pub.Name                                                             AS FORM_NAME,
+//                 COALESCE(pubass.EffectiveDate, pub.ActivationDateTime, '1900-01-01') AS effDate,
+//                 COALESCE(pub.InActiveDate, pub.DeactivationDateTime, '9999-12-31')   AS expDate
+// FROM PublicationAssignment pubass
+//          LEFT JOIN Publication pub ON pub.PublicationID = pubass.PublicationID
+//          LEFT JOIN PublicationPublicationType pubpubtype ON pubpubtype.PublicationID = pub.PublicationID
+//          LEFT JOIN config.PublicationType pubtype ON pubtype.PublicationTypeID = pubpubtype.PublicationTypeID
+//          LEFT JOIN config.PublicationType pubcategory ON pubcategory.PublicationTypeID = pubtype.ParentPublicationTypeID
+//          LEFT JOIN config.LineVersion lineversion ON lineversion.LineVersionID = pubass.LineVersionID
+//          LEFT JOIN config.Line lvLine ON lvLine.LineID = lineversion.LineID
+//          LEFT JOIN config.Line line ON line.LineID = pubass.LineID
+//          LEFT JOIN Revision rev ON rev.RevisionID = pubass.RevisionID
+//          LEFT JOIN SeriesRevision serrev ON serrev.RevisionID = rev.RevisionID
+//          LEFT JOIN Series series ON series.SeriesID = serrev.SeriesID
+//          LEFT JOIN config.State state ON state.StateID = pubass.StateID
+//          LEFT JOIN config.Status status ON status.StatusID = pub.StatusID
+//          LEFT JOIN config.State revState ON revState.StateID = rev.StateID
+//          LEFT JOIN config.Class c ON pubass.ClassID = c.ClassID
+//          LEFT JOIN Form f ON pub.PublicationID = f.PublicationID
+//          LEFT JOIN Bulletin b ON pub.PublicationID = b.PublicationID
+//          inner join PublicationFile pf on pub.PublicationID = pf.PublicationID
+//          inner join [File] f2 on pf.FileID = f2.FileID and upper(f2.Extension) not in('.EXE','.ZIP','.MP3')
+// where status.StatusID = 1
+// --   AND pub.name <> 'Archived Status Report'
+//   AND pubcategory.Name like '${pubCategory}'
+//   AND pubtype.Name like '${pubType}'
+//   AND line.Abbreviation like '${line}'
+//   AND state.Abbreviation like '${state}'`);
 
 
-  await cy.readXLSX("./cypress/data/DATA.xlsx").then(async data => {
+  await cy.readXLSX(result, pubCategory).then(async data => {
     const actualDocs = [];
     let expectedDocs = [];
     let effective_date = `${effectiveDate}`;
@@ -61,13 +61,26 @@ where status.StatusID = 1
 
     for (let i = 0; i < data.length; i++) {
 
-      mainData = (data[i][0] === pubCategory && data[i][1] === pubType);
-
+      if (pubCategory === "Forms") {
+        mainData = (data[i][7].toLowerCase().includes(pubCategory.toLowerCase())
+          && data[i][3].toLowerCase().includes(line.toLowerCase())
+          && data[i][6] === state);
+      } else if (pubCategory === "Manual Materials") {
+        mainData = (
+          data[i][10].toLowerCase().includes(pubType.toLowerCase())
+          && data[i][7] === state
+          && data[i][0] === 1)
+      } else {
+        mainData = (data[i][7].toLowerCase().includes(pubCategory.toLowerCase())
+          && data[i][9].toLowerCase().includes(pubType.toLowerCase())
+          && data[i][3].toLowerCase().includes(line.toLowerCase())
+          && data[i][6] === state);
+      }
       //after we passed the empty/config rows
       if (mainData) {
-        (pubCategory === "Forms") ? expectedDocs.push(data[i][3])
-          : (pubCategory === "Bulletins") ? expectedDocs.push(data[i][4])
-            : expectedDocs.push((data[i][2].toUpperCase()));
+        (pubCategory === "Forms" || pubCategory === "Manual Materials" ) ? expectedDocs.push(data[i][11].toUpperCase())
+          : (pubCategory === "Bulletins") ? expectedDocs.push(data[i][12])
+              : expectedDocs.push((data[i][10].toUpperCase()));
         expectedDocs.sort();
       }
     }

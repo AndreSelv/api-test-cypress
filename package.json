@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.257",
+  "version": "0.0.258",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -17,7 +17,7 @@
     "manifest": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/manifest/manifest.feature'",
     "LOB-PROF": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/'",
     "LOB-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/LOB/'",
-    "BOP": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/BOP.feature'",
+    "AGGL": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/BOP.feature'",
     "user": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/orgaization/userView/users/updateUser.feature'",
     "historical": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/hubspot/hubspot.feature'",
     "login": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/authorization/login.feature'",

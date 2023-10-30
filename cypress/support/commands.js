@@ -30,8 +30,8 @@ Cypress.Commands.add('parseXlsx', (inputFile) => {
   return cy.task('parseXlsx', { filePath: inputFile });
 });
 
-Cypress.Commands.add('readXLSX', (inputFile) => {
-  return cy.task('readXLSX', { filePath: inputFile });
+Cypress.Commands.add('readXLSX', (inputFile, sheet) => {
+  return cy.task('readXLSX', { filePath: inputFile, sheets: sheet });
 });
 
 Cypress.Commands.add("runQuery", (query) => {

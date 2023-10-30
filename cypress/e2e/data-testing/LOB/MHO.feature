@@ -4,7 +4,7 @@ Feature: Mobile-Homeowners - MHO
 #    Given Delete "./reports/PIM" folder
 
   Scenario Outline: The user validates the search result for Product line - Mobile-Homeowners, state - Oregon, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'MHO' and 'OR' and '01/01/2022' and should get result match with legacy DB search result
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'MHO' and 'OR' and '01/01/2022' and should get result match with legacy DB search result'./cypress/data/Product_Spreadsheets/MHO.xlsx'
     Examples:
       | pubCategory                  | pubType                         |
       | Advisory Information         | Declarations                    |
