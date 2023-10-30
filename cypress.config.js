@@ -49,7 +49,7 @@ module.exports = defineConfig({
       });
 
       on("task", {
-        readXLSX({ filePath, sheets } ) {
+        readXLSX({ filePath, sheets = 1} ) {
           return new Promise((resolve, reject) => {
             try {
               const jsonData = readXlsxFile(fs.createReadStream(filePath), { sheet: sheets });
