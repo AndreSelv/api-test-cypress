@@ -3,9 +3,17 @@ const cucumber = require("cypress-cucumber-preprocessor").default;
 const fs = require("fs");
 const xlsx = require("node-xlsx");
 const readXlsxFile = require("read-excel-file/node");
-const options = { recordLogs: true };
 const sql = require("mssql");
 const json2xls = require("json2xls");
+const { Client } = require("@opensearch-project/opensearch");
+const client = new Client({
+  //Prof
+  node: "https://search-aaisdev-direct-es-iy4kb5lrscd7olarqwhy6hihyq.us-east-1.es.amazonaws.com"
+  //UAT
+  // node: 'https://search-uat-direct-es-bp6iuushvz3wg56jvgqhh2qtea.us-east-1.es.amazonaws.com',
+  //
+  // node: 'https://testDomainUser:Password123!@search-aaisdev-mss-elastic-search1-jxhu5ququr4g4k7ewbfjrqghyu.us-east-1.es.amazonaws.com:443',
+});
 
 
 module.exports = defineConfig({
@@ -127,6 +135,22 @@ module.exports = defineConfig({
               }
             }
           );
+        }
+      });
+
+      on("task", {
+        readES(body) {
+          return new Promise(async (resolve, reject) => {
+            try {
+              const resp = await client.search({
+                index: `index`,
+                body: body
+              });
+              resolve(resp)
+            } catch (e) {
+              reject(e);
+            }
+          });
         }
       });
     },
