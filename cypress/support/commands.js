@@ -1,4 +1,4 @@
-import './commands'
+import "./commands";
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -26,17 +26,20 @@ import './commands'
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 
-Cypress.Commands.add('parseXlsx', (inputFile) => {
-  return cy.task('parseXlsx', { filePath: inputFile });
+Cypress.Commands.add("parseXlsx", (inputFile) => {
+  return cy.task("parseXlsx", { filePath: inputFile });
 });
 
-Cypress.Commands.add('readXLSX', (inputFile) => {
-  return cy.task('readXLSX', { filePath: inputFile });
+Cypress.Commands.add("readXLSX", (inputFile) => {
+  return cy.task("readXLSX", { filePath: inputFile });
+});
+Cypress.Commands.add("readES", (body) => {
+  return cy.task("readES", body);
 });
 
 Cypress.Commands.add("runQuery", (query) => {
   if (!query) {
     throw new Error("Query must be set");
   }
-  return cy.task("sqlServer", query)
+  return cy.task("sqlServer", query);
 });
