@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.262",
+  "version": "0.0.263",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -15,8 +15,8 @@
     "test-watch": "jest --coverage --silent --verbose --detectOpenHandles --watchAll",
     "prune": "npm prune --production",
     "multiple": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/browser/excludeFileContent.feature'",
-    "LOB-PROF": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/'",
-    "LOB-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/LOB/'",
+    "LOB-PROF": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/'",
+    "LOB-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/'",
     "BOP": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/BOP.feature'",
     "user": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/orgaization/userView/users/updateUser.feature'",
     "historical": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/hubspot/hubspot.feature'",
@@ -119,7 +119,7 @@
     "mochawesome-merge": "^4.2.2",
     "mochawesome-report-generator": "^6.2.0",
     "mssql": "^9.1.1",
-    "node-xlsx": "^0.21.0",
+    "node-xlsx": "^0.4.0",
     "prettier": "^2.7.1",
     "read-excel-file": "^5.5.3"
   },
