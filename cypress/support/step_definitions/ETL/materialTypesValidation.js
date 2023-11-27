@@ -1,6 +1,7 @@
 import { Then } from "cypress-cucumber-preprocessor/steps";
 const MATERIALS = require("../../../fixtures/enums/MATERIALS");
 const LINES = require("../../../fixtures/enums/LINES");
+const PLANES = require("../../../fixtures/enums/PLANS");
 
 Then(/^User validate if new material types persist in ES$/, async () => {
   let query = {
@@ -103,6 +104,85 @@ Then(/^User validate if new product lines persist in ES$/, async () => {
          // expect(ESResult.sort(), `Extra materials types in ES`).to.deep.equal(DataResult.sort());
         const difference = Cypress._.difference(ESResult, DataResult);
         expect(difference, `Extra Product lines in ES - ${difference}`).to.be.empty;
+      });
+  });
+});
+Then(/^User validate if new plans persist in ES$/, async () => {
+
+  let query = {
+    size: 0,
+    aggs: {
+      nested_lob: {
+        nested: {
+          path: "lobs.states"
+        },
+        aggs: {
+          unique_plans: {
+            terms: {
+              field: "lobs.states.plan.keyword",
+              size: 1000,
+              min_doc_count: 0,
+              order: {
+                _key: "asc"
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+  await cy.readES(query).as("resp");
+  await cy.get(`@resp`).then(async resp => {
+    expect(resp.body).to.have.property("aggregations");
+
+    let DataResult = [];
+    let ESResult = [];
+    for (const plan of PLANES) DataResult.push(plan.key.toUpperCase());
+
+    await cy.wrap(resp.body.aggregations.nested_lob.unique_plans.buckets).each(async (obj) => ESResult.push(obj.key.toUpperCase()))
+      .then(async () => {
+        // expect(ESResult.sort(), `Extra materials types in ES`).to.deep.equal(DataResult.sort());
+        const difference = Cypress._.difference(ESResult, DataResult);
+        expect(difference, `Extra Plans in ES - ${difference}`).to.be.empty;
+      });
+  });
+});
+Then(/^User validate if new classes persist in ES$/, async () => {
+  let query = {
+    size: 0,
+    aggs: {
+      classes: {
+        nested: {
+          path: "lobs.states"
+        },
+        aggs: {
+          unique_classes: {
+            terms: {
+              field: "lobs.class.keyword",
+              size: 1000,
+              min_doc_count: 0,
+              order: {
+                _key: "asc"
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+  await cy.readES(query).as("resp");
+  await cy.get(`@resp`).then(async resp => {
+    expect(resp.body).to.have.property("aggregations");
+
+    let DataResult = [];
+    let ESResult = [];
+    for (const cl in LINES[23].classes) DataResult.push(cl);
+
+    await cy.wrap(resp.body.aggregations.classes.unique_classes.buckets).each(async (obj) => ESResult.push(obj.key.toUpperCase()))
+      .then(async () => {
+        // expect(ESResult.sort(), `Extra materials types in ES`).to.deep.equal(DataResult.sort());
+        const difference = Cypress._.difference(ESResult, DataResult);
+        expect(difference, `Extra Class in ES - ${difference}`).to.be.empty;
       });
   });
 });
