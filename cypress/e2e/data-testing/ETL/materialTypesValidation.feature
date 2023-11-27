@@ -8,3 +8,9 @@ Feature: New search points introduces
 
   Scenario: Product lines validation
     Then User validate if new product lines persist in ES
+
+  Scenario: Plans validation
+    Then User validate if new plans persist in ES
+
+  Scenario: Class validation
+    Then User validate if new classes persist in ES
