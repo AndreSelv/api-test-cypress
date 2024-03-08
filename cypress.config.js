@@ -157,7 +157,7 @@ module.exports = defineConfig({
     env: {
       env: "direct-api-aaisdev.aaiscognito.com",
       user: "06e9ac1b-fd4c-41b9-9b2c-779aa720fd0a",
-      phoneNumberId: "b1345da7-e3a7-4c5c-8120-8c37e4b8f0d0",
+      phoneNumberId: "39e75ed1-4646-4e25-8542-c8af6e334a51",
       // env: "direct-api-dev.aaisdirect.com",
       // user: "c512940c-6b1a-458f-88af-63b8f9627398",
       org: "8f122b1f-f099-43a6-b9a1-2499fd278464",
