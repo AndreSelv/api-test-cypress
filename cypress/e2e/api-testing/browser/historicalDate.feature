@@ -1,4 +1,4 @@
-#Feature: Validate that historical date query returns correct data
+Feature: Validate that historical date query returns correct data
 #
 #  Scenario Outline: As a user I want to be able to select historical date '<oldest_date>' and effective date '<effective_date>' for '<state>' state
 #  when browsing product material so that
