@@ -9,6 +9,6 @@ Feature: Validate that user can get result with multiple selections in filter
       | AGGL    | NV    |                 |                  |           |         |       |          | Supplement      | Y       | 10     |
       | AGGL    | NV    |                 |                  |           |         |       |          | "Supplement"    | Y       | 5      |
       | AGGL    | NV    |                 |                  |           |         |       |          | Supplement      | N       | 40     |
-      | AGGL    | NV    |                 |                  |           |         |       |          | "CL 0811"       | Y       | 2      |
-      | AGGL    | NV    |                 |                  |           |         |       |          | 0811            | N       | 11     |
-      | AGGL    | NV    |                 |                  |           |         |       |          | 0811            | Y       | 2      |
+      | AGGL    | NV    |                 |                  |           |         |       |          | "CL 0811"       | Y       | 1      |
+      | AGGL    | NV    |                 |                  |           |         |       |          | 0811            | N       | 10     |
+      | AGGL    | NV    |                 |                  |           |         |       |          | 0811            | Y       | 1      |
