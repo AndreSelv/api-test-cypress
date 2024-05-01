@@ -89,26 +89,12 @@ executors:
           The version of Node to run your tests with.
         type: string
 workflows:
-#  build:
-#    jobs:
-#      # first get the source code and install npm dependencies
-#      - cypress/run:
-#          install-command: npm install && echo hello
-#          cypress-command: CI=1 npx cypress run
-#
-#          post-install: npx cypress info
-#          post-steps:
-#            - store_artifacts:
-#                path: mochawesome-report
-#            - store_test_results:
-#                path: cypress/results
-
   build:
     jobs:
       # first get the source code and install npm dependencies
       - cypress/run:
           install-command: npm install && echo hello
-          cypress-command: cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/api-testing/'
+          cypress-command: CI=1 npx cypress run
 
           post-install: npx cypress info
           post-steps:
@@ -116,6 +102,20 @@ workflows:
                 path: mochawesome-report
             - store_test_results:
                 path: cypress/results
+
+#  build:
+#    jobs:
+#      # first get the source code and install npm dependencies
+#      - cypress/run:
+#          install-command: npm install && echo hello
+#          cypress-command: cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/api-testing/'
+#
+#          post-install: npx cypress info
+#          post-steps:
+#            - store_artifacts:
+#                path: mochawesome-report
+#            - store_test_results:
+#                path: cypress/results
 
 
 #      - cypress/run:
