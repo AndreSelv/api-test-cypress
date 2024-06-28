@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.275",
+  "version": "0.0.276",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -99,6 +99,7 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "node-fetch": "^2.6.7",
+    "oracledb": "^6.5.1",
     "remove-bom-stream": "^2.0.0",
     "uuid": "^8.3.2"
   },

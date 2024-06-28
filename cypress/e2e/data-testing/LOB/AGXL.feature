@@ -4,7 +4,7 @@ Feature: Agricultural Commercial Ecxess and Umbrella Liability - AGXL
 #    Given Delete "./reports/AGXL" folder
 
   Scenario Outline: The user validates the search result for Product line - Agricultural Commercial Ecxess and Umbrella Liability, state - Illinois, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AGXL' and 'IL' and '01/01/2022' and should get result match with legacy DB search result
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AgXL' and 'IL' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                 |
       | Advisory Information         | Declarations                            |

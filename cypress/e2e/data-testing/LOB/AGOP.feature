@@ -4,7 +4,7 @@ Feature: Agricultural Output Program - AGOP
 #    Given Delete "./reports/PIM" folder
 
   Scenario Outline: The user validates the search result for Product line - Agricultural Output Program, state - South Dakota, Publication Category - '<pubCategory>' and Publication Type - '<pubType>' with Data base connectivity
-    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AGOP' and 'SD' and '01/01/2022' and should get result match with legacy DB search result
+    Then The user call search endpoint with '<pubCategory>' and '<pubType>' and 'AgOP' and 'SD' and '01/01/2022' and should get result match with legacy DB search result
     Examples:
       | pubCategory                  | pubType                                 |
       | Advisory Information         | Declarations                            |
