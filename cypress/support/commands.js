@@ -37,9 +37,16 @@ Cypress.Commands.add("readES", (body) => {
   return cy.task("readES", body);
 });
 
-Cypress.Commands.add("runQuery", (query) => {
+Cypress.Commands.add("runSQLQuery", (query) => {
   if (!query) {
     throw new Error("Query must be set");
   }
   return cy.task("sqlServer", query);
+});
+
+Cypress.Commands.add("runORCLQuery", (query) => {
+  if (!query) {
+    throw new Error("Query must be set");
+  }
+  return cy.task("orlcServer", query);
 });

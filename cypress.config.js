@@ -14,6 +14,7 @@ const client = new Client({
   //
   // node: 'https://testDomainUser:Password123!@search-aaisdev-mss-elastic-search1-jxhu5ququr4g4k7ewbfjrqghyu.us-east-1.es.amazonaws.com:443',
 });
+const oracledb = require("oracledb");
 
 
 module.exports = defineConfig({
@@ -95,6 +96,7 @@ module.exports = defineConfig({
           });
         }
       });
+
       const conf = {
         user: "Tableausql_ro",
         password: "5Uwuu40gzUB7",
@@ -135,6 +137,44 @@ module.exports = defineConfig({
               }
             }
           );
+        }
+      });
+
+      on("task", {
+        orlcServer(query) {
+          return new Promise(async (resolve, reject) => {
+            let connection;
+            try {
+              connection = await oracledb.getConnection({
+                user: "PDP_DATA_LOCATION",
+                password: "pdp_data_location",
+                connectString: "semarchy-development-migrate.ceaq9jb1xfee.us-east-1.rds.amazonaws.com:1521/ORCL"
+              });
+
+              const result = await connection.execute(query);
+
+              if (result.rows && result.rows.length > 0) {
+                const xlsData = json2xls(result.rows);
+                fs.writeFileSync("./cypress/data/DATA.xlsx", xlsData, "binary");
+                console.log("Data written to DATA.xlsx");
+                resolve(xlsData);
+              } else {
+                console.log("No data found in the query result.");
+                resolve(null); // Resolving with null if no data found
+              }
+            } catch (e) {
+              console.error("Error connecting to Oracle DB:", e);
+              reject(e);
+            } finally {
+              if (connection) {
+                try {
+                  await connection.close();
+                } catch (err) {
+                  console.error("Error closing connection:", err);
+                }
+              }
+            }
+          });
         }
       });
 
