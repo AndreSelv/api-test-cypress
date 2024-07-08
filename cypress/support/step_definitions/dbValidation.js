@@ -1,4 +1,4 @@
-const { Then } = require("cypress-cucumber-preprocessor/steps");
+const { Then, When, Given, And } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
 const MATERIALS = require("../../fixtures/enums/MATERIALS");
 
@@ -53,7 +53,7 @@ ORDER BY PUBLICATIONID, OBJECTID, LINE, CLASS, CLASSNAME, STATE, PROGRAM, PUBCAT
     let expectedDocs = [];
     let effective_date = `${effectiveDate}`;
     let mainData = false;
-    let size = 20;
+    let size = 60;
 
     for (let i = 0; i < data.length; i++) {
 
