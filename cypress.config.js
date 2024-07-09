@@ -15,6 +15,7 @@ const client = new Client({
   // node: 'https://testDomainUser:Password123!@search-aaisdev-mss-elastic-search1-jxhu5ququr4g4k7ewbfjrqghyu.us-east-1.es.amazonaws.com:443',
 });
 const oracledb = require("oracledb");
+const path = require("path");
 
 
 module.exports = defineConfig({
@@ -41,6 +42,10 @@ module.exports = defineConfig({
         on("file:preprocessor", cucumber());
 
       on("before:run", (details) => {
+        // Capture the spec file being executed
+        const featureFile = details.specs && details.specs[0] ? details.specs[0].relative : "Report";
+        const featureFileName = path.basename(featureFile, ".feature");
+        fs.writeFileSync("featureFileName.txt", featureFileName);
         /* ... */
       });
 
