@@ -186,7 +186,7 @@ module.exports = defineConfig({
                 index: `index`,
                 body: body
               });
-              resolve(resp)
+              resolve(resp);
             } catch (e) {
               reject(e);
             }
