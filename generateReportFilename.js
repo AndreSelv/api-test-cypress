@@ -24,7 +24,7 @@ try {
   reportBaseName = 'Report';
 }
 
-const reportFilename = `Product - ${reportBaseName} - ${timestamp}.html`;
+const reportFilename = `Product_${reportBaseName}_${timestamp}.html`;
 
 // Print the filename so it can be used in the npm script
 console.log(reportFilename);
