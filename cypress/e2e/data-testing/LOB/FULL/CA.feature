@@ -1,4 +1,4 @@
-Feature: Commercial output program - COP
+Feature: Commercial Auto - CA
 
 #  Scenario: Delete report folder before all tests
 #    Given Delete "./reports/COP" folder
