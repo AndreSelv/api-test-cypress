@@ -439,13 +439,13 @@ Feature: Farm Inland Marine - FIM
     Examples:
       | pubCategory                  | pubType                                |
       | Advisory Information         | Declarations                           |
-#      | Advisory Information         | Homeowners Advisory Information                 |
-#      | Advisory Information         | Homeowners Sample Endorsements                  |
-#      | Advisory Information         | Misc                                            |
+      | Advisory Information         | Homeowners Advisory Information                 |
+      | Advisory Information         | Homeowners Sample Endorsements                  |
+      | Advisory Information         | Misc                                            |
       | Advisory Information         | Sample Disclosure Notice               |
-#      | Advisory Information         | Sample Endorsements                             |
-#      | Advisory Information         | Schedule Coverage                               |
-#      | Advisory Information         | Underlying Insurance                            |
+      | Advisory Information         | Sample Endorsements                             |
+      | Advisory Information         | Schedule Coverage                               |
+      | Advisory Information         | Underlying Insurance                            |
 #
       | Bulletins                    | Countrywide Bulletin                   |
       | Bulletins                    | General Bulletin                       |
@@ -456,7 +456,7 @@ Feature: Farm Inland Marine - FIM
 #
       | Education Materials          | Program Materials                      |
       | Education Materials          | Reference Article                      |
-#      | Education Materials          | Reference Material                              |
+      | Education Materials          | Reference Material                              |
       | Education Materials          | Side by Side Comparison                |
       | Education Materials          | FAQs                                   |
 #
@@ -494,15 +494,15 @@ Feature: Farm Inland Marine - FIM
 #      | IMG Publications             | Terrorism Rules - State-Specific                |
 #      | IMG Publications             | Underwriting                                    |
 #
-#      | Manual Materials             | Data Set                                        |
-#      | By-Peril Manual Materials    | Download For Microsoft Office           |
+      | Manual Materials             | Data Set                                        |
+      | By-Peril Manual Materials    | Download For Microsoft Office           |
       | Manual Materials             | Multi & State-specific Manuals         |
       | Manual Materials             | State Pages                            |
       | Manual Materials             | Supplement                             |
-#
-#      | Reports                      | Cause of Loss Report                            |
-#      | Reports                      | Status Report                                   |
-#
+
+      | Reports                      | Cause of Loss Report                            |
+      | Reports                      | Status Report                                   |
+
       | Statistical Plans            | Statistical Plan                       |
 
   Scenario Outline: FIM - Farm Inland Marine, state - Delaware, Publication Category - '<pubCategory>' and Publication Type - '<pubType>'

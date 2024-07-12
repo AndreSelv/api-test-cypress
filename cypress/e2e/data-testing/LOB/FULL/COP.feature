@@ -439,21 +439,21 @@ Feature: Commercial output program - COP
     Examples:
       | pubCategory                  | pubType                                |
       | Advisory Information         | Declarations                           |
-#      | Advisory Information         | Homeowners Advisory Information                 |
-#      | Advisory Information         | Homeowners Sample Endorsements                  |
-#      | Advisory Information         | Misc                                            |
+      | Advisory Information         | Homeowners Advisory Information                 |
+      | Advisory Information         | Homeowners Sample Endorsements                  |
+      | Advisory Information         | Misc                                            |
       | Advisory Information         | Sample Disclosure Notice               |
-#      | Advisory Information         | Sample Endorsements                             |
-#      | Advisory Information         | Schedule Coverage                               |
-#      | Advisory Information         | Underlying Insurance                            |
-#
+      | Advisory Information         | Sample Endorsements                             |
+      | Advisory Information         | Schedule Coverage                               |
+      | Advisory Information         | Underlying Insurance                            |
+
       | Bulletins                    | Countrywide Bulletin                   |
       | Bulletins                    | General Bulletin                       |
       | Bulletins                    | State-specific Bulletin                |
       | Bulletins                    | Statistical Bulletin                   |
-#
+
       | Compliance Guide             | Compliance Guide                       |
-#
+
       | Education Materials          | Program Materials                      |
       | Education Materials          | Reference Article                      |
 #      | Education Materials          | Reference Material                              |
@@ -494,14 +494,14 @@ Feature: Commercial output program - COP
 #      | IMG Publications             | Terrorism Rules - State-Specific                |
 #      | IMG Publications             | Underwriting                                    |
 #
-#      | Manual Materials             | Data Set                                        |
-#      | By-Peril Manual Materials    | Download For Microsoft Office           |
+      | Manual Materials             | Data Set                                        |
+      | By-Peril Manual Materials    | Download For Microsoft Office           |
       | Manual Materials             | Multi & State-specific Manuals         |
       | Manual Materials             | State Pages                            |
       | Manual Materials             | Supplement                             |
 #
-#      | Reports                      | Cause of Loss Report                            |
-#      | Reports                      | Status Report                                   |
+      | Reports                      | Cause of Loss Report                            |
+      | Reports                      | Status Report                                   |
 #
       | Statistical Plans            | Statistical Plan                       |
 

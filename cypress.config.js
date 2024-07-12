@@ -50,6 +50,13 @@ module.exports = defineConfig({
       });
 
       on("task", {
+        writeEnvFile(envData) {
+          fs.writeFileSync("env.json", JSON.stringify(envData, null, 2));
+          return null;
+        }
+      });
+
+      on("task", {
         parseXlsx({ filePath }) {
           return new Promise((resolve, reject) => {
             try {

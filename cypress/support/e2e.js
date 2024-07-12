@@ -15,8 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
+const fs = require("fs");
 
 before(() => {
+  cy.task("writeEnvFile", Cypress.env("env"));
   const user = Cypress.env("adminUsername"), pass = Cypress.env("adminPassword");
   cy.request({
     method: "POST",
