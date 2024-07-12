@@ -1,6 +1,8 @@
 const { Then, When, Given, And } = require("cypress-cucumber-preprocessor/steps");
 const ALLSTATES = require("../../fixtures/enums/STATES");
 const MATERIALS = require("../../fixtures/enums/MATERIALS");
+const formCounts = {};
+const json2xls = require("json2xls");
 
 
 Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result$/, async (pubCategory, pubType, line, state, effectiveDate) => {
@@ -56,14 +58,17 @@ ORDER BY PUBLICATIONID, OBJECTID, LINE, CLASS, CLASSNAME, STATE, PROGRAM, PUBCAT
     let size = 60;
 
     for (let i = 0; i < data.length; i++) {
-
-      mainData = (data[i][0] === pubCategory && data[i][1] === pubType);
-
-      //after we passed the empty/config rows
+      const mainData = (data[i][0] === pubCategory && data[i][1] === pubType);
       if (mainData) {
-        (pubCategory === "Forms") ? expectedDocs.push(data[i][3])
-          : (pubCategory === "Bulletins") ? expectedDocs.push(data[i][4])
-            : expectedDocs.push((data[i][2].toUpperCase()));
+        if (pubCategory === "Forms") {
+          expectedDocs.push(data[i][3]);
+          // Increment count for the state
+          formCounts[state] = (formCounts[state] || 0) + 1;
+        } else if (pubCategory === "Bulletins") {
+          expectedDocs.push(data[i][4]);
+        } else {
+          expectedDocs.push(data[i][2].toUpperCase());
+        }
         expectedDocs.sort();
       }
     }
@@ -135,6 +140,25 @@ ORDER BY PUBLICATIONID, OBJECTID, LINE, CLASS, CLASSNAME, STATE, PROGRAM, PUBCAT
       await cy.wrap(actualDocs).each(async (obj) => {
       }).then(async () => {
         expect(expectedDocs).to.deep.equal(actualDocs);
+      });
+
+
+      const padZero = (num) => num.toString().padStart(2, "0");
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = padZero(now.getMonth() + 1);
+      const day = padZero(now.getDate());
+
+      const timestamp = `${year}-${month}-${day}`;
+      const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
+        State: state,
+        Count: count
+      }));
+
+      const xlsData = json2xls(formattedCounts);
+      await cy.task("writeFile", {
+        filePath: `./cypress/data/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
+        data: xlsData
       });
     });
   });

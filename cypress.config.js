@@ -56,6 +56,14 @@ module.exports = defineConfig({
         }
       });
 
+
+      on("task", {
+        writeFile({ filePath, data }) {
+          fs.writeFileSync(path.resolve(filePath), data, "binary");
+          return null; // Tasks must return null or a value
+        }
+      });
+
       on("task", {
         parseXlsx({ filePath }) {
           return new Promise((resolve, reject) => {
