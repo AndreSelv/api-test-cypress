@@ -152,12 +152,13 @@ ORDER BY PUBLICATIONID, OBJECTID, LINE, CLASS, CLASSNAME, STATE, PROGRAM, PUBCAT
       const timestamp = `${year}-${month}-${day}`;
       const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
         State: state,
-        Count: count
+        Forms_Counts: count
       }));
 
       const xlsData = json2xls(formattedCounts);
+      await cy.task("createDir", './cypress/reports');
       await cy.task("writeFile", {
-        filePath: `./cypress/data/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
+        filePath: `./cypress/reports/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
         data: xlsData
       });
     });

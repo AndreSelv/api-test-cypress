@@ -50,6 +50,16 @@ module.exports = defineConfig({
       });
 
       on("task", {
+        createDir(dirPath) {
+          const fullPath = path.resolve(dirPath);
+          if (!fs.existsSync(fullPath)) {
+            fs.mkdirSync(fullPath, { recursive: true });
+          }
+          return null; // Tasks must return null or a value
+        }
+      });
+
+      on("task", {
         writeEnvFile(envData) {
           fs.writeFileSync("env.json", JSON.stringify(envData, null, 2));
           return null;
