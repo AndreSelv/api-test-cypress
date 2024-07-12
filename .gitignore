@@ -10,3 +10,4 @@ event.json
 reports
 cypress/data
 featureFileName.txt
+env.json
