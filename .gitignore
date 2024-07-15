@@ -7,7 +7,7 @@ screenshots/
 .idea/
 /cypress/reports
 event.json
+env.json
 reports
 cypress/data
 featureFileName.txt
-env.json
