@@ -6,8 +6,8 @@ screenshots/
 2-advanced-examples/
 .idea/
 /cypress/reports
-env.json
-#env.json
+/env.json
 reports
 cypress/data
-featureFileName.txt
+/featureFileName.txt
+/event.json
