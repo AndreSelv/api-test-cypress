@@ -16,6 +16,7 @@ const client = new Client({
 });
 const oracledb = require("oracledb");
 const path = require("path");
+const xlsxx = require("xlsx");
 
 
 module.exports = defineConfig({
@@ -47,6 +48,80 @@ module.exports = defineConfig({
         const featureFileName = path.basename(featureFile, ".feature");
         fs.writeFileSync("featureFileName.txt", featureFileName);
         /* ... */
+      });
+
+      on("task", {
+        createOrUpdateWorkbook({ filePath, sheetName, data }) {
+          return new Promise((resolve, reject) => {
+            try {
+              let workbook;
+              if (fs.existsSync(filePath)) {
+                // Read existing workbook
+                workbook = xlsxx.readFile(filePath);
+              } else {
+                // Create a new workbook
+                workbook = xlsxx.utils.book_new();
+              }
+              let worksheet = workbook.Sheets[sheetName];
+
+              if (!worksheet) {
+                // If the sheet doesn't exist, create it
+                worksheet = xlsxx.utils.json_to_sheet(data);
+                xlsxx.utils.book_append_sheet(workbook, worksheet, sheetName);
+              } else {
+                // If the sheet exists, check and append unique data
+                const existingData = xlsxx.utils.sheet_to_json(worksheet);
+                const newData = data.filter(item => {
+                  return !existingData.some(existingItem => {
+                    return JSON.stringify(existingItem) === JSON.stringify(item);
+                  });
+                });
+
+                if (newData.length > 0) {
+                  const updatedData = existingData.concat(newData);
+                  worksheet = xlsxx.utils.json_to_sheet(updatedData);
+                  workbook.Sheets[sheetName] = worksheet;
+                }
+              }
+
+              // Write the workbook to file
+              xlsxx.writeFile(workbook, filePath);
+              resolve(`Workbook updated with sheet: ${sheetName}`);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
+      });
+
+      on("task", {
+        fileExists(filePath) {
+          return fs.existsSync(filePath);
+        },
+        createDir(dirPath) {
+          if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
+          return null;
+        },
+        writeFile({ filePath, data }) {
+          fs.writeFileSync(filePath, data);
+          return null;
+        },
+        saveWorkbook({ filePath, workbook }) {
+          xlsxx.writeFile(workbook, filePath);
+          return null;
+        },
+        readWorkbook(filePath) {
+          return new Promise((resolve, reject) => {
+            try {
+              const workbook = xlsxx.readFile(filePath);
+              resolve(workbook);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
       });
 
       on("task", {

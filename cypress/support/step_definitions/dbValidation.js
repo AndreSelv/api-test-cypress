@@ -11,7 +11,6 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
     const actualDocs = [];
     let expectedDocs = [];
     let effective_date = `${effectiveDate}`;
-    let mainData = false;
     let size = 60;
 
     for (let i = 0; i < data.length; i++) {
@@ -89,34 +88,40 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
           });
         }
       }
-      if (expectedDocs.length > 0)
+       //Create reports
+      if (expectedDocs.length > 0) {
         await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/DB.json`, JSON.stringify(expectedDocs));
+        const padZero = (num) => num.toString().padStart(2, "0");
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = padZero(now.getMonth() + 1);
+        const day = padZero(now.getDate());
+        const timestamp = `${year}-${month}-${day}`;
+        const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
+          State: state,
+          Forms_Counts: count
+        }));
+        await cy.task("createDir", "./cypress/reports");
+
+        await cy.task("createOrUpdateWorkbook", {
+          filePath: `./cypress/reports/FORM_COUNTS_${timestamp}.xlsx`,
+          sheetName: line,
+          data: formattedCounts // Format data for the sheet
+        });
+
+        // // old version
+        // const xlsData = json2xls(formattedCounts);
+        // await cy.task("writeFile", {
+        //   filePath: `./cypress/reports/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
+        //   data: xlsData
+        // });
+
+      }
 
       //Validation part
-
       await cy.wrap(actualDocs).each(async (obj) => {
       }).then(async () => {
         expect(expectedDocs).to.deep.equal(actualDocs);
-      });
-
-
-      const padZero = (num) => num.toString().padStart(2, "0");
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = padZero(now.getMonth() + 1);
-      const day = padZero(now.getDate());
-
-      const timestamp = `${year}-${month}-${day}`;
-      const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
-        State: state,
-        Forms_Counts: count
-      }));
-
-      const xlsData = json2xls(formattedCounts);
-      await cy.task("createDir", "./cypress/reports");
-      await cy.task("writeFile", {
-        filePath: `./cypress/reports/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
-        data: xlsData
       });
     });
   });
