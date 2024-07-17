@@ -26,14 +26,13 @@ try {
 } finally {
   const envData = fs.readFileSync("env.json", "utf8");
   const parsedEnv = JSON.parse(envData);
-  const envType = parsedEnv.includes("cognito") ? "DEV" :
+  env = parsedEnv.includes("cognito") ? "DEV" :
     parsedEnv.includes("uat") ? "UAT" :
       "Unknown environment type";
-  env = envType;
 }
 
-const reportFilename = `Product_${reportBaseName}_Env_${env}_${timestamp}.html`;
+const reportFilename = `${reportBaseName}_Env_${env}_${timestamp}.html`;
 // const reportFilename = `Product_${reportBaseName}_${timestamp}.html`;
 
-// Print the filename so it can be used in the npm script
+// Print the filename, so it can be used in the npm script
 console.log(reportFilename);
