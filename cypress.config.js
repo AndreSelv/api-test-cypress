@@ -95,6 +95,13 @@ module.exports = defineConfig({
       });
 
       on("task", {
+        readFileSync({ filePath, encoding }) {
+          try {
+            return fs.readFileSync(filePath, encoding);
+          } catch (error) {
+            throw error;
+          }
+        },
         fileExists(filePath) {
           return fs.existsSync(filePath);
         },

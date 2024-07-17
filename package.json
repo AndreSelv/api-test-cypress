@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.298",
+  "version": "0.0.299",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -20,6 +20,7 @@
     "LOB-PROF": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/'",
     "LOB-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/'",
     "PC-DEV": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/FULL/PC.feature'",
+    "FULL-DEV": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/FULL/'",
     "PIM-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/LOB/FULL/PIM.feature'",
     "TEST": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/FULL/BOP.feature'",
     "FIMd": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/LOB/FIM.feature'",

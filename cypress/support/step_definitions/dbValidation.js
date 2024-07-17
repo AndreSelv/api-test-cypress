@@ -2,6 +2,7 @@ const { Then, When, Given, And } = require("cypress-cucumber-preprocessor/steps"
 const formCounts = {};
 const json2xls = require("json2xls");
 const { getPublicationsQuery } = require("../queries");
+const fs = require("fs");
 
 
 Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result$/, async (pubCategory, pubType, line, state, effectiveDate) => {
@@ -102,11 +103,17 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
           Forms_Counts: count
         }));
         await cy.task("createDir", "./cypress/reports");
+        let env;
+        await cy.task("readFileSync", { filePath: "env.json", encoding: "utf8" }).then(async envData => {
+          env = JSON.parse(envData).includes("cognito") ? "DEV" :
+            JSON.parse(envData).includes("uat") ? "UAT" :
+              "Unknown environment type";
 
-        await cy.task("createOrUpdateWorkbook", {
-          filePath: `./cypress/reports/FORM_COUNTS_${timestamp}.xlsx`,
-          sheetName: line,
-          data: formattedCounts // Format data for the sheet
+          await cy.task("createOrUpdateWorkbook", {
+            filePath: `./cypress/reports/FORM_COUNTS_Env_${env}_${timestamp}.xlsx`,
+            sheetName: line,
+            data: formattedCounts // Format data for the sheet
+          });
         });
 
         // // old version
