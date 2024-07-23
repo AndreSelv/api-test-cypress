@@ -105,16 +105,16 @@ module.exports = defineConfig({
         fileExists(filePath) {
           return fs.existsSync(filePath);
         },
-        createDir(dirPath) {
-          if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, { recursive: true });
-          }
-          return null;
-        },
-        writeFile({ filePath, data }) {
-          fs.writeFileSync(filePath, data);
-          return null;
-        },
+        // createDir(dirPath) {
+        //   if (!fs.existsSync(dirPath)) {
+        //     fs.mkdirSync(dirPath, { recursive: true });
+        //   }
+        //   return null;
+        // },
+        // writeFile({ filePath, data }) {
+        //   fs.writeFileSync(filePath, data);
+        //   return null;
+        // },
         saveWorkbook({ filePath, workbook }) {
           xlsxx.writeFile(workbook, filePath);
           return null;

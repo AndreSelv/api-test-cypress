@@ -31,7 +31,7 @@ try {
       "Unknown environment type";
 }
 
-const reportFilename = `${reportBaseName}_Env_${env}_${timestamp}.html`;
+const reportFilename = `HTML_Report_${reportBaseName}_Env_${env}_${timestamp}.html`;
 // const reportFilename = `Product_${reportBaseName}_${timestamp}.html`;
 
 // Print the filename, so it can be used in the npm script
