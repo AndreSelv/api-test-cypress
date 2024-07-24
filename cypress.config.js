@@ -148,7 +148,6 @@ module.exports = defineConfig({
         }
       });
 
-
       on("task", {
         writeFile({ filePath, data }) {
           fs.writeFileSync(path.resolve(filePath), data, "binary");
