@@ -6,29 +6,39 @@ const fs = require("fs");
 
 
 Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)' and '(.*)' and should get result match with legacy DB search result$/, async (pubCategory, pubType, line, state, effectiveDate) => {
+  let filePath = "./cypress/data/DATA.xlsx";
   const query = getPublicationsQuery(pubCategory, pubType, line, state);
   await cy.runORCLQuery(query);
-  await cy.readXLSX("./cypress/data/DATA.xlsx").then(async data => {
+  await cy.readXLSX(filePath).then(async data => {
     const actualDocs = [];
     let expectedDocs = [];
     let effective_date = `${effectiveDate}`;
     let size = 60;
+    const isEmpty = (obj) => Object.keys(obj).length === 0;
 
-    for (let i = 0; i < data.length; i++) {
-      const mainData = (data[i][0] === pubCategory && data[i][1] === pubType);
-      if (mainData) {
-        if (pubCategory === "Forms") {
-          expectedDocs.push(data[i][3]);
-          // Increment count for the state
-          formCounts[state] = (formCounts[state] || 0) + 1;
-        } else if (pubCategory === "Bulletins") {
-          expectedDocs.push(data[i][4]);
-        } else {
-          expectedDocs.push(data[i][2].toUpperCase());
+
+    // throw new Error(isEmpty(data));
+    if (isEmpty(data) && pubCategory === "Forms") {
+      formCounts[state] = 0;
+    } else {
+
+      for (let i = 0; i < data.length; i++) {
+        const mainData = (data[i][0] === pubCategory && data[i][1] === pubType);
+        if (mainData) {
+          if (pubCategory === "Forms") {
+            expectedDocs.push(data[i][3]);
+            // Increment count for the state
+            formCounts[state] = (formCounts[state] || 0) + 1;
+          } else if (pubCategory === "Bulletins") {
+            expectedDocs.push(data[i][4]);
+          } else {
+            expectedDocs.push(data[i][2].toUpperCase());
+          }
+          expectedDocs.sort();
         }
-        expectedDocs.sort();
       }
     }
+
 
     // Main request
     await cy.request({
@@ -92,38 +102,38 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
        //Create reports
       if (expectedDocs.length > 0) {
         await cy.writeFile(`./reports/${line} /${state} /${pubCategory} /${pubType} /${effective_date.replaceAll("/", ".")}/DB.json`, JSON.stringify(expectedDocs));
-        const padZero = (num) => num.toString().padStart(2, "0");
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = padZero(now.getMonth() + 1);
-        const day = padZero(now.getDate());
-        const timestamp = `${year}-${month}-${day}`;
-        const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
-          State: state,
-          Forms_Counts: count
-        }));
-        await cy.task("createDir", "./cypress/reports");
-        let env;
-        await cy.task("readFileSync", { filePath: "env.json", encoding: "utf8" }).then(async envData => {
-          env = JSON.parse(envData).includes("cognito") ? "DEV" :
-            JSON.parse(envData).includes("uat") ? "UAT" :
-              "Unknown environment type";
-
-          await cy.task("createOrUpdateWorkbook", {
-            filePath: `./cypress/reports/FORM_COUNTS_Env_${env}_${timestamp}.xlsx`,
-            sheetName: line,
-            data: formattedCounts // Format data for the sheet
-          });
-        });
-
-        // // old version
-        // const xlsData = json2xls(formattedCounts);
-        // await cy.task("writeFile", {
-        //   filePath: `./cypress/reports/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
-        //   data: xlsData
-        // });
-
       }
+      const padZero = (num) => num.toString().padStart(2, "0");
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = padZero(now.getMonth() + 1);
+      const day = padZero(now.getDate());
+      const timestamp = `${year}-${month}-${day}`;
+      const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
+        State: state,
+        Forms_Counts: count
+      }));
+      await cy.task("createDir", "./cypress/reports");
+      let env;
+      await cy.task("readFileSync", { filePath: "env.json", encoding: "utf8" }).then(async envData => {
+        env = JSON.parse(envData).includes("cognito") ? "DEV" :
+          JSON.parse(envData).includes("uat") ? "UAT" :
+            "Unknown environment type";
+
+        await cy.task("createOrUpdateWorkbook", {
+          filePath: `./cypress/reports/FORM_COUNTS_Env_${env}_${timestamp}.xlsx`,
+          sheetName: line,
+          data: formattedCounts // Format data for the sheet
+        });
+      });
+
+      // // old version
+      // const xlsData = json2xls(formattedCounts);
+      // await cy.task("writeFile", {
+      //   filePath: `./cypress/reports/FORM_COUNTS_FOR_${line}_${timestamp}.xlsx`,
+      //   data: xlsData
+      // });
+
 
       //Validation part
       await cy.wrap(actualDocs).each(async (obj) => {

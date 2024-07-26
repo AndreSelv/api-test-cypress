@@ -270,8 +270,10 @@ module.exports = defineConfig({
                 console.log("Data written to DATA.xlsx");
                 resolve(xlsData);
               } else {
+                const xlsData = json2xls(result.rows);
+                fs.writeFileSync("./cypress/data/DATA.xlsx", xlsData, "binary");
                 console.log("No data found in the query result.");
-                resolve(null); // Resolving with null if no data found
+                resolve(xlsData);
               }
             } catch (e) {
               console.error("Error connecting to Oracle DB:", e);
