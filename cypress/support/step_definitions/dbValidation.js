@@ -1,7 +1,7 @@
 const { Then, When, Given, And } = require("cypress-cucumber-preprocessor/steps");
 const formCounts = {};
 const json2xls = require("json2xls");
-const { getPublicationsQuery } = require("../queries");
+const { getPublicationsQuery } = require("../queries1");
 const fs = require("fs");
 
 
@@ -108,7 +108,8 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
       const year = now.getFullYear();
       const month = padZero(now.getMonth() + 1);
       const day = padZero(now.getDate());
-      const timestamp = `${year}-${month}-${day}`;
+      // const timestamp = `${year}-${month}-${day}`;
+      const timestamp = `${year}-${month}-`;
       const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
         State: state,
         Forms_Counts: count
