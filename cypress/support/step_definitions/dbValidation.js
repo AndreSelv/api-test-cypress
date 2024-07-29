@@ -108,8 +108,8 @@ Then(/^The user call search endpoint with '(.*)' and '(.*)' and '(.*)' and '(.*)
       const year = now.getFullYear();
       const month = padZero(now.getMonth() + 1);
       const day = padZero(now.getDate());
-      // const timestamp = `${year}-${month}-${day}`;
-      const timestamp = `${year}-${month}-`;
+      const timestamp = `${year}-${month}-${day}`;
+      // const timestamp = `${year}-${month}-`;
       const formattedCounts = Object.entries(formCounts).map(([state, count]) => ({
         State: state,
         Forms_Counts: count
