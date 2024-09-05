@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.309",
+  "version": "0.0.310",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -27,6 +27,7 @@
     "BT-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/FULL/BOP.feature'",
     "FAIL-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/FAILED/'",
     "FORMS-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/data-testing/FORMS/'",
+    "FORMS-DEV": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/FORMS/'",
     "TEST": "cypress run -b chrome --headless --spec 'cypress/e2e/data-testing/FULL/BT.feature'",
     "user": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/orgaization/userView/users/updateUser.feature'",
     "historical": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/hubspot/hubspot.feature'",
@@ -131,7 +132,7 @@
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.2.2",
     "mochawesome-report-generator": "^6.2.0",
-    "mssql": "^9.1.1",
+    "mssql": "^11.0.1",
     "node-xlsx": "^0.4.0",
     "prettier": "^2.7.1",
     "read-excel-file": "^5.5.3"
