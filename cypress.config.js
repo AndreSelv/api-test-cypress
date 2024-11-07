@@ -324,7 +324,8 @@ module.exports = defineConfig({
       CYPRESS_RECORD_KEY: "d76932dd-1ca1-4d55-99cf-f11331f2187a",
       DB_USER: "PDP_DATA_LOCATION",
       DB_PASSWORD: "pdp_data_location",
-      DB_CONNECT_STRING: "semarchy-development-migrate.ceaq9jb1xfee.us-east-1.rds.amazonaws.com:1521/ORCL"
+      DB_CONNECT_STRING: "semarchy-useracceptance-db.ceaq9jb1xfee.us-east-1.rds.amazonaws.com:1521/ORCL",
+      // DB_CONNECT_STRING: "semarchy-development-migrate.ceaq9jb1xfee.us-east-1.rds.amazonaws.com:1521/ORCL"
     },
     specPattern: "cypress/e2e/**/*.*",
     projectId: "fsxi11",

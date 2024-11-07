@@ -1,5 +1,4 @@
-const getPublicationsQuery = (pubCategory, pubType, line, state) => `
-WITH FilteredData AS (
+const getPublicationsQuery = (pubCategory, pubType, line, state) => `WITH RankedData AS (
     SELECT
         pi.pubcategory,
         pi.pubtype,
@@ -28,17 +27,20 @@ WITH FilteredData AS (
         pi.effectivedate,
         pi.deactivationdatetime,
         pi.CURRENT_FLAG,
-        ROW_NUMBER() OVER (PARTITION BY pi.form_name ORDER BY pi.manualrevision DESC) AS rn
+        ROW_NUMBER() OVER (
+            PARTITION BY pi.formwithedition -- Partition by formwithedition to group duplicates
+            ORDER BY pi.manualrevision DESC -- Order by manualrevision to get the latest one
+        ) AS rn
     FROM
         gd_pc_index pi
     WHERE
-        CURRENT_FLAG = '1'
-    AND (pi.pubcategory = 'Forms and Endorsements Lists' OR pi.pubcategory = 'Manual Materials')
-    AND pi.pubcategory LIKE '${pubCategory}'
-    AND pi.pubtype LIKE '${pubType}'
-    AND pi.lob LIKE '${line}'
-    AND pi.state LIKE '${state}'
+        pi.CURRENT_FLAG = '1'
+        AND pi.pubcategory LIKE '${pubCategory}'
+        AND pi.pubtype LIKE '${pubType}'
+        AND pi.lob LIKE '${line}'
+        AND pi.state LIKE '${state}'
 )
+
 SELECT
     pubcategory,
     pubtype,
@@ -68,11 +70,11 @@ SELECT
     deactivationdatetime,
     CURRENT_FLAG
 FROM
-    FilteredData
+    RankedData
 WHERE
-    rn = 1
+    rn = 1 -- Only select the most recent entry for each formwithedition
 
-UNION
+UNION ALL
 
 SELECT
     pi.pubcategory,
@@ -106,14 +108,15 @@ FROM
     gd_pc_index pi
 WHERE
     pi.CURRENT_FLAG = '1'
-   AND pi.pubcategory LIKE '${pubCategory}'
+    AND pi.pubcategory LIKE '${pubCategory}'
     AND pi.pubtype LIKE '${pubType}'
     AND pi.lob LIKE '${line}'
     AND pi.state LIKE '${state}'
-    AND NOT (
-        pi.pubcategory = 'Forms and Endorsements Lists'
-        OR pi.pubcategory = 'Manual Materials'
-    )
-`;
+    AND NOT EXISTS (
+        SELECT 1
+        FROM RankedData rd
+        WHERE rd.formwithedition = pi.formwithedition
+        AND rd.rn = 1 -- Check if the formwithedition exists in the ranked data
+    )`;
 
 module.exports = { getPublicationsQuery };
