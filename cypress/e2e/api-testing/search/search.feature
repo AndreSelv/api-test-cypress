@@ -79,7 +79,7 @@ Feature: Validate searching functionality
       | appraisal    |
 
 
-  Scenario Outline: The word - '<word>' exact search in file content for each publication.
+  Scenario Outline: The word - '<word>' exact search in file content.
 
     When User provide search exact word like '<word>' and search it include file content and validate all of publication in the result
     Examples:
@@ -98,3 +98,14 @@ Feature: Validate searching functionality
       | subrogation  |
       | severability |
       | appraisal    |
+
+  Scenario Outline: The phrase - '<phrase>' exact search in file content.
+
+    When User provide exact phrase like '<phrase>' and search it include file content and validate all of publication in the result
+    Examples:
+      | phrase               |
+      | loss cost            |
+      | total loss           |
+      | installation floater |
+      | warehouse legal      |
+      | brush fire           |
