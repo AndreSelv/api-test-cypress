@@ -42,7 +42,9 @@ Feature: Validate searching functionality
       | IM 7050              |
       | PA 0001 07 16        |
       | HO 4815              |
-
+      | BP-351               |
+      | BP351                |
+      | BP 351               |
 
 
   Scenario Outline: The word - '<word>' exact search in file content.
