@@ -4,47 +4,53 @@ Feature: Validate searching functionality
 
     When User provide exact phrase like '<phrase>' and get result with all publication that contains in the name
     Examples:
-      | phrase               |
-      | loss cost            |
-      | total loss           |
-      | installation floater |
-      | warehouse legal      |
-      | brush fire           |
-      | additional insured   |
-      | cannabis             |
-      | terrorism            |
-      | windstorm            |
-      | amendatory           |
-      | flood                |
-      | cyber                |
-      | deductible           |
-      | earthquake           |
-      | cosmetic             |
-      | exclusion            |
-      | warehouse            |
-      | subrogation          |
-      | severability         |
-      | appraisal            |
-      | AG 0726              |
-      | AP 0497              |
-      | BP 0756              |
-      | CB 1321              |
-      | CA 0103              |
-      | CL 2650 06 04        |
-      | CL 0122              |
-      | IM 2029              |
-      | GL 0462              |
-      | CO 0421              |
-      | CP 0700              |
-      | CU 0742              |
-      | DP 2500              |
-      | DP 0002              |
-      | IM 7050              |
-      | PA 0001 07 16        |
-      | HO 4815              |
-      | BP-351               |
-      | BP351                |
-      | BP 351               |
+      | phrase                                                                             |
+      | loss cost                                                                          |
+      | total loss                                                                         |
+      | installation floater                                                               |
+      | warehouse legal                                                                    |
+      | brush fire                                                                         |
+      | additional insured                                                                 |
+      | cannabis                                                                           |
+      | terrorism                                                                          |
+      | windstorm                                                                          |
+      | amendatory                                                                         |
+      | flood                                                                              |
+      | cyber                                                                              |
+      | deductible                                                                         |
+      | earthquake                                                                         |
+      | cosmetic                                                                           |
+      | exclusion                                                                          |
+      | warehouse                                                                          |
+      | subrogation                                                                        |
+      | severability                                                                       |
+      | appraisal                                                                          |
+      | AG 0726                                                                            |
+      | AP 0497                                                                            |
+      | BP 0756                                                                            |
+      | CB 1321                                                                            |
+      | CA 0103                                                                            |
+      | CL 2650 06 04                                                                      |
+      | CL 0122                                                                            |
+      | IM 2029                                                                            |
+      | GL 0462                                                                            |
+      | CO 0421                                                                            |
+      | CP 0700                                                                            |
+      | CU 0742                                                                            |
+      | DP 2500                                                                            |
+      | DP 0002                                                                            |
+      | IM 7050                                                                            |
+      | PA 0001 07 16                                                                      |
+      | HO 4815                                                                            |
+      | BP-351                                                                             |
+      | BP351                                                                              |
+      | BP 351                                                                             |
+      | AK - REV 03 24                                                                     |
+      | EDP - EDP Coverage and the Internet (Comparison pertains to 05 01 series of forms) |
+      | CC - Rev 11 15 06                                                                  |
+      | Rev 01 15 (NSFP)                                                                   |
+      | CC - Forms Comparison - Rev 03 11                                                  |
+
 
 
   Scenario Outline: The word - '<word>' exact search in file content.

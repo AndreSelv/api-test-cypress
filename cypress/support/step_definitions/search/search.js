@@ -30,7 +30,7 @@ When(/^User provide exact phrase like '(.*)' and get result with all publication
     cy.wrap(resp.body.hits.hits).each((obj) => {
       const displayName = obj._source.displayName.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");
       let searchWord = phrase.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");
-      expect(displayName, `Failed \nID: ${obj._id} \nDisplay Name: ${obj._source.displayName} \nNot Include the phrase: ${phrase}`).contains(searchWord);
+      expect(displayName, `Failed \nID: ${obj._id} \nDisplay Name: ${obj._source.displayName} \nNot Include the phrase: ${phrase}\n`).contains(searchWord);
     });
   });
 });
