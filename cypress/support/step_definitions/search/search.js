@@ -27,6 +27,7 @@ When(/^User provide exact phrase like '(.*)' and get result with all publication
   cy.get("@resp").then((resp) => {
     expect(resp.status).to.eq(200);
     cy.task("log", `Total count of hits: ${resp.body.hits.total.value}`);
+    expect(resp.body.hits.total.value).to.be.greaterThan(0)
     cy.wrap(resp.body.hits.hits).each((obj) => {
       const displayName = obj._source.displayName.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");
       let searchWord = phrase.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");

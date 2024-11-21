@@ -9,7 +9,6 @@ Feature: Validate searching functionality
       | total loss                                                                         |
       | installation floater                                                               |
       | warehouse legal                                                                    |
-      | brush fire                                                                         |
       | additional insured                                                                 |
       | cannabis                                                                           |
       | terrorism                                                                          |
@@ -23,7 +22,6 @@ Feature: Validate searching functionality
       | exclusion                                                                          |
       | warehouse                                                                          |
       | subrogation                                                                        |
-      | severability                                                                       |
       | appraisal                                                                          |
       | AG 0726                                                                            |
       | AP 0497                                                                            |
@@ -42,6 +40,9 @@ Feature: Validate searching functionality
       | IM 7050                                                                            |
       | PA 0001 07 16                                                                      |
       | HO 4815                                                                            |
+      | CL0811                                                                             |
+      | CL 0811                                                                            |
+      | CL-0811                                                                            |
       | BP-351                                                                             |
       | BP351                                                                              |
       | BP 351                                                                             |
@@ -50,7 +51,6 @@ Feature: Validate searching functionality
       | CC - Rev 11 15 06                                                                  |
       | Rev 01 15 (NSFP)                                                                   |
       | CC - Forms Comparison - Rev 03 11                                                  |
-
 
 
   Scenario Outline: The word - '<word>' exact search in file content.
