@@ -1,6 +1,6 @@
 import { When } from "cypress-cucumber-preprocessor/steps";
 
-When(/^User provide exact phrase like '(.*)' and get result with all publication that contains in the name$/, function(phrase) {
+When(/^User provide exact phrase like '(.*)' and get result with all publication that contains in the name '(.*)'$/, function(phrase, term) {
   cy.request({
     method: "POST",
     url: `https://asset-${Cypress.env("env")}/assets/v1/search`,
@@ -9,7 +9,7 @@ When(/^User provide exact phrase like '(.*)' and get result with all publication
     },
     body:
       {
-        "term": `"${phrase}"`,
+        "term": term === "false" ? `${phrase}` : `\"${phrase}\"`,
         "filters": {
           "excludeFileContent": "Y",
           "size": 150,
@@ -27,11 +27,16 @@ When(/^User provide exact phrase like '(.*)' and get result with all publication
   cy.get("@resp").then((resp) => {
     expect(resp.status).to.eq(200);
     cy.task("log", `Total count of hits: ${resp.body.hits.total.value}`);
-    expect(resp.body.hits.total.value).to.be.greaterThan(0)
+    expect(resp.body.hits.total.value).to.be.greaterThan(0);
     cy.wrap(resp.body.hits.hits).each((obj) => {
       const displayName = obj._source.displayName.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");
       let searchWord = phrase.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~() ]/g, "");
-      expect(displayName, `Failed \nID: ${obj._id} \nDisplay Name: ${obj._source.displayName} \nNot Include the phrase: ${phrase}\n`).contains(searchWord);
+      expect(displayName, `Failed
+      ID: ${obj._id}
+      Total: ${resp.body.hits.total.value}
+      Display Name: "${obj._source.displayName}"
+      Not Include the phrase: "${phrase}"\n`)
+        .contains(searchWord);
     });
   });
 });
