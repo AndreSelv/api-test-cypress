@@ -94,8 +94,8 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/run:
           install-command: npm install && echo hello
-          cypress-command: CI=1 npx cypress run
-#          cypress-command: CI=1 npx cypress run --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/api-testing/'
+#          cypress-command: CI=1 npx cypress run
+          cypress-command: CI=1 npx cypress run --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/api-testing/'
 
           post-install: npx cypress info
           post-steps:
