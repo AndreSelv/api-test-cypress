@@ -219,7 +219,11 @@ When(/^User provide exact phrase like '(.*)' and search it include file content 
 
         // Collect files where the word is found
         const matchingFiles = files
-          .filter(file => file.content?.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "").includes(phrase))
+          .filter(file => file.content
+            ?.toLowerCase()
+            .replace(/\t/g, " ") // Replace tabs with spaces
+            .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "") // Remove special characters
+            .includes(phrase.toLowerCase()))
           .map(file => file.filename);
         const fileDetails = files.map(file => ({ name: file.filename, content: file.content }));
 
