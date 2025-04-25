@@ -15,7 +15,7 @@ When(/^The user create request with 'IMG' Product '(.*)' IMGClass and '(.*)' sta
           "size": 20,
           "productLine": ["IMG"],
           "states": [state],
-          "publicationTypeCategory_query": [],
+          "publicationTypeCategory_query": ["IMG Publications"],
           "publicationType": [],
           "imgClass_s": [IMGClass]
           // "effectiveDate": effective_date

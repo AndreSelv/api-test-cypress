@@ -1,6 +1,6 @@
 {
   "name": "api-test-cypress",
-  "version": "0.0.324",
+  "version": "0.0.325",
   "description": "AAISDirect API TESTING",
   "homepage": "https://aaisonline.atlassian.net/wiki/spaces/MSSI/overview",
   "bugs": {
@@ -26,6 +26,7 @@
     "cy:test:aws": "CI=1 cypress run",
     "cy:parallel": "cypress-parallel -s cy:run -t 2 -d 'cypress/e2e/data-testing/FULL/' -m false",
     "API-UAT": "cypress run -b chrome --headless --env env=direct-api-uat.aaisdirect.com --spec 'cypress/e2e/api-testing/'",
+    "API-DEV": "cypress run -b chrome --headless --spec 'cypress/e2e/api-testing/'",
     "cy:verify": "npx cypress verify",
     "cy:info": "npx cypress info",
     "parallel": "CI=1 npx cypress run --record --headless --parallel --ci-build-id circle",
