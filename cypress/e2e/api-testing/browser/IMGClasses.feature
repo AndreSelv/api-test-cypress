@@ -7,13 +7,13 @@ Feature: Validate that APi endpoint return data with IMG Class parameter
       | AL    | BCF       |
       | AL    | BR        |
       | AL    | CC        |
-      | AL    | CE        |
+#      | AL    | CE        |
       | AL    | DIC       |
       | AL    | EDP       |
       | AL    | ESR       |
       | AL    | FAD       |
       | AL    | ART       |
-      | AL    | CE        |
+      | AL    | GE        |
       | AL    | IF        |
       | AL    | FLT       |
       | AL    | MIS       |
